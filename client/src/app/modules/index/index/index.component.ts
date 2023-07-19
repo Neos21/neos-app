@@ -21,4 +21,9 @@ export class IndexComponent {
     if(this.authService.accessToken == null) return await this.router.navigate(['/login']);  // 未ログインならこの画面を表示しない
     this.isLoaded = true;
   }
+  
+  public logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 }

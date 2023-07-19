@@ -1,5 +1,5 @@
 {
-  "name": "app-server",
+  "name": "neos-app-server",
   "private": true,
   "scripts": {
     "nest": "nest",

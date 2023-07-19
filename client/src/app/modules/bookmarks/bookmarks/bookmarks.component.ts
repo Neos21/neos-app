@@ -32,7 +32,6 @@ export class BookmarksComponent {
   public async findAll(): Promise<void> {
     try {
       this.bookmarks = await this.bookmarksService.findAll();
-      console.log(this.bookmarks);
     }
     catch(error) {
       this.error = error;

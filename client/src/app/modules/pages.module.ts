@@ -7,6 +7,7 @@ import { IndexModule } from './index/index.module';
   imports: [
     SharedModule,
     IndexModule
+    // 遅延ロードモジュールは AppRoutingModule で読み込まれる
   ]
 })
 export class PagesModule { }

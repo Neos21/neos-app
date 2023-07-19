@@ -1,0 +1,12 @@
+<div class="black-theme-wrapper">
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <header>
+      <h1>Notes</h1>
+      <div class="text-center"><a [routerLink]="['/index']">Index</a></div>
+      <button type="submit" [disabled]="isProcessing">Save</button>
+    </header>
+    <textarea placeholder="Text" formControlName="text" [disabled]="isProcessing"></textarea>
+  </form>
+  
+  <app-error [error]="error"></app-error>
+</div>

@@ -8,7 +8,6 @@ import { BookmarksComponent } from './bookmarks/bookmarks.component';
 // Providers
 import { BookmarksService } from './services/bookmarks.service';
 
-
 @NgModule({
   imports: [
     SharedModule,

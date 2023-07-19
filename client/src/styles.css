@@ -3,12 +3,25 @@
 
 @font-face { font-family: "Yu Gothic"; src: local("Yu Gothic Medium"), local("YuGothic-Medium"); }
 @font-face { font-family: "Yu Gothic"; src: local("Yu Gothic Bold"  ), local("YuGothic-Bold"  ); font-weight: bold; }
+@font-face { font-family: "Noto Sans Mono CJK JP"; src: local("NotoSansMonoCJKjp-Regular"), local("Noto Sans Mono CJK JP Regular"), local("Noto Sans Mono CJK JP"); }
+@font-face {
+  font-family: "Noto Sans Mono CJK JP Web";
+  src: url("https://cdn.jsdelivr.net/npm/@neos21/japanese-monospaced-fonts@1.0.2/NotoSansMonoCJKjp-Regular.woff2")              format("woff2"),
+       url("https://unpkg.com/@neos21/japanese-monospaced-fonts@1.0.2/NotoSansMonoCJKjp-Regular.woff2")                         format("woff2"),
+       url("https://cdn.jsdelivr.net/npm/@neos21/japanese-monospaced-fonts@1.0.2/NotoSansMonoCJKjp-Regular.woff")               format("woff"),
+       url("https://unpkg.com/@neos21/japanese-monospaced-fonts@1.0.2/NotoSansMonoCJKjp-Regular.woff")                          format("woff"),
+       url("https://cdn.jsdelivr.net/npm/@neos21/japanese-monospaced-fonts@1.0.2/NotoSansMonoCJKjp-Regular.otf")                format("opentype"),
+       url("https://unpkg.com/@neos21/japanese-monospaced-fonts@1.0.2/NotoSansMonoCJKjp-Regular.otf")                           format("opentype"),
+       url("https://cdn.jsdelivr.net/npm/@japanese-monospaced-fonts/noto-sans-mono-cjk-jp@1.0.1/NotoSansMonoCJKJP-Regular.otf") format("opentype"),
+       url("https://unpkg.com/@japanese-monospaced-fonts/noto-sans-mono-cjk-jp@1.0.1/NotoSansMonoCJKJP-Regular.otf")            format("opentype");
+  font-display: swap;
+}
 
 *, ::before, ::after { box-sizing: border-box; }
 
 :root {
-  --font-family-sans-serif: "Noto Sans CJK JP"     , YuGothic  , "Yu Gothic", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-monospace : "Noto Sans Mono CJK JP", Osaka-mono, "MS Gothic", Menlo, Consolas, Courier, "Courier New"             , monospace , "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-sans-serif: "Noto Sans CJK JP"     ,                              YuGothic  , "Yu Gothic", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-monospace : "Noto Sans Mono CJK JP", "Noto Sans Mono CJK JP Web", Osaka-mono, "MS Gothic", Menlo, Consolas, Courier, "Courier New"             , monospace , "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 html {
@@ -63,6 +76,7 @@ input[type="text"], input[type="password"], textarea {
 
 textarea {
   width: 100%;
+  resize: vertical;
 }
 
 button {
@@ -103,7 +117,8 @@ button:disabled {
 }
 
 .black-theme-wrapper input,
-.black-theme-wrapper button {
+.black-theme-wrapper button,
+.black-theme-wrapper textarea {
   border-color: #0c0;
   color: #0c0;
   background: #000;
@@ -115,7 +130,13 @@ button:disabled {
   color: #0f0;
 }
 
+.black-theme-wrapper a:active,
+.black-theme-wrapper button:focus {
+  color: #eee;
+}
+
 .black-theme-wrapper input::placeholder,
+.black-theme-wrapper textarea::placeholder,
 .black-theme-wrapper button:disabled {
-  color: #090;
+  color: #080;
 }

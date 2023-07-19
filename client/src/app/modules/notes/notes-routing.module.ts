@@ -2,16 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { authGuard } from '../../shared/guards/auth.guard';
-import { IndexComponent } from './index/index.component';
-import { LoginComponent } from './login/login.component';
+import { NotesComponent } from './notes/notes.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent, },
-  { path: 'index', component: IndexComponent, canActivate: [authGuard] }
+  { path: '', component: NotesComponent, canActivate: [authGuard] }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class IndexRoutingModule { }
+export class NotesRoutingModule { }

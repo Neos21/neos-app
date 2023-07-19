@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'bookmarks', loadChildren: () => import('./modules/bookmarks/bookmarks.module').then(module => module.BookmarksModule) },  // 遅延ロード
+  { path: 'bookmarks', loadChildren: () => import('./modules/bookmarks/bookmarks.module').then(module => module.BookmarksModule) },
+  { path: 'notes'    , loadChildren: () => import('./modules/notes/notes.module'        ).then(module => module.NotesModule    ) },
   
-  { path: '', redirectTo: '/index', pathMatch: 'full' }  // 空パス時はリダイレクトする
+  { path: ''  , redirectTo: '/index', pathMatch: 'full' },  // 未指定時
+  { path: '**', redirectTo: '/index'                    }   // 404
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
-import { NestFactory } from '@nestjs/core';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { NestFactory } from '@nestjs/core';
 import * as express from 'express';
 
 import { cyan, yellow } from './core/utils/colour-logger';
@@ -22,7 +22,6 @@ async function bootstrap() {
   const port = app.get<ConfigService>(ConfigService).get<number>('port')!;
   await app.listen(port);
   
-  // ロギング
   const logger = new Logger(bootstrap.name);
   logger.log(cyan(`Server started at port [`) + yellow(`${port}`) + cyan(']'));
   // ルーティング一覧を出力する

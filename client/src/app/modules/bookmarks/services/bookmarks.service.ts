@@ -1,11 +1,14 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Bookmark } from '../classes/bookmark';
+import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+
+import { Bookmark } from '../classes/bookmark';
 
 @Injectable()
 export class BookmarksService {
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
   
   public async findAll(): Promise<Array<Bookmark>> {
     return await firstValueFrom(this.httpClient.get<Array<Bookmark>>('/api/bookmarks'));

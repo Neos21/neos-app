@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, InsertResult, Repository } from 'typeorm';
 
-import { Bookmark } from '../../entities/bookmarks/bookmark/bookmark';
+import { Bookmark } from '../../entities/bookmarks/bookmark';
 
 @Injectable()
 export class BookmarksService {

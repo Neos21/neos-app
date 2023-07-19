@@ -8,7 +8,9 @@ import { AuthService } from './shared/services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService
+  ) { }
   
   /** アプリ初期表示時 */
   public ngOnInit(): void {

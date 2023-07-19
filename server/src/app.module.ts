@@ -3,19 +3,22 @@ import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { RouterModule } from '@nestjs/core';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 // Imports
 import { configuration } from './core/configs/configuration';
 import { AuthModule } from './auth/auth.module';
 import { BookmarksModule } from './modules/bookmarks/bookmarks.module';
+import { NotesModule } from './modules/notes/notes.module';
+// TypeORM
+import { Bookmark } from './entities/bookmarks/bookmark';
+import { Note } from './entities/notes/note';
 // Controllers
 import { AppController } from './app.controller';
 // Providers
 import { AppService } from './app.service';
 // Configure
 import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
-import { Bookmark } from './entities/bookmarks/bookmark/bookmark';
-import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
@@ -38,7 +41,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         type: 'sqlite',
         database: configService.get<string>('dbFilePath') || path.resolve(__dirname, '../db/neos-app.sqlite3.db'),
         entities: [
-          Bookmark
+          Bookmark,
+          Note
         ],
         synchronize: true
       })
@@ -46,14 +50,16 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     // Modules
     AuthModule,
     BookmarksModule,
+    NotesModule,
     // `/api` の Prefix を付ける
     RouterModule.register([{
       path: 'api',
       children: [
         AuthModule,
-        BookmarksModule
+        BookmarksModule,
+        NotesModule,
       ]
-    }]),
+    }])
   ],
   controllers: [
     AppController

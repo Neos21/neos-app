@@ -4,9 +4,11 @@ import { AppService } from './app.service';
 
 @Controller('')
 export class AppController {
-  constructor(private appService: AppService) { }
+  constructor(
+    private appService: AppService
+  ) { }
   
-  /** AppService が注入できているかの確認のため */
+  /** AppService が注入できているかの確認用 */
   @Get('/api')
   public getApiRoot(): string {
     return this.appService.getApiRoot();

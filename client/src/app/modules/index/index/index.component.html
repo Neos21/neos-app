@@ -3,8 +3,10 @@
   
   <div class="menu">
     <a [routerLink]="['/bookmarks']">Bookmarks</a>
-    <a [routerLink]="['/note']">Note</a>
+    <a [routerLink]="['/notes']">Notes</a>
     <a [routerLink]="['/hatebu']">Hatebu</a>
     <a [routerLink]="['/site-editor']">Site Editor</a>
   </div>
+  
+  <p class="text-right"><a href="#" (click)="logout()">Logout</a></p>
 </div>
