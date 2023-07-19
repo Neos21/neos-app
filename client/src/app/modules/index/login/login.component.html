@@ -1,0 +1,8 @@
+<div *ngIf="isLoaded" class="black-theme-wrapper">
+  <form [formGroup]="form" (ngSubmit)="login()">
+    <p><input type="text"     placeholder="User Name" formControlName="userName"></p>
+    <p><input type="password" placeholder="Password"  formControlName="password"></p>
+    <p class="text-right"><button type="submit" [disabled]="form.invalid || isProcessing">Login</button></p>
+  </form>
+  <app-error [error]="error"></app-error>
+</div>

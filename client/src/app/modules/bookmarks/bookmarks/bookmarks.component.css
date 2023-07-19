@@ -1,0 +1,42 @@
+header {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: .5rem;
+}
+
+h1 {
+  font-size: 1rem;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: .5rem;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .5rem;
+}
+
+dt {
+  min-width: 6rem;
+  align-self: center;
+}
+
+dt button {
+  margin-right: .25rem;
+  padding-top   : 0;
+  padding-bottom: 0;
+  vertical-align: baseline;
+}
+
+dd {
+  align-self: center;
+  margin-left: 0;
+}
+
+dd a {
+  display: block;
+}

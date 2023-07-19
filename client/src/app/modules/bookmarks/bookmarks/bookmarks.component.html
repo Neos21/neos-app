@@ -1,0 +1,24 @@
+<div class="black-theme-wrapper">
+  <header>
+    <h1>Bookmarks</h1>
+    <div class="text-right"><a [routerLink]="['/index']">Index</a></div>
+  </header>
+  
+  <form [formGroup]="form" (ngSubmit)="create()">
+    <input type="text" placeholder="URL" formControlName="url">
+    <button type="submit" [disabled]="form.invalid || isProcessing">Create</button>
+  </form>
+  <app-error [error]="error"></app-error>
+  
+  <ng-container *ngIf="bookmarks == null || bookmarks.length === 0">
+    <p>No Bookmarks</p>
+  </ng-container>
+  <ng-container *ngIf="bookmarks != null && bookmarks.length >= 1">
+    <dl>
+      <ng-container *ngFor="let bookmark of bookmarks">
+        <dt><button type="button" (click)="remove(bookmark.id!)" [disabled]="isProcessing">×</button> {{ bookmark.id }}</dt>
+        <dd><a [href]="bookmark.url" target="_blank" rel="noreferrer noopener">{{ bookmark.url }}</a></dd>
+      </ng-container>
+    </dl>
+  </ng-container>
+</div>

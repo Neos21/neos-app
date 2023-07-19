@@ -7,12 +7,15 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 // Imports
 import { configuration } from './core/configs/configuration';
 import { AuthModule } from './auth/auth.module';
+import { BookmarksModule } from './modules/bookmarks/bookmarks.module';
 // Controllers
 import { AppController } from './app.controller';
 // Providers
 import { AppService } from './app.service';
 // Configure
 import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
+import { Bookmark } from './entities/bookmarks/bookmark/bookmark';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
@@ -28,15 +31,29 @@ import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
         rootPath: configService.get<string>('staticDirectoryPath') || path.resolve(__dirname, '../../client/dist')
       }]
     }),
+    // TypeORM
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: 'sqlite',
+        database: configService.get<string>('dbFilePath') || path.resolve(__dirname, '../db/neos-app.sqlite3.db'),
+        entities: [
+          Bookmark
+        ],
+        synchronize: true
+      })
+    }),
     // Modules
     AuthModule,
+    BookmarksModule,
     // `/api` の Prefix を付ける
     RouterModule.register([{
       path: 'api',
       children: [
-        AuthModule
+        AuthModule,
+        BookmarksModule
       ]
-    }])
+    }]),
   ],
   controllers: [
     AppController

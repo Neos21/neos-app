@@ -20,7 +20,7 @@ export class AuthController {
   public async login(@Body('user_name') userName: string, @Body('password') password: string, @Res() res: Response): Promise<Response> {
     if(userName !== this.configService.get<string>('userName') || password !== this.configService.get<string>('password')) throw new UnauthorizedException();
     // JWT を生成しレスポンスする
-    const payload = { sub: name, name };  // コレが `req.user` に入る
+    const payload = { sub: userName };  // コレが `req.user` に入る
     const json = { accessToken: await this.jwtService.signAsync(payload) };
     return res.json(json);
   }
