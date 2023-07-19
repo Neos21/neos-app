@@ -33,16 +33,16 @@
           "defaultConfiguration": "production",
           "configurations": {
             "development": {
-              "buildOptimizer": false,
+              "buildOptimizer" : false,
               "extractLicenses": false,
-              "namedChunks": true,
-              "optimization": false,
-              "sourceMap": false,
-              "vendorChunk": true
+              "namedChunks"    : true,
+              "optimization"   : false,
+              "sourceMap"      : false,
+              "vendorChunk"    : true
             },
             "production": {
               "extractLicenses": false,
-              "outputHashing": "all"
+              "outputHashing"  : "all"
             }
           }
         },
