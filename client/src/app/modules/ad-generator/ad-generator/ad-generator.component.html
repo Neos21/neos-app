@@ -1,0 +1,39 @@
+<div class="wrapper">
+  <form [formGroup]="form" (ngSubmit)="searchBoth()">
+    <button type="button" [routerLink]="['/index']">Index</button>
+    <input type="text" placeholder="Keyword" formControlName="keyword">
+    <button type="submit" [disabled]="form.invalid || isProcessing">Search</button>
+    <button type="button" [disabled]="form.invalid || isProcessing" (click)="searchAmazon()" >Amazon</button>
+    <button type="button" [disabled]="form.invalid || isProcessing" (click)="searchRakuten()">Rakuten</button>
+  </form>
+  
+  <div class="textarea-wrapper">
+    <textarea readonly [value]="amazonCode"  (click)="copy($event)" id="amazon-code"  placeholder="Amazon Code" ></textarea>
+    <textarea readonly [value]="rakutenCode" (click)="copy($event)" id="rakuten-code" placeholder="Rakuten Code"></textarea>
+  </div>
+  
+  <div class="columns">
+    <div class="amazon-results">
+      <app-error [error]="amazonError"></app-error>
+      <div *ngFor="let result of amazonResults" class="amazon-result" (click)="insertAmazon(result)">
+        <img [src]="result.imageUrl">
+        <div>
+          <div><b>{{ result.title }}</b></div>
+          <div>{{ result.price }} 円</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="rakuten-results">
+      <app-error [error]="rakutenError"></app-error>
+      <div *ngFor="let result of rakutenResults" class="rakuten-result" (click)="insertRakuten(result)">
+        <img [src]="result.imageUrl">
+        <div class="item-info">
+          <div><b>{{ result.itemName }}</b></div>
+          <div>{{ result.itemPrice }} 円</div>
+          <div>{{ result.shopName }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

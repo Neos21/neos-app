@@ -51,12 +51,17 @@ const getBooleanValue = (envName: string): boolean => {
 
 /** 環境変数のオブジェクトを返す : この関数内にオブジェクトを定義しないと環境変数が読み込まれない */
 export const configuration = (): { [key: string]: string | number | boolean } => ({
-  port               : getNumberValue ('PORT'                 , 3000            ),  // ポート番号
-  userName           : getStringValue ('USERNAME'             , 'CHANGE-THIS'   ),  // ユーザ名
-  password           : getStringValue ('PASSWORD'             , 'CHANGE-THIS'   ),  // パスワード
-  jwtSecretKey       : getStringValue ('JWT_SECRET_KEY'       , 'JWT-SECRET-KEY'),  // JWT 秘密鍵
-  jwtExpiresIn       : getStringValue ('JWT_EXPIRES_IN'       , '1y'            ),  // JWT 有効期限
-  dbFilePath         : getStringValue ('DB_FILE_PATH'         , ''              ),  // DB ファイルパス : 未指定の場合は `app.module.ts` 内で初期値を設定する
-  staticDirectoryPath: getStringValue ('STATIC_DIRECTORY_PATH', ''              ),  // 静的ファイルのディレクトリ : 未指定の場合は `app.module.ts` 内で初期値を設定する
-  noColour           : getBooleanValue('NO_COLOR'                               ),  // ロガーの色付けをしない : NestJS のロガー `cli-colors.util.js` と同じ環境変数名・確認のため宣言
+  port                : getNumberValue ('PORT'                  , 3000            ),  // ポート番号
+  userName            : getStringValue ('USERNAME'              , 'CHANGE-THIS'   ),  // ユーザ名
+  password            : getStringValue ('PASSWORD'              , 'CHANGE-THIS'   ),  // パスワード
+  jwtSecretKey        : getStringValue ('JWT_SECRET_KEY'        , 'JWT-SECRET-KEY'),  // JWT 秘密鍵
+  jwtExpiresIn        : getStringValue ('JWT_EXPIRES_IN'        , '1y'            ),  // JWT 有効期限
+  dbFilePath          : getStringValue ('DB_FILE_PATH'          , ''              ),  // DB ファイルパス : 未指定の場合は `app.module.ts` 内で初期値を設定する
+  staticDirectoryPath : getStringValue ('STATIC_DIRECTORY_PATH' , ''              ),  // 静的ファイルのディレクトリ : 未指定の場合は `app.module.ts` 内で初期値を設定する
+  amazonAccessKey     : getStringValue ('AMAZON_ACCESS_KEY'     , ''              ),  // Amazon PA API アクセスキー
+  amazonSecretKey     : getStringValue ('AMAZON_SECRET_KEY'     , ''              ),  // Amazon PA API シークレットキー
+  amazonPartnerTag    : getStringValue ('AMAZON_PARTNER_TAG'    , 'neos21-22'     ),  // Amazon PA API パートナータグ
+  rakutenApplicationId: getStringValue ('RAKUTEN_APPLICATION_ID', ''              ),  // Rakuten Application ID
+  rakutenAffiliateId  : getStringValue ('RAKUTEN_AFFILIATE_ID'  , ''              ),  // Rakuten Affiliate ID
+  noColour            : getBooleanValue('NO_COLOR'                                ),  // ロガーの色付けをしない : NestJS のロガー `cli-colors.util.js` と同じ環境変数名・確認のため宣言
 });

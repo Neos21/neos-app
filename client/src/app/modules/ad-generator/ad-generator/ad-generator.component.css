@@ -1,0 +1,50 @@
+.wrapper {
+  padding: 1rem;
+}
+
+form {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto auto;
+  column-gap: 1rem;
+}
+
+.textarea-wrapper {
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+}
+  textarea {
+    min-height: 7rem;
+    font-size: .8rem;
+    white-space: pre;
+    word-break: normal;
+    word-wrap: normal;  /* iOS でも折り返さないようにする */
+    resize: none;
+  }
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: .5rem;
+  font-size: .8rem;
+  word-break: break-all;
+}
+  .columns img {
+    width: 80px;
+    max-width: 80px;
+  }
+
+.amazon-result,
+.rakuten-result {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: .25rem;
+  border-bottom: 1px solid #ccc;
+  padding: .5rem .25rem;
+  cursor: pointer;
+}
+  .amazon-result:hover,
+  .rakuten-result:hover {
+    background: #f6f6f6;
+  }

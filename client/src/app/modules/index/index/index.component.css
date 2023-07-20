@@ -18,5 +18,11 @@ h1 {
 }
 
 .menu > a:hover {
-  text-decoration: underline;
+  border-color: #09f;
+  color: #09f;
+}
+
+.menu > a:active {
+  border-color: #eee;
+  color: #eee;
 }

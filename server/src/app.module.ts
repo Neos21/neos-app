@@ -12,14 +12,15 @@ import { AuthModule } from './auth/auth.module';
 import { BookmarksModule } from './modules/bookmarks/bookmarks.module';
 import { NotesModule } from './modules/notes/notes.module';
 import { HatebuModule } from './modules/hatebu/hatebu.module';
+import { AdGeneratorModule } from './modules/ad-generator/ad-generator.module';
 // TypeORM
 import { Bookmark } from './entities/bookmarks/bookmark';
 import { Note } from './entities/notes/note';
 import { Category } from './entities/hatebu/category';
 import { Entry } from './entities/hatebu/entry';
-import { NgDomain } from './entities/hatebu/ng-domain';
 import { NgUrl } from './entities/hatebu/ng-url';
 import { NgWord } from './entities/hatebu/ng-word';
+import { NgDomain } from './entities/hatebu/ng-domain';
 // Controllers
 import { AppController } from './app.controller';
 // Providers
@@ -54,9 +55,9 @@ import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
           Note,
           Category,
           Entry,
-          NgDomain,
           NgUrl,
-          NgWord
+          NgWord,
+          NgDomain
         ],
         synchronize: true
       })
@@ -66,6 +67,7 @@ import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
     BookmarksModule,
     NotesModule,
     HatebuModule,
+    AdGeneratorModule,
     // `/api` の Prefix を付ける
     RouterModule.register([{
       path: 'api',
@@ -74,6 +76,7 @@ import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
         BookmarksModule,
         NotesModule,
         HatebuModule,
+        AdGeneratorModule
       ]
     }])
   ],
