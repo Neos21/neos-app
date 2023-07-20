@@ -1,6 +1,9 @@
 # DB
 db/
 
+# Nohup
+*.out
+
 # compiled output
 /dist
 /node_modules
