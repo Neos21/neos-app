@@ -51,7 +51,7 @@ const getBooleanValue = (envName: string): boolean => {
 
 /** 環境変数のオブジェクトを返す : この関数内にオブジェクトを定義しないと環境変数が読み込まれない */
 export const configuration = (): { [key: string]: string | number | boolean } => ({
-  port                : getNumberValue ('PORT'                  , 3000            ),  // ポート番号
+  port                : getNumberValue ('PORT'                  , 2121            ),  // ポート番号
   userName            : getStringValue ('USERNAME'              , 'CHANGE-THIS'   ),  // ユーザ名
   password            : getStringValue ('PASSWORD'              , 'CHANGE-THIS'   ),  // パスワード
   jwtSecretKey        : getStringValue ('JWT_SECRET_KEY'        , 'JWT-SECRET-KEY'),  // JWT 秘密鍵
