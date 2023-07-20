@@ -10,7 +10,7 @@ import { BookmarksService } from './bookmarks.service';
   imports: [
     TypeOrmModule.forFeature([
       Bookmark
-    ]),
+    ])
   ],
   controllers: [
     BookmarksController

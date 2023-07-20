@@ -56,7 +56,6 @@ export const configuration = (): { [key: string]: string | number | boolean } =>
   password           : getStringValue ('PASSWORD'             , 'CHANGE-THIS'   ),  // パスワード
   jwtSecretKey       : getStringValue ('JWT_SECRET_KEY'       , 'JWT-SECRET-KEY'),  // JWT 秘密鍵
   jwtExpiresIn       : getStringValue ('JWT_EXPIRES_IN'       , '1y'            ),  // JWT 有効期限
-  removingNgUrlsDays : getNumberValue ('REMOVING_NG_URLS_DAYS', 7               ),  // `ng_urls` の保持期間 : 本日数以前のレコードを Cron Job で削除する
   dbFilePath         : getStringValue ('DB_FILE_PATH'         , ''              ),  // DB ファイルパス : 未指定の場合は `app.module.ts` 内で初期値を設定する
   staticDirectoryPath: getStringValue ('STATIC_DIRECTORY_PATH', ''              ),  // 静的ファイルのディレクトリ : 未指定の場合は `app.module.ts` 内で初期値を設定する
   noColour           : getBooleanValue('NO_COLOR'                               ),  // ロガーの色付けをしない : NestJS のロガー `cli-colors.util.js` と同じ環境変数名・確認のため宣言

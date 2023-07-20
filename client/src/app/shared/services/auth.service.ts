@@ -7,7 +7,7 @@ export class AuthService {
   /** JWT アクセストークン : LocalStorage からのインメモリキャッシュ・この有無でログイン済か否かを判定する */
   public accessToken?: string;
   /** JWT アクセストークンを保存する LocalStorage キー名 */
-  private readonly accessTokenStorageKey = 'access_token';
+  private accessTokenStorageKey = 'access_token';
   
   constructor(private httpClient: HttpClient) { }
   

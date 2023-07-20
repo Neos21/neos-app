@@ -1,0 +1,15 @@
+.form-one-line {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  column-gap: .5rem;
+}
+  .form-one-line button:last-of-type {
+    margin-left: .75rem;
+  }
+
+li {
+  margin-bottom: .25rem;
+}
+  li button {
+    vertical-align: baseline;
+  }
