@@ -29,7 +29,7 @@ export class NotesComponent {
       this.form.setValue({ text: note?.text ?? '' });
     }
     catch(error: any) {
-      this.error = error.toString();
+      this.error = error;
     }
     this.isProcessing = false;
   }
@@ -41,7 +41,7 @@ export class NotesComponent {
       await this.notesService.save(this.form.value.text);
     }
     catch(error: any) {
-      this.error = error.toString();
+      this.error = error;
     }
     this.isProcessing = false;
   }

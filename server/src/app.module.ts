@@ -2,6 +2,7 @@ import * as path from 'node:path';
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { RouterModule } from '@nestjs/core';
+import { MulterModule } from '@nestjs/platform-express';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -14,6 +15,7 @@ import { NotesModule } from './modules/notes/notes.module';
 import { HatebuModule } from './modules/hatebu/hatebu.module';
 import { AdGeneratorModule } from './modules/ad-generator/ad-generator.module';
 import { SolilogModule } from './modules/solilog/solilog.module';
+import { FileUploaderModule } from './modules/file-uploader/file-uploader.module';
 // TypeORM
 import { Bookmark } from './entities/bookmarks/bookmark';
 import { Note } from './entities/notes/note';
@@ -35,6 +37,13 @@ import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
     ConfigModule.forRoot({
       isGlobal: true,  // 各 Module での `imports` を不要にする
       load: [configuration]  // 環境変数を読み取り適宜デフォルト値を割り当てるオブジェクトをロードする
+    }),
+    // ファイルアップローダ
+    MulterModule.registerAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        dest: configService.get<string>('fileDirectoryPath')
+      })
     }),
     // Cron 定期実行機能用
     ScheduleModule.forRoot(),
@@ -70,6 +79,7 @@ import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
     HatebuModule,
     AdGeneratorModule,
     SolilogModule,
+    FileUploaderModule,
     // `/api` の Prefix を付ける
     RouterModule.register([{
       path: 'api',
@@ -79,7 +89,8 @@ import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
         NotesModule,
         HatebuModule,
         AdGeneratorModule,
-        SolilogModule
+        SolilogModule,
+        FileUploaderModule
       ]
     }])
   ],

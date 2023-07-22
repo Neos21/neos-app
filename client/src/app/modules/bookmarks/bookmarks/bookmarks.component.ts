@@ -34,7 +34,7 @@ export class BookmarksComponent {
       this.bookmarks = await this.bookmarksService.findAll();
     }
     catch(error: any) {
-      this.error = error.toString();
+      this.error = error;
     }
   }
   
@@ -47,7 +47,7 @@ export class BookmarksComponent {
       await this.findAll();
     }
     catch(error: any) {
-      this.error = error.toString();
+      this.error = error;
     }
     this.isProcessing = false;
   }
@@ -60,7 +60,7 @@ export class BookmarksComponent {
       await this.findAll();
     }
     catch(error: any) {
-      this.error = error.toString();
+      this.error = error;
     }
     this.isProcessing = false;
   }

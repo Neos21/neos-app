@@ -9,7 +9,9 @@ export class AuthService {
   /** JWT アクセストークンを保存する LocalStorage キー名 */
   private accessTokenStorageKey = 'access_token';
   
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
   
   /** ログインする・成功すれば `true`・失敗すれば `false` */
   public async login(userName: string, password: string): Promise<boolean> {

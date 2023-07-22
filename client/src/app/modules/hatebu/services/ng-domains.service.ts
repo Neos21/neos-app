@@ -9,7 +9,9 @@ export class NgDomainsService {
   /** NG ドメインのキャッシュ */
   public ngDomains$ = new BehaviorSubject<Array<NgDomain> | null>(null);
   
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
   
   /**
    * NG ドメイン一覧を取得する

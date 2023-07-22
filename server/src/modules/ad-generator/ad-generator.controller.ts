@@ -1,8 +1,8 @@
 import { Controller, Get, HttpStatus, Query, Res, UseGuards } from '@nestjs/common';
+import { Response } from 'express';
 
 import { AdGeneratorService } from './ad-generator.service';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { Response } from 'express';
+import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
 
 @Controller('ad-generator')
 export class AdGeneratorController {

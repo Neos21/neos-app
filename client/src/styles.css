@@ -50,6 +50,10 @@ h1, h2, h3, h4, h5, h6, p, dl, ul, ol, form, table {
   margin-bottom: 1rem;
 }
 
+a {
+  cursor: pointer;
+}
+
 
 /* Forms
  * ==================================================================================================== */
@@ -194,6 +198,7 @@ button.button-danger {
   padding-bottom: .75rem;
   border-bottom: 1px solid #e5e8e9;
   margin-bottom: .75rem;
+  user-select: none;
 }
   /* 右利きモード (`styles.css` では `:host-context` が効かないので注意) */
   .right-hand-mode .entry {

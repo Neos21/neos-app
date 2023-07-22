@@ -1,0 +1,26 @@
+.wrapper {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+header,
+.file-upload-form,
+.files {
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: .5rem;
+}
+
+input[type="file"] {
+  cursor: pointer;
+}
+
+.files a {
+  color: #07f;
+  text-decoration: underline;
+}
+  .files a:hover {
+    color: #f09;
+  }

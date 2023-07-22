@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <header>
+    <h1 title="nexp">File Uploader</h1>
+    <a [routerLink]="['/index']">Index</a>
+  </header>
+  
+  <app-loading *ngIf="isLoading"></app-loading>
+  
+  <ng-container *ngIf="!isLoading">
+    <div class="file-upload-form" *ngIf="!isResetting">
+      <input type="file" (change)="handleFileInput($event)" [disabled]="isProcessing">
+      <button type="button" (click)="uploadFile()" [disabled]="isProcessing">Upload</button>
+    </div>
+    <app-error [error]="error"></app-error>
+    
+    <p *ngIf="fileNames == null || fileNames.length === 0">No Files</p>
+    
+    <div class="files" *ngIf="fileNames != null && fileNames.length > 0">
+      <ng-container *ngFor="let fileName of fileNames">
+        <a (click)="downloadFile(fileName)">{{ fileName }}</a>
+        <button type="button" (click)="remove(fileName)" [disabled]="isProcessing">×</button>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>

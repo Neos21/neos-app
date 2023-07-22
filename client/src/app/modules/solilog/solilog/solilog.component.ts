@@ -91,7 +91,7 @@ export class SolilogComponent implements OnInit, AfterViewInit {
       this.yearMonth = result.t;
     }
     catch(error: any) {
-      this.postsError = error.toString();
+      this.postsError = error;
     }
     finally {
       this.isLoadingPosts = false;
@@ -106,7 +106,7 @@ export class SolilogComponent implements OnInit, AfterViewInit {
       this.list = await this.solilogService.getList();
     }
     catch(error: any) {
-      this.listError = error.toString();
+      this.listError = error;
     }
     finally {
       this.isLoadingList = false;
@@ -128,7 +128,7 @@ export class SolilogComponent implements OnInit, AfterViewInit {
       await this.moveToCurrentYearMonth();
     }
     catch(error: any) {
-      this.error = error.toString();
+      this.error = error;
     }
     finally {
       this.isProcessing = false;
@@ -143,7 +143,7 @@ export class SolilogComponent implements OnInit, AfterViewInit {
       await this.loadPosts(yearMonth);
     }
     catch(error: any) {
-      this.error = error.toString();
+      this.error = error;
     }
     finally {
       this.isProcessing = false;
