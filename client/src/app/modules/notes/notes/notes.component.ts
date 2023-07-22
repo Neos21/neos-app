@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { Note } from '../classes/note';
 import { NotesService } from '../services/notes.service';
 
 @Component({
@@ -15,7 +14,7 @@ export class NotesComponent {
   /** 処理中かどうか */
   public isProcessing: boolean = true;
   /** エラー */
-  public error?: any;
+  public error?: Error | string;
   
   constructor(
     private formBuilder: FormBuilder,
@@ -29,8 +28,8 @@ export class NotesComponent {
       const note = await this.notesService.findOne();
       this.form.setValue({ text: note?.text ?? '' });
     }
-    catch(error) {
-      this.error = error;
+    catch(error: any) {
+      this.error = error.toString();
     }
     this.isProcessing = false;
   }
@@ -41,8 +40,8 @@ export class NotesComponent {
     try {
       await this.notesService.save(this.form.value.text);
     }
-    catch(error) {
-      this.error = error;
+    catch(error: any) {
+      this.error = error.toString();
     }
     this.isProcessing = false;
   }

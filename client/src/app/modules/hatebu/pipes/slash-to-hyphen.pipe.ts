@@ -10,6 +10,6 @@ export class SlashToHyphenPipe implements PipeTransform {
    * @return ハイフン区切り文字列
    */
   public transform(date: string): string {
-    return date.replace((/\//g), '-');
+    return date.replace((/\//gu), '-');
   }
 }

@@ -15,7 +15,7 @@ export class NgDomainsComponent implements OnInit, OnDestroy {
   /** 登録フォーム */
   public form!: FormGroup;
   /** ページデータの状態管理オブジェクト */
-  private dataState$ = new BehaviorSubject<{ isLoading?: boolean; error?: Error | string | any }>({ isLoading: true });
+  private dataState$ = new BehaviorSubject<{ isLoading?: boolean; error?: Error | string }>({ isLoading: true });
   /** ローディング中か否か */
   public isLoading$  = this.dataState$.pipe(map(dataState => dataState.isLoading));
   /** エラー */
@@ -39,7 +39,7 @@ export class NgDomainsComponent implements OnInit, OnDestroy {
       await this.ngDomainsService.findAll();
       this.dataState$.next({ isLoading: false });
     }
-    catch(error) {
+    catch(error: any) {
       this.dataState$.next({ isLoading: false, error });
     }
   }
@@ -63,7 +63,7 @@ export class NgDomainsComponent implements OnInit, OnDestroy {
       await this.ngDomainsService.create(new NgDomain({ domain }));
       this.form.reset();
     }
-    catch(error) {
+    catch(error: any) {
       this.dataState$.next({ error });
     }
   }
@@ -73,7 +73,7 @@ export class NgDomainsComponent implements OnInit, OnDestroy {
     try {
       await this.ngDomainsService.remove(id);
     }
-    catch(error) {
+    catch(error: any) {
       this.dataState$.next({ error });
     }
   }
@@ -84,7 +84,7 @@ export class NgDomainsComponent implements OnInit, OnDestroy {
       await this.ngDomainsService.findAll(true);
       this.dataState$.next({ isLoading: false });
     }
-    catch(error) {
+    catch(error: any) {
       this.dataState$.next({ error });
     }
   }

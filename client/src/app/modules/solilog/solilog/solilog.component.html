@@ -1,0 +1,46 @@
+<div class="wrapper">
+  <header>
+    <div><a [routerLink]="['.']" (click)="moveToCurrentYearMonth()">Solilog</a><span>|</span><a [routerLink]="['/solilog/search']">Search</a></div>
+    <div><a [routerLink]="['.']" [fragment]="'archives-title'">▼</a></div>
+  </header>
+  <main>
+    <p>おひとりさまインスタンスもどきです。<a href="https://legacy-of-bbs.pages.dev/" target="_blank" class="solilog-anchor"><b>コメントは掲示板へドウゾ！</b></a></p>
+    
+    <form *ngIf="isLoggedIn()" [formGroup]="form" (ngSubmit)="post()">
+      <textarea placeholder="Text" formControlName="text" [disabled]="isProcessing"></textarea>
+      <button type="submit" [disabled]="form.invalid || isProcessing">投稿</button>
+    </form>
+    <app-error [error]="error"></app-error>
+    
+    <h1>Posts{{ yearMonth ? ' : ' + yearMonth : '' }}</h1>
+    <main>
+      <app-loading *ngIf="isLoadingPosts"></app-loading>
+      <app-error [error]="postsError"></app-error>
+      <dl *ngIf="posts != null">
+        <ng-container *ngFor="let post of posts">
+          <dt [attr.id]="post.time | timeToHash">
+            <button type="button" *ngIf="isLoggedIn()" (click)="remove(yearMonth, post.id)" [disabled]="isProcessing">×</button>
+            <a [routerLink]="['.']" [queryParams]="{ t: yearMonth }" [fragment]="post.time | timeToHash">{{ post.time }}</a>
+          </dt>
+          <dd [innerHTML]="post.text | urlToAnchor"></dd>
+        </ng-container>
+      </dl>
+    </main>
+    
+    <h2 [attr.id]="'archives-title'">Archives</h2>
+    <aside>
+      <app-loading *ngIf="isLoadingList"></app-loading>
+      <app-error [error]="listError"></app-error>
+      <ul *ngIf="list != null">
+        <li *ngFor="let yearMonth of list">
+          {{ yearMonth.year}}&nbsp;<span class="colon">:</span>
+          <ng-container *ngFor="let month of yearMonth.months">&nbsp;<a [routerLink]="['.']" [queryParams]="{ t: (yearMonth.year + '-' + month) }">{{ month }}</a></ng-container>
+        </li>
+      </ul>
+    </aside>
+  </main>
+  <footer>
+    <div><a [routerLink]="['/']">Index</a><span>|</span><a href="https://neos21.net/">Neo's World</a></div>
+    <div><a [routerLink]="['.']">▲</a></div>
+  </footer>
+</div>

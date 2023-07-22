@@ -15,7 +15,7 @@ export class BookmarksComponent {
   /** 処理中かどうか */
   public isProcessing: boolean = false;
   /** エラー */
-  public error?: any;
+  public error?: Error | string;
   /** ブックマーク一覧 */
   public bookmarks?: Array<Bookmark>;
   
@@ -33,8 +33,8 @@ export class BookmarksComponent {
     try {
       this.bookmarks = await this.bookmarksService.findAll();
     }
-    catch(error) {
-      this.error = error;
+    catch(error: any) {
+      this.error = error.toString();
     }
   }
   
@@ -46,8 +46,8 @@ export class BookmarksComponent {
       this.form.reset();
       await this.findAll();
     }
-    catch(error) {
-      this.error = error;
+    catch(error: any) {
+      this.error = error.toString();
     }
     this.isProcessing = false;
   }
@@ -59,8 +59,8 @@ export class BookmarksComponent {
       await this.bookmarksService.remove(id);
       await this.findAll();
     }
-    catch(error) {
-      this.error = error;
+    catch(error: any) {
+      this.error = error.toString();
     }
     this.isProcessing = false;
   }

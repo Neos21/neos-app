@@ -65,8 +65,8 @@ export class CategoriesController {
   private isTruthy(value?: string | boolean): boolean {
     if(value == null) return false;
     if(typeof value === 'boolean') return value;
-    if((/^(true|yes|1)$/i).test(value)) return true;
-    if((/^(false|no|0)$/i).test(value)) return false;
+    if((/^(true|yes|1)$/iu).test(value)) return true;
+    if((/^(false|no|0)$/iu).test(value)) return false;
     return Boolean(value);  // その他の文字列や型の場合 (空文字は `false`)
   }
 }

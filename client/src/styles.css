@@ -316,3 +316,16 @@ button.button-danger {
     height: var(--thumbnail-height);
     background: var(--colour-no-image-background);
   }
+
+
+/* Solilog
+ * ==================================================================================================== */
+
+/* パイプで生成し [innerHTML] で注入したリンクに反映させるため */
+.solilog-anchor {
+  color: #07f !important;
+  text-decoration: underline !important;
+}
+  .solilog-anchor:hover {
+    color: #f09 !important;
+  }

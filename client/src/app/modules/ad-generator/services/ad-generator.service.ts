@@ -2,18 +2,21 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
+import { RakutenItem } from '../classes/rakuten-item';
+import { AmazonItem } from '../classes/amazon-item';
+
 @Injectable()
 export class AdGeneratorService {
   constructor(
     private httpClient: HttpClient
   ) { }
   
-  public async searchAmazon(keyword: string): Promise<Array<any>> {
-    return await firstValueFrom(this.httpClient.get<Array<any>>(`/api/ad-generator/search-amazon?keyword=${keyword}`));
+  public async searchAmazon(keyword: string): Promise<Array<AmazonItem>> {
+    return await firstValueFrom(this.httpClient.get<Array<AmazonItem>>(`/api/ad-generator/search-amazon?keyword=${keyword}`));
   }
   
-  public async searchRakuten(keyword: string): Promise<Array<any>> {
-    return await firstValueFrom(this.httpClient.get<Array<any>>(`/api/ad-generator/search-rakuten?keyword=${keyword}`));
+  public async searchRakuten(keyword: string): Promise<Array<RakutenItem>> {
+    return await firstValueFrom(this.httpClient.get<Array<RakutenItem>>(`/api/ad-generator/search-rakuten?keyword=${keyword}`));
   }
   
   /**
@@ -21,7 +24,7 @@ export class AdGeneratorService {
    * 
    * @param item 商品1件
    */
-  public generateAmazonCode(item: any): string {
+  public generateAmazonCode(item: AmazonItem): string {
     const url   = this.sanitizeHtml(item.detailPageUrl);
     const title = this.sanitizeHtml(item.title);
     const amazonCode = `\n\n<div class="ad-amazon">
@@ -44,7 +47,7 @@ export class AdGeneratorService {
    * 
    * @param item 商品1件
    */
-  public generateRakutenCode(item: any): string {
+  public generateRakutenCode(item: RakutenItem): string {
     const itemUrl  = this.sanitizeHtml(item.itemUrl);
     const shopUrl  = this.sanitizeHtml(item.shopUrl);
     const itemName = this.sanitizeHtml(item.itemName);

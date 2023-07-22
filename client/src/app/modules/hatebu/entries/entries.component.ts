@@ -15,7 +15,7 @@ import { Entry } from '../classes/entry';
 })
 export class EntriesComponent {
   /** ページデータの状態管理オブジェクト */
-  private dataState$ = new BehaviorSubject<{ isLoading?: boolean; error?: Error | string | any }>({ isLoading: true });
+  private dataState$ = new BehaviorSubject<{ isLoading?: boolean; error?: Error | string }>({ isLoading: true });
   /** ローディング中か否か */
   public isLoading$  = this.dataState$.pipe(map(dataState => dataState.isLoading));
   /** エラー */
@@ -38,7 +38,6 @@ export class EntriesComponent {
   public async ngOnInit(): Promise<void> {
     this.queryParamMap$ = this.activatedRoute.queryParamMap.subscribe(params => {
       const categoryId = params.get(this.queryParamKey);
-      console.log('#ngOnInit() : Category ID', categoryId);
       if(categoryId == null) return this.moveFirst();
       return this.show(Number(categoryId));
     });
@@ -77,7 +76,7 @@ export class EntriesComponent {
       this.pageTitleService.setPageTitle(category.name);
       this.dataState$.next({ isLoading: false });
     }
-    catch(error) {
+    catch(error: any) {
       this.dataState$.next({ error });
     }
   }
@@ -108,7 +107,7 @@ export class EntriesComponent {
       }
       catch(_blurError) { /* Do Nothing */ }
     }
-    catch(error) {
+    catch(error: any) {
       this.dataState$.next({ error });
     }
   }
@@ -120,7 +119,7 @@ export class EntriesComponent {
       await this.apiService.categories.findAll(true);
       await this.show(currentCategoryId);
     }
-    catch(error) {
+    catch(error: any) {
       this.dataState$.next({ error });
     }
   }
@@ -132,7 +131,7 @@ export class EntriesComponent {
       await this.apiService.categories.findById(currentCategoryId, true);
       await this.show(currentCategoryId);
     }
-    catch(error) {
+    catch(error: any) {
       this.dataState$.next({ error });
     }
   }
@@ -144,7 +143,7 @@ export class EntriesComponent {
       await this.apiService.categories.scrapeAll();
       await this.show(currentCategoryId);
     }
-    catch(error) {
+    catch(error: any) {
       this.dataState$.next({ error });
     }
   }
@@ -156,7 +155,7 @@ export class EntriesComponent {
       await this.apiService.categories.scrapeById(currentCategoryId);
       await this.show(currentCategoryId);
     }
-    catch(error) {
+    catch(error: any) {
       this.dataState$.next({ error });
     }
   }
@@ -182,7 +181,6 @@ export class EntriesComponent {
   }
   
   private movePage(categoryId: number): void {
-    console.log(`#moveCategory() : Category ID [${categoryId}]`);
     this.dataState$.next({ isLoading: true });  // 画面遷移に向けてローディング状態に変えておく
     this.category = undefined;
     this.router.navigate(['/hatebu/index'], { queryParams: { [this.queryParamKey]: categoryId }});

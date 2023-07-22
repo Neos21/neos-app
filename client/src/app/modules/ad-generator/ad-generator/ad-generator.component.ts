@@ -60,9 +60,7 @@ export class AdGeneratorComponent {
     this.rakutenError = undefined;
     if(this.form.value.keyword === '') return this.rakutenError = 'Please Input Keyword';
     try {
-      const results = await this.adGeneratorService.searchRakuten(this.form.value.keyword);
-      console.log(results);
-      this.rakutenResults = results;
+      this.rakutenResults = await this.adGeneratorService.searchRakuten(this.form.value.keyword);
     }
     catch(_error: any) {
       this.rakutenError = 'Rakuten Results Not Found';
@@ -71,8 +69,8 @@ export class AdGeneratorComponent {
   }
   
   /** テキストエリアからコードをコピーする */
-  public copy(event: any): void {
-    event.target.select();
+  public copy(event: Event): void {
+    (event as any).target.select();
     document.execCommand('copy');
   }
   
@@ -81,7 +79,7 @@ export class AdGeneratorComponent {
    * 
    * @param item 商品1件
    */
-  public insertAmazon(item: any): void {
+  public insertAmazon(item: AmazonItem): void {
     this.amazonCode = this.adGeneratorService.generateAmazonCode(item);
     setTimeout(() => {
       (document.getElementById('amazon-code') as any).select();
@@ -94,12 +92,11 @@ export class AdGeneratorComponent {
    * 
    * @param item 商品1件
    */
-  public insertRakuten(item: any): void {
+  public insertRakuten(item: RakutenItem): void {
     this.rakutenCode = this.adGeneratorService.generateRakutenCode(item);
     setTimeout(() => {
       (document.getElementById('rakuten-code') as any).select();
       document.execCommand('copy');
     }, 1);
   }
-  
 }

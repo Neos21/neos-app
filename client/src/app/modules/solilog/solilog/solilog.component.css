@@ -1,0 +1,78 @@
+.wrapper {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  color: #323436;
+  line-height: 1.75;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+  a:hover {
+    text-decoration: underline;
+  }
+aside a {
+  color: #07f;
+  text-decoration: underline;
+}
+  aside a:hover {
+    color: #f09;
+  }
+
+header,
+footer {
+  margin: 3rem 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  font-weight: bold;
+}
+  header span,
+  footer span {
+    margin-right: .5rem;
+    margin-left : .5rem;
+  }
+  header div:last-child,
+  footer div:last-child {
+    text-align: right;
+  }
+
+form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 4.5rem;
+  column-gap: .5rem;
+}
+  textarea {
+    resize: none;
+  }
+
+main {
+  margin: 3rem 0;
+}
+h1 {
+  margin: 3rem 0;
+}
+dt {
+  margin-top: 1.5rem;
+  font-size: .85rem;
+  font-family: var(--font-family-monospace);
+}
+  dt button {
+    margin-right: .5rem;
+    padding: .1rem .5rem;
+    font-size: inherit;
+  }
+dd {
+  margin-left: 0;
+}
+
+aside {
+  font-size: .86rem;
+  font-family: var(--font-family-monospace);
+}
+  aside ul {
+    padding-left: 0;
+    list-style: none;
+  }

@@ -140,7 +140,7 @@ export class CategoriesService implements OnModuleInit {
       const thumbnailUrl = `${$(element).find('.entrylist-contents-thumb span').attr('style')}`
         .replace('background-image:url(\'', '')
         .replace('\');', '')
-        .replace((/^undefined$/), '');  // サムネイルがない記事は `span` 要素がなく最終的な文字列が `undefined` になるので空文字に修正する
+        .replace((/^undefined$/u), '');  // サムネイルがない記事は `span` 要素がなく最終的な文字列が `undefined` になるので空文字に修正する
       // 記事オブジェクトとして追加する : 最終クロール日時は自動挿入される
       entries.push(new Entry({ categoryId, title, url, description, count, date, faviconUrl, thumbnailUrl }));
     });

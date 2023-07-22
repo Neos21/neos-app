@@ -13,6 +13,7 @@ import { BookmarksModule } from './modules/bookmarks/bookmarks.module';
 import { NotesModule } from './modules/notes/notes.module';
 import { HatebuModule } from './modules/hatebu/hatebu.module';
 import { AdGeneratorModule } from './modules/ad-generator/ad-generator.module';
+import { SolilogModule } from './modules/solilog/solilog.module';
 // TypeORM
 import { Bookmark } from './entities/bookmarks/bookmark';
 import { Note } from './entities/notes/note';
@@ -68,6 +69,7 @@ import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
     NotesModule,
     HatebuModule,
     AdGeneratorModule,
+    SolilogModule,
     // `/api` の Prefix を付ける
     RouterModule.register([{
       path: 'api',
@@ -76,7 +78,8 @@ import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
         BookmarksModule,
         NotesModule,
         HatebuModule,
-        AdGeneratorModule
+        AdGeneratorModule,
+        SolilogModule
       ]
     }])
   ],

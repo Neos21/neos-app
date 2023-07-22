@@ -13,7 +13,7 @@ async function bootstrap() {
   app.use(express.json());
   // CORS を有効にする
   app.enableCors({
-    origin: (/localhost/),  // `localhost` を全て許可するため正規表現を使う
+    origin: (/localhost/u),  // `localhost` を全て許可するため正規表現を使う
     methods: 'GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD',
     allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Headers, Access-Control-Allow-Credentials',
     credentials: true  // `Access-Control-Allow-Credentials` を許可する

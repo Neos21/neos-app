@@ -12,7 +12,7 @@ import { PageTitleService } from '../services/page-title.service';
 })
 export class NgUrlsComponent implements OnInit, OnDestroy {
   /** ページデータの状態管理オブジェクト */
-  private dataState$ = new BehaviorSubject<{ isLoading?: boolean; error?: Error | string | any }>({ isLoading: true });
+  private dataState$ = new BehaviorSubject<{ isLoading?: boolean; error?: Error | string }>({ isLoading: true });
   /** ローディング中か否か */
   public isLoading$  = this.dataState$.pipe(map(dataState => dataState.isLoading));
   /** エラー */
@@ -33,7 +33,7 @@ export class NgUrlsComponent implements OnInit, OnDestroy {
       await this.show();  // 初期表示
       this.dataState$.next({ isLoading: false });
     }
-    catch(error) {
+    catch(error: any) {
       this.dataState$.next({ isLoading: false, error });
     }
   }
@@ -55,7 +55,7 @@ export class NgUrlsComponent implements OnInit, OnDestroy {
       await this.show();
       this.dataState$.next({ isLoading: false });
     }
-    catch(error) {
+    catch(error: any) {
       this.dataState$.next({ error });
     }
   }
