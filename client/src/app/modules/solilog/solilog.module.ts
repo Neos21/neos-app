@@ -3,9 +3,11 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { SolilogRoutingModule } from './solilog-routing.module';
 import { SolilogComponent } from './solilog/solilog.component';
-import { TimeToHashPipe } from './guards/time-to-hash.pipe';
+import { SearchSolilogComponent } from './search-solilog/search-solilog.component';
+import { TimeToHashPipe } from './pipes/time-to-hash.pipe';
+import { TimeToYearMonthPipe } from './pipes/time-to-year-month.pipe';
+import { UrlToAnchorPipe } from './pipes/url-to-anchor.pipe';
 import { SolilogService } from './services/solilog.service';
-import { UrlToAnchorPipe } from './guards/url-to-anchor.pipe';
 
 @NgModule({
   imports: [
@@ -14,7 +16,9 @@ import { UrlToAnchorPipe } from './guards/url-to-anchor.pipe';
   ],
   declarations: [
     SolilogComponent,
+    SearchSolilogComponent,
     TimeToHashPipe,
+    TimeToYearMonthPipe,
     UrlToAnchorPipe
   ],
   providers: [

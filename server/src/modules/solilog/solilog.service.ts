@@ -1,7 +1,11 @@
+import { exec } from 'node:child_process';
 import { promises as fs } from 'node:fs';
 import * as path from 'node:path';
+import { promisify } from 'node:util';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+
+const execAsync = promisify(exec);
 
 @Injectable()
 export class SolilogService {
@@ -43,6 +47,23 @@ export class SolilogService {
     const targetIndex = posts.findIndex(post => post.id === id);
     posts.splice(targetIndex, 1);  // 対象の投稿を削除する
     return await this.writePostFile(yearMonth, posts);
+  }
+  
+  public async search(keyword: string): Promise<Array<{ time: string; text: string; }>> {
+    try {
+      keyword = keyword.trim().replace((/'/gu), `'\\''`);  // かなり無理やり grep してる
+      const rawResult = await execAsync(`grep -i -B1 '    "text":.*${keyword}' ${this.solilogDirectoryPath}${path.sep}solilog-*`);
+      const stringResults = '[{' + rawResult.stdout
+        .replace(new RegExp(`${this.solilogDirectoryPath}.*    "time"`, 'gu'), '  "time"')
+        .replace(new RegExp(`${this.solilogDirectoryPath}.*    "text"`, 'gu'), '  "text"')
+        .replace((/\n--\n/gu), '}, {') + '}]';
+      const results = JSON.parse(stringResults);
+      return results;
+    }
+    catch(error) {
+      if(error?.stdout === '' || error?.stderr === '') return [];
+      return null;
+    }
   }
   
   /** 日本時間で現時刻の `YYYY-MM` を取得する */

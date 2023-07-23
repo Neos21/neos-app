@@ -44,8 +44,16 @@ export class SolilogController {
   @UseGuards(JwtAuthGuard)
   @Delete('posts')
   public async remove(@Body('t') yearMonth: string, @Body('id') id: number, @Res() res: Response): Promise<Response> {
-    const isSucceededt = await this.solilogService.remove(yearMonth, id);
-    if(!isSucceededt) return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Remove' });
+    const isSucceeded = await this.solilogService.remove(yearMonth, id);
+    if(!isSucceeded) return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Remove' });
     return res.status(HttpStatus.OK).end();
+  }
+  
+  @UseGuards(JwtAuthGuard)
+  @Get('search')
+  public async search(@Query('q') keyword: string, @Res() res: Response): Promise<Response> {
+    const results = await this.solilogService.search(keyword);
+    if(results == null) return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Search' });
+    return res.status(HttpStatus.OK).json(results);
   }
 }

@@ -13,13 +13,6 @@ a {
   a:hover {
     text-decoration: underline;
   }
-aside a {
-  color: #07f;
-  text-decoration: underline;
-}
-  aside a:hover {
-    color: #f09;
-  }
 
 header,
 footer {
@@ -41,12 +34,8 @@ footer {
 form {
   display: grid;
   grid-template-columns: 1fr auto;
-  grid-template-rows: 4.5rem;
   column-gap: .5rem;
 }
-  textarea {
-    resize: none;
-  }
 
 main,
 h1 {
@@ -57,20 +46,6 @@ dt {
   font-size: .85rem;
   font-family: var(--font-family-monospace);
 }
-  dt button {
-    margin-right: .5rem;
-    padding: .1rem .5rem;
-    font-size: inherit;
-  }
 dd {
   margin-left: 0;
 }
-
-aside {
-  font-size: .86rem;
-  font-family: var(--font-family-monospace);
-}
-  aside ul {
-    padding-left: 0;
-    list-style: none;
-  }

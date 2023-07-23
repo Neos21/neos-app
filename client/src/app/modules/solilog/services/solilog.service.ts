@@ -40,4 +40,8 @@ export class SolilogService {
   public async remove(yearMonth: string, id: number): Promise<void> {
     return await firstValueFrom(this.httpClient.delete<void>('/api/solilog/posts', { body: { t: yearMonth, id }}));
   }
+  
+  public async search(keyword: string): Promise<Array<{ time: string; text: string; }>> {
+    return await firstValueFrom(this.httpClient.get<Array<{ time: string; text: string; }>>(`/api/solilog/search?q=${keyword}`));
+  }
 }
