@@ -16,6 +16,7 @@ import { HatebuModule } from './modules/hatebu/hatebu.module';
 import { AdGeneratorModule } from './modules/ad-generator/ad-generator.module';
 import { SolilogModule } from './modules/solilog/solilog.module';
 import { FileUploaderModule } from './modules/file-uploader/file-uploader.module';
+import { MediaExplorerModule } from './modules/media-explorer/media-explorer.module';
 // TypeORM
 import { Bookmark } from './entities/bookmarks/bookmark';
 import { Note } from './entities/notes/note';
@@ -80,6 +81,7 @@ import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
     AdGeneratorModule,
     SolilogModule,
     FileUploaderModule,
+    MediaExplorerModule,
     // `/api` の Prefix を付ける
     RouterModule.register([{
       path: 'api',
@@ -90,7 +92,8 @@ import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
         HatebuModule,
         AdGeneratorModule,
         SolilogModule,
-        FileUploaderModule
+        FileUploaderModule,
+        MediaExplorerModule
       ]
     }])
   ],

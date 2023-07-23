@@ -8,6 +8,11 @@ export class AppController {
     private appService: AppService
   ) { }
   
+  @Get('robots.txt')
+  public robotsTxt(): string {
+    return 'User-agent: *\nDisallow: /\n';
+  }
+  
   /** AppService が注入できているかの確認用 */
   @Get('/api')
   public getApiRoot(): string {

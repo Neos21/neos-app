@@ -1,0 +1,43 @@
+<div class="wrapper">
+  <header>
+    <h1>Media Explorer</h1>
+    <div>
+      <a (click)="onGitPull()">Pull</a>
+      <span>|</span>
+      <a [routerLink]="['/index']">Index</a>
+    </div>
+  </header>
+  <app-error [error]="error"></app-error>
+  
+  <!-- 現在年 -->
+  <details class="year-wrapper" *ngIf="current != null">
+    <summary>{{ current.year }}</summary>
+    <ul *ngIf="current.names.length">
+      <li *ngFor="let name of current.names"><a (click)="onClickName(current.year, name)">{{ name }}</a></li>
+    </ul>
+  </details>
+  
+  <!-- 過去年 -->
+  <details class="year-wrapper" *ngFor="let item of past">
+    <summary>{{ item.year }}</summary>
+    <ul *ngIf="item.names.length">
+      <li *ngFor="let name of item.names"><a (click)="onClickName(item.year, name)">{{ name }}</a></li>
+    </ul>
+  </details>
+  
+  <!-- Family : サムネイルはナシ -->
+  <details class="year-wrapper" *ngIf="family != null">
+    <summary>{{ family.title }}</summary>
+    <ul *ngIf="family.names.length">
+      <li *ngFor="let name of family.names">{{ name }}</li>
+    </ul>
+  </details>
+  
+  <!-- サムネイル -->
+  <div class="thumbnail-wrapper" *ngIf="thumbnailUrl != null">
+    <img [src]="thumbnailUrl">
+  </div>
+  
+  <!-- サムネイルを閉じるための背景 -->
+  <div class="thumbnail-background" (click)="onCloseThumbnail()"><span>×</span></div>
+</div>
