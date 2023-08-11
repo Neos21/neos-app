@@ -29,11 +29,11 @@ export class BookmarksController {
   
   /** ブックマークレットからの呼び出し用 */
   @Get('add')
-  public async addFromBookmarklet(@Query('credential') credential: string, @Query('url') url: string, @Res() res: Response): Promise<Response> {
+  public async addFromBookmarklet(@Query('credential') credential: string, @Query('url') url: string, @Res() res: Response): Promise<void> {
     if(credential !== this.configService.get('password')) return res.status(HttpStatus.UNAUTHORIZED).json({ error: 'Invalid Credential' });
     const insertResult = await this.bookmarksService.create(url);
     if(insertResult == null) return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Create Bookmark' });
-    return res.status(HttpStatus.CREATED).json({ result: 'Created' });
+    return res.redirect('/bookmarks');
   }
   
   @UseGuards(JwtAuthGuard)

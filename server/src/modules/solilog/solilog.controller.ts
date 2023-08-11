@@ -33,12 +33,13 @@ export class SolilogController {
     return res.status(HttpStatus.OK).end();
   }
   
+  /** ブックマークレットからの呼び出し用 */
   @Get('posts/add')
-  public async addFromBookmarklet(@Query('credential') credential: string, @Query('text') text: string, @Res() res: Response): Promise<Response> {
+  public async addFromBookmarklet(@Query('credential') credential: string, @Query('text') text: string, @Res() res: Response): Promise<void | Response> {
     if(credential !== this.configService.get('password')) return res.status(HttpStatus.UNAUTHORIZED).json({ error: 'Invalid Credential' });
     const isSucceeded = await this.solilogService.post(text);
     if(!isSucceeded) return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Post '});
-    return res.status(HttpStatus.OK).json({ result: 'Created' });
+    return res.redirect('/solilog');
   }
   
   @UseGuards(JwtAuthGuard)
