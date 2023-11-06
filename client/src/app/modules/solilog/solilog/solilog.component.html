@@ -4,8 +4,6 @@
     <div><a [routerLink]="['.']" [queryParams]="{ t: yearMonth }" [fragment]="'archives-title'">▼</a></div>
   </header>
   <main>
-    <p>おひとりさまインスタンスもどきです。<a href="https://legacy-of-bbs.pages.dev/" target="_blank" class="solilog-anchor"><b>コメントは掲示板へドウゾ！</b></a></p>
-    
     <form *ngIf="isLoggedIn()" [formGroup]="form" (ngSubmit)="post()">
       <textarea placeholder="Text" formControlName="text" [disabled]="isProcessing"></textarea>
       <button type="submit" [disabled]="form.invalid || isProcessing">投稿</button>
