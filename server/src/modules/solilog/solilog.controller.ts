@@ -12,12 +12,14 @@ export class SolilogController {
     private solilogService: SolilogService
   ) { }
   
+  @UseGuards(JwtAuthGuard)
   @Get('')
   public async getList(@Res() res: Response): Promise<Response> {
     const list = await this.solilogService.getList();
     return res.status(HttpStatus.OK).json(list);
   }
   
+  @UseGuards(JwtAuthGuard)
   @Get('posts')
   public async getPosts(@Query('t') yearMonth: string, @Res() res: Response): Promise<Response> {  // `t` = Time
     const posts = await this.solilogService.getPosts(yearMonth);

@@ -7,7 +7,7 @@ import { SearchSolilogComponent } from './search-solilog/search-solilog.componen
 
 const routes: Routes = [
   { path: 'search', component: SearchSolilogComponent, canActivate: [authGuard] },
-  { path: ''      , component: SolilogComponent }
+  { path: ''      , component: SolilogComponent      , canActivate: [authGuard] }
 ];
 
 @NgModule({

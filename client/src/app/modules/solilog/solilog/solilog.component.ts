@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from '../../../shared/services/auth.service';
@@ -45,6 +45,7 @@ export class SolilogComponent implements OnInit, AfterViewInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
+    private router: Router,
     private authService: AuthService,
     private solilogService: SolilogService
   ) { }
@@ -53,7 +54,8 @@ export class SolilogComponent implements OnInit, AfterViewInit {
     this.form = this.formBuilder.group({ text: ['', [Validators.required]] });
     this.queryParamMap$ = this.activatedRoute.queryParamMap.subscribe(async params => {
       const yearMonth = params.get('t')!;
-      await this.loadPosts(yearMonth);
+      await this.loadPosts(yearMonth);  // `this.yearMonth` が更新される
+      await this.router.navigate([], { queryParamsHandling: 'merge', queryParams: { t: this.yearMonth } });  // 「▼」リンク押下時に再読み込みにならないようクエリパラメータを付けておく
       this.ngAfterViewInit();  // フラグメントがあった場合にポスト読み込み後に遷移する
     });
     this.fragment$ = this.activatedRoute.fragment.subscribe(fragment => {
