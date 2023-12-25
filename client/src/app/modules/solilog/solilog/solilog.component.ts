@@ -55,7 +55,7 @@ export class SolilogComponent implements OnInit, AfterViewInit {
     this.queryParamMap$ = this.activatedRoute.queryParamMap.subscribe(async params => {
       const yearMonth = params.get('t')!;
       await this.loadPosts(yearMonth);  // `this.yearMonth` が更新される
-      await this.router.navigate([], { queryParamsHandling: 'merge', queryParams: { t: this.yearMonth } });  // 「▼」リンク押下時に再読み込みにならないようクエリパラメータを付けておく
+      if(yearMonth == null || yearMonth === '') await this.router.navigate([], { queryParamsHandling: 'merge', queryParams: { t: this.yearMonth } });  // 「▼」リンク押下時に再読み込みにならないようクエリパラメータを付けておく
       this.ngAfterViewInit();  // フラグメントがあった場合にポスト読み込み後に遷移する
     });
     this.fragment$ = this.activatedRoute.fragment.subscribe(fragment => {
