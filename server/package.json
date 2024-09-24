@@ -2,9 +2,9 @@
   "name": "neos-app-server",
   "private": true,
   "scripts": {
-    "nest": "nest",
-    "start": "node dist/main.js",
-    "dev": "nest start --watch",
+    "nest" : "nest",
+    "start": "node ./dist/main.js",
+    "dev"  : "nest start --watch",
     "build": "nest build"
   },
   "dependencies": {

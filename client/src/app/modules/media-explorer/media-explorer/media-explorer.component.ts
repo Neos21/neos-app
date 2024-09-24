@@ -52,10 +52,13 @@ export class MediaExplorerComponent {
    * @param year 西暦
    * @param name 名前
    */
-  public onClickName(year: string, name: string): void | string {
+  public onClickName(year: string, name: string): void {
     this.error = undefined;
     const match = name.match((/^.*(\d{4}-\d{2}-\d{2}).*$/u));
-    if(match == null) return this.error = 'Invalid Name';
+    if(match == null) {
+      this.error = 'Invalid Name';
+      return;
+    }
     const ymd = match[1];
     this.thumbnailUrl = this.mediaExplorerService.getThumbnailUrl(year, ymd);
   }

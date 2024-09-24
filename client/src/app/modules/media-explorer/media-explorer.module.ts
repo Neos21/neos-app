@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 import { MediaExplorerRoutingModule } from './media-explorer-routing.module';
 import { MediaExplorerComponent } from './media-explorer/media-explorer.component';
 import { MediaExplorerService } from './services/media-explorer.service';

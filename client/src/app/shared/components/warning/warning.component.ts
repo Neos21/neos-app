@@ -7,5 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class WarningComponent {
   /** ワーニングメッセージ */
-  @Input() public message?: string;
+  @Input()
+  public message?: string;
 }

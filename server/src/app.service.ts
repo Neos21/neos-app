@@ -13,11 +13,6 @@ export class AppService {
     private ngUrlsService: NgUrlsService
   ) { }
   
-  /** AppController からの注入確認用 */
-  public getApiRoot(): string {
-    return 'Neo\'s App API';
-  }
-  
   /**
    * Cron Job スケジュールを定義する
    * 

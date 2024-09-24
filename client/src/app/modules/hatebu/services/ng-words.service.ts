@@ -54,7 +54,7 @@ export class NgWordsService {
    * @param value 文字列
    * @return カタカナをひらがなに・全角英数字を半角英数字 (小文字) に統一した文字列
    */
-   public transformText(value: string): string {
+  public transformText(value: string): string {
     return value
       .toLowerCase()           // 半角・全角英字を小文字に統一する
       .replace((/\s/gu), ' ')  // 全角スペースなどを全て半角スペースに統一する

@@ -25,20 +25,26 @@ export class LoginComponent {
     private authService: AuthService
   ) { }
   
-  public async ngOnInit(): Promise<void | boolean> {
+  public ngOnInit(): void {
     this.form = this.formBuilder.group({
       userName: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
-    if(this.authService.accessToken != null) return await this.router.navigate(['/index']);  // ログイン済ならこの画面を表示しない
+    if(this.authService.accessToken != null) {
+      this.router.navigate(['/index']);  // ログイン済ならこの画面を表示しない
+      return;
+    }
     this.isLoaded = true;
   }
   
-  public async login(): Promise<void | boolean> {
+  public async login(): Promise<void> {
     this.error = undefined;
     this.isProcessing = true;
     const isSucceeded = await this.authService.login(this.form.value.userName, this.form.value.password);
-    if(isSucceeded) return await this.router.navigate(['/index']);
+    if(isSucceeded) {
+      this.router.navigate(['/index']);
+      return;
+    }
     this.error = 'Failed To Login';
     this.isProcessing = false;
   }

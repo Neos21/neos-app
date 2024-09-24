@@ -17,8 +17,11 @@ export class IndexComponent {
     private authService: AuthService
   ) { }
   
-  public async ngOnInit(): Promise<void | boolean> {
-    if(this.authService.accessToken == null) return await this.router.navigate(['/login']);  // 未ログインならこの画面を表示しない
+  public ngOnInit(): void {
+    if(this.authService.accessToken == null) {
+      this.router.navigate(['/login']);  // 未ログインならこの画面を表示しない
+      return;
+    }
     this.isLoaded = true;
   }
   
