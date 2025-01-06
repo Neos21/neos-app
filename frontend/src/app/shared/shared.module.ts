@@ -22,7 +22,6 @@ import { WarningComponent } from './components/warning/warning.component';
     // Re-Export
     CommonModule,
     FormsModule,
-    HttpClientModule,
     ReactiveFormsModule,
     // Declarations
     ErrorComponent,
