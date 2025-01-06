@@ -2,28 +2,28 @@
   "name": "neos-app-frontend",
   "private": true,
   "scripts": {
-    "ng"   : "ng",
+    "ng": "ng",
     "start": "ng serve --host=0.0.0.0 --disable-host-check --proxy-config=./proxy.conf.json",
-    "dev"  : "npm start",
+    "dev": "npm start",
     "build": "ng build"
   },
   "dependencies": {
-    "@angular/animations": "16.1.5",
-    "@angular/common": "16.1.5",
-    "@angular/compiler": "16.1.5",
-    "@angular/core": "16.1.5",
-    "@angular/forms": "16.1.5",
-    "@angular/platform-browser": "16.1.5",
-    "@angular/platform-browser-dynamic": "16.1.5",
-    "@angular/router": "16.1.5",
+    "@angular/animations": "17.3.12",
+    "@angular/common": "17.3.12",
+    "@angular/compiler": "17.3.12",
+    "@angular/core": "17.3.12",
+    "@angular/forms": "17.3.12",
+    "@angular/platform-browser": "17.3.12",
+    "@angular/platform-browser-dynamic": "17.3.12",
+    "@angular/router": "17.3.12",
     "rxjs": "7.8.1",
     "tslib": "2.6.0",
-    "zone.js": "0.13.1"
+    "zone.js": "0.14.10"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "16.1.4",
-    "@angular/cli": "16.1.4",
-    "@angular/compiler-cli": "16.1.5",
-    "typescript": "5.1.6"
+    "@angular-devkit/build-angular": "17.3.11",
+    "@angular/cli": "17.3.11",
+    "@angular/compiler-cli": "17.3.12",
+    "typescript": "5.4.5"
   }
 }
