@@ -1,4 +1,4 @@
-# Angular Frontend Client
+# Angular Frontend
 
 ```bash
 # Installation

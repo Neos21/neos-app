@@ -52,7 +52,7 @@ import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
     ServeStaticModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => [{
-        rootPath: configService.get<string>('staticDirectoryPath') || path.resolve(__dirname, '../../client/dist')
+        rootPath: configService.get<string>('staticDirectoryPath') || path.resolve(__dirname, '../../frontend/dist')
       }]
     }),
     // TypeORM
