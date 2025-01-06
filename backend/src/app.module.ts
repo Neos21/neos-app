@@ -17,6 +17,7 @@ import { AdGeneratorModule } from './modules/ad-generator/ad-generator.module';
 import { SolilogModule } from './modules/solilog/solilog.module';
 import { FileUploaderModule } from './modules/file-uploader/file-uploader.module';
 import { MediaExplorerModule } from './modules/media-explorer/media-explorer.module';
+import { DbApiModule } from './modules/db-api/db-api.module';
 // TypeORM
 import { Bookmark } from './entities/bookmarks/bookmark';
 import { Note } from './entities/notes/note';
@@ -25,6 +26,7 @@ import { Entry } from './entities/hatebu/entry';
 import { NgUrl } from './entities/hatebu/ng-url';
 import { NgWord } from './entities/hatebu/ng-word';
 import { NgDomain } from './entities/hatebu/ng-domain';
+import { Site } from './entities/access-counter/site';
 // Controllers
 import { AppController } from './app.controller';
 // Providers
@@ -68,7 +70,8 @@ import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
           Entry,
           NgUrl,
           NgWord,
-          NgDomain
+          NgDomain,
+          Site
         ],
         synchronize: true
       })
@@ -82,6 +85,7 @@ import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
     SolilogModule,
     FileUploaderModule,
     MediaExplorerModule,
+    DbApiModule,
     // `/api` の Prefix を付ける
     RouterModule.register([{
       path: 'api',
@@ -93,7 +97,8 @@ import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
         AdGeneratorModule,
         SolilogModule,
         FileUploaderModule,
-        MediaExplorerModule
+        MediaExplorerModule,
+        DbApiModule
       ]
     }])
   ],

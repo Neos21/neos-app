@@ -4,7 +4,7 @@
   "scripts": {
     "nest" : "nest",
     "start": "node ./dist/main.js",
-    "dev"  : "nest start --watch",
+    "dev"  : "nest start --debug --watch",
     "build": "nest build"
   },
   "dependencies": {
@@ -19,6 +19,7 @@
     "@nestjs/serve-static": "4.0.2",
     "@nestjs/typeorm": "10.0.2",
     "amazon-paapi": "1.0.7",
+    "canvas": "3.0.0-rc2",
     "cheerio": "1.0.0",
     "express-list-endpoints": "7.1.1",
     "passport": "0.7.0",
