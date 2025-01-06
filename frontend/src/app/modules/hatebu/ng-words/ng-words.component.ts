@@ -10,7 +10,8 @@ import { PageTitleService } from '../services/page-title.service';
 @Component({
   selector: 'app-ng-words',
   templateUrl: './ng-words.component.html',
-  styleUrls: ['./ng-words.component.css']
+  styleUrls: ['./ng-words.component.css'],
+  standalone: false
 })
 export class NgWordsComponent implements OnInit, OnDestroy {
   /** 登録フォーム */

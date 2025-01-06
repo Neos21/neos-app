@@ -1,7 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 /** 記事の URL をはてブの URL に変換する */
-@Pipe({ name: 'hatebuUrl' })
+@Pipe({
+  name: 'hatebuUrl',
+  standalone: false
+})
 export class HatebuUrlPipe implements PipeTransform {
   /**
    * 記事の URL をはてブの URL に変換する

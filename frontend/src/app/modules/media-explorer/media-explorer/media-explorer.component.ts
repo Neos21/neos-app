@@ -5,7 +5,8 @@ import { MediaExplorerService } from '../services/media-explorer.service';
 @Component({
   selector: 'app-media-explorer',
   templateUrl: './media-explorer.component.html',
-  styleUrls: ['./media-explorer.component.css']
+  styleUrls: ['./media-explorer.component.css'],
+  standalone: false
 })
 export class MediaExplorerComponent {
   /** エラー */

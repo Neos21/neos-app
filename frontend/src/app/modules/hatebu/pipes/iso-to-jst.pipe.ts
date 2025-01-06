@@ -1,7 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 /** ISO 8601 形式の日時文字列を JST に変換する */
-@Pipe({ name: 'isoToJst' })
+@Pipe({
+  name: 'isoToJst',
+  standalone: false
+})
 export class IsoToJstPipe implements PipeTransform {
   /** タイムゾーンのオフセット値 (分単位) */
   private timeoneOffset = new Date().getTimezoneOffset();

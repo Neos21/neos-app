@@ -9,7 +9,8 @@ import { PageTitleService } from '../services/page-title.service';
 @Component({
   selector: 'app-ng-domains',
   templateUrl: './ng-domains.component.html',
-  styleUrls: ['./ng-domains.component.css']
+  styleUrls: ['./ng-domains.component.css'],
+  standalone: false
 })
 export class NgDomainsComponent implements OnInit, OnDestroy {
   /** 登録フォーム */

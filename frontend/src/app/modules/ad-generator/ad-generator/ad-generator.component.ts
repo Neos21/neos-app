@@ -8,7 +8,8 @@ import { RakutenItem } from '../classes/rakuten-item';
 @Component({
   selector: 'app-ad-generator',
   templateUrl: './ad-generator.component.html',
-  styleUrls: ['./ad-generator.component.css']
+  styleUrls: ['./ad-generator.component.css'],
+  standalone: false
 })
 export class AdGeneratorComponent {
   /** フォーム */

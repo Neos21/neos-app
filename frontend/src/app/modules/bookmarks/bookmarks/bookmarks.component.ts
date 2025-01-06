@@ -7,7 +7,8 @@ import { Bookmark } from '../classes/bookmark';
 @Component({
   selector: 'app-bookmarks',
   templateUrl: './bookmarks.component.html',
-  styleUrls: ['./bookmarks.component.css']
+  styleUrls: ['./bookmarks.component.css'],
+  standalone: false
 })
 export class BookmarksComponent {
   /** フォーム */

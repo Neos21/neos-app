@@ -5,7 +5,8 @@ import { FileUploaderService } from '../services/file-uploader.service';
 @Component({
   selector: 'app-file-uploader',
   templateUrl: './file-uploader.component.html',
-  styleUrls: ['./file-uploader.component.css']
+  styleUrls: ['./file-uploader.component.css'],
+  standalone: false
 })
 export class FileUploaderComponent implements OnInit {
   /** 読込中かどうか */

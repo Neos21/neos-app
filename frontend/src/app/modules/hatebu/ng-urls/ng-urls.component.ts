@@ -8,7 +8,8 @@ import { PageTitleService } from '../services/page-title.service';
 @Component({
   selector: 'app-ng-urls',
   templateUrl: './ng-urls.component.html',
-  styleUrls: ['./ng-urls.component.css']
+  styleUrls: ['./ng-urls.component.css'],
+  standalone: false
 })
 export class NgUrlsComponent implements OnInit, OnDestroy {
   /** ページデータの状態管理オブジェクト */

@@ -6,7 +6,8 @@ import { NotesService } from '../services/notes.service';
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
-  styleUrls: ['./notes.component.css']
+  styleUrls: ['./notes.component.css'],
+  standalone: false
 })
 export class NotesComponent {
   /** フォーム */

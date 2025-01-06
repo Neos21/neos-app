@@ -1,7 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 /** スラッシュ区切りの日時文字列をハイフン区切りに変換する */
-@Pipe({ name: 'slashToHyphen' })
+@Pipe({
+  name: 'slashToHyphen',
+  standalone: false
+})
 export class SlashToHyphenPipe implements PipeTransform {
   /**
    * スラッシュ区切りの日時文字列をハイフン区切りに変換する

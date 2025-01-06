@@ -11,7 +11,8 @@ import { Entry } from '../classes/entry';
 @Component({
   selector: 'app-entries',
   templateUrl: './entries.component.html',
-  styleUrls: ['./entries.component.css']
+  styleUrls: ['./entries.component.css'],
+  standalone: false
 })
 export class EntriesComponent {
   /** ページデータの状態管理オブジェクト */

@@ -6,7 +6,8 @@ import { SolilogService } from '../services/solilog.service';
 @Component({
   selector: 'app-search-solilog',
   templateUrl: './search-solilog.component.html',
-  styleUrls: ['./search-solilog.component.css']
+  styleUrls: ['./search-solilog.component.css'],
+  standalone: false
 })
 export class SearchSolilogComponent {
   /** フォーム */

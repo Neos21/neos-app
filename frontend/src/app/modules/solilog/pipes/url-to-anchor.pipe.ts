@@ -1,6 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'urlToAnchor' })
+@Pipe({
+  name: 'urlToAnchor',
+  standalone: false
+})
 export class UrlToAnchorPipe implements PipeTransform {
   public transform(value: string): string {
     return value

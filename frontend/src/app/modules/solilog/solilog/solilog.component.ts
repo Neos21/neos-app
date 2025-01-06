@@ -9,7 +9,8 @@ import { SolilogService } from '../services/solilog.service';
 @Component({
   selector: 'app-solilog',
   templateUrl: './solilog.component.html',
-  styleUrls: ['./solilog.component.css']
+  styleUrls: ['./solilog.component.css'],
+  standalone: false
 })
 export class SolilogComponent implements OnInit, AfterViewInit {
   /** フォーム */

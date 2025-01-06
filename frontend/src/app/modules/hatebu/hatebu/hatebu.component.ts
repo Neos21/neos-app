@@ -9,7 +9,8 @@ import { PageTitleService } from '../services/page-title.service';
 @Component({
   selector: 'app-hatebu',
   templateUrl: './hatebu.component.html',
-  styleUrls: ['./hatebu.component.css']
+  styleUrls: ['./hatebu.component.css'],
+  standalone: false
 })
 export class HatebuComponent {
   /** 画面幅が狭い時にサイドメニュー `aside` を開いているかどうか */
