@@ -10,7 +10,7 @@ export class CategoriesService {
   public categories$ = new BehaviorSubject<Array<Category> | null>(null);
   
   constructor(
-    private httpClient: HttpClient
+    private readonly httpClient: HttpClient
   ) { }
   
   /**

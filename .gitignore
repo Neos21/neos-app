@@ -1,0 +1,13 @@
+.DS_Store
+Thumbs.db
+
+*.out
+
+node_modules/
+dist/
+.angular/
+
+# DB : .gitkeep Only
+db/**
+!db/**/
+!db/**/.gitkeep

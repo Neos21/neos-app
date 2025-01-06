@@ -25,9 +25,9 @@ export class NgDomainsComponent implements OnInit, OnDestroy {
   public ngDomains$  = this.ngDomainsService.ngDomains$;
   
   constructor(
-    private formBuilder: FormBuilder,
-    private ngDomainsService: NgDomainsService,
-    private pageTitleService: PageTitleService
+    private readonly formBuilder: FormBuilder,
+    private readonly ngDomainsService: NgDomainsService,
+    private readonly pageTitleService: PageTitleService
   ) { }
   
   public async ngOnInit(): Promise<void> {

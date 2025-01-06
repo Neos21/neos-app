@@ -30,8 +30,8 @@ export class AdGeneratorComponent {
   public rakutenResults: Array<RakutenItem> = [];
   
   constructor(
-    private formBuilder: FormBuilder,
-    private adGeneratorService: AdGeneratorService
+    private readonly formBuilder: FormBuilder,
+    private readonly adGeneratorService: AdGeneratorService
   ) { }
   
   public async ngOnInit(): Promise<void | boolean> {

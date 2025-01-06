@@ -7,29 +7,29 @@ import { MediaExplorerService } from './media-explorer.service';
 @Controller('media-explorer')
 export class MediaExplorerController {
   constructor(
-    private mediaExplorerService: MediaExplorerService
+    private readonly mediaExplorerService: MediaExplorerService
   ) { }
   
   @UseGuards(JwtAuthGuard)
   @Post('git-pull')
-  public async gitPull(@Res() res: Response): Promise<Response> {
+  public async gitPull(@Res() response: Response): Promise<Response<{ result: string }>> {
     const isSucceeded = await this.mediaExplorerService.gitPull();
-    if(!isSucceeded) return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Git Pull' });
-    return res.status(HttpStatus.OK).json({ result: 'OK' });
+    if(!isSucceeded) return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Git Pull' });
+    return response.status(HttpStatus.OK).json({ result: 'OK' });
   }
   
   @UseGuards(JwtAuthGuard)
   @Get('names/:jsonFileName')
-  public async getNamesJson(@Param('jsonFileName') jsonFileName: string, @Res() res: Response): Promise<Response> {
+  public async getNamesJson(@Param('jsonFileName') jsonFileName: string, @Res() response: Response): Promise<Response> {
     const json = await this.mediaExplorerService.getNamesJson(jsonFileName);
-    if(json == null) return res.status(HttpStatus.NOT_FOUND).json({ error: 'JSON Not Found' });
-    return res.status(HttpStatus.OK).json(json);
+    if(json == null) return response.status(HttpStatus.NOT_FOUND).json({ error: 'JSON Not Found' });
+    return response.status(HttpStatus.OK).json(json);
   }
   
   // `@UseGuards()` を付けてしまうと画像が読み込めない
   @Get('thumbnails/:year/:ymdFileName')
-  public getThumbnail(@Param('year') year: string, @Param('ymdFileName') ymdFileName: string, @Res() res: Response): void {
+  public getThumbnail(@Param('year') year: string, @Param('ymdFileName') ymdFileName: string, @Res() response: Response): void {
     const thumbnailFilePath = this.mediaExplorerService.getThumbnail(year, ymdFileName);
-    return res.status(HttpStatus.OK).sendFile(thumbnailFilePath);
+    return response.status(HttpStatus.OK).sendFile(thumbnailFilePath);
   }
 }

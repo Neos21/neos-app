@@ -7,7 +7,7 @@ import { Note } from '../../entities/notes/note';
 @Injectable()
 export class NotesService {
   constructor(
-    @InjectRepository(Note) private notesRepository: Repository<Note>
+    @InjectRepository(Note) private readonly notesRepository: Repository<Note>
   ) { }
   
   public async findOne(): Promise<Note | null> {

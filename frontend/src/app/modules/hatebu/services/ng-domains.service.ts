@@ -10,7 +10,7 @@ export class NgDomainsService {
   public ngDomains$ = new BehaviorSubject<Array<NgDomain> | null>(null);
   
   constructor(
-    private httpClient: HttpClient
+    private readonly httpClient: HttpClient
   ) { }
   
   /**

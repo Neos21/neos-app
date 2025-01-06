@@ -10,10 +10,10 @@ const execAsync = promisify(exec);
 @Injectable()
 export class SolilogService {
   /** Solilog JSON ファイルのディレクトリ */
-  private solilogDirectoryPath: string;
+  private readonly solilogDirectoryPath: string;
   
   constructor(
-    private configService: ConfigService
+    private readonly configService: ConfigService
   ) {
     this.solilogDirectoryPath = this.configService.get('solilogDirectoryPath');
   }

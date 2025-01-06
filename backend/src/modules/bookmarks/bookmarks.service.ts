@@ -7,7 +7,7 @@ import { Bookmark } from '../../entities/bookmarks/bookmark';
 @Injectable()
 export class BookmarksService {
   constructor(
-    @InjectRepository(Bookmark) private bookmarksRepository: Repository<Bookmark>
+    @InjectRepository(Bookmark) private readonly bookmarksRepository: Repository<Bookmark>
   ) { }
   
   public async findAll(): Promise<Array<Bookmark> | null> {

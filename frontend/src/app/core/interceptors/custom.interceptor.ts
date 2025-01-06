@@ -7,7 +7,7 @@ import { AuthService } from '../../shared/services/auth.service';
 @Injectable({ providedIn: 'root' })
 export class CustomInterceptor implements HttpInterceptor {
   constructor(
-    private authService: AuthService
+    private readonly authService: AuthService
   ) { }
   
   /** HttpClient からの通信時に以下の割り込み処理を行う */

@@ -7,7 +7,7 @@ import { NgWord } from '../../entities/hatebu/ng-word';
 @Injectable()
 export class NgWordsService {
   constructor(
-    @InjectRepository(NgWord) private ngWordsRepository: Repository<NgWord>
+    @InjectRepository(NgWord) private readonly ngWordsRepository: Repository<NgWord>
   ) { }
   
   public async findAll(): Promise<Array<NgWord> | null> {
@@ -18,7 +18,7 @@ export class NgWordsService {
     const insertResult = await this.ngWordsRepository.insert(ngWord);
     const id = insertResult.identifiers?.[0]?.id;
     if(id == null) return null;  // Failed To Insert NgWord
-    return this.ngWordsRepository.findOne({ where: { id } }).catch(_error => null);
+    return await this.ngWordsRepository.findOneBy({ id }).catch(_error => null);
   }
   
   public async remove(id: number): Promise<DeleteResult | null> {

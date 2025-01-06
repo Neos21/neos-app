@@ -19,12 +19,12 @@ export class HatebuComponent {
   private isLeftHandMode = true;
   
   constructor(
-    private renderer2: Renderer2,
-    private router: Router,
-    @Inject(DOCUMENT) private document: Document,
-    private apiService: ApiService,
-    public categoriesService: CategoriesService,
-    public pageTitleService: PageTitleService
+    private readonly renderer2: Renderer2,
+    private readonly router: Router,
+    @Inject(DOCUMENT) private readonly document: Document,
+    private readonly apiService: ApiService,
+    public readonly categoriesService: CategoriesService,
+    public readonly pageTitleService: PageTitleService
   ) { }
   
   public ngOnInit(): void {

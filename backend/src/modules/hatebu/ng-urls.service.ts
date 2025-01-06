@@ -6,10 +6,10 @@ import { NgUrl } from '../../entities/hatebu/ng-url';
 
 @Injectable()
 export class NgUrlsService {
-  private logger: Logger = new Logger(NgUrlsService.name);
+  private readonly logger: Logger = new Logger(NgUrlsService.name);
   
   constructor(
-    @InjectRepository(NgUrl) private ngUrlsRepository: Repository<NgUrl>
+    @InjectRepository(NgUrl) private readonly ngUrlsRepository: Repository<NgUrl>
   ) { }
   
   public async findAll(): Promise<Array<NgUrl> | null> {
@@ -20,7 +20,7 @@ export class NgUrlsService {
     const insertResult = await this.ngUrlsRepository.insert(ngUrl);
     const id = insertResult.identifiers?.[0]?.id;
     if(id == null) return null;  // Failed to insert NgUrl
-    return this.ngUrlsRepository.findOne({ where: { id } }).catch(_error => null);
+    return await this.ngUrlsRepository.findOneBy({ id }).catch(_error => null);
   }
   
   /**

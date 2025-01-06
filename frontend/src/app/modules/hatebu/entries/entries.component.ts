@@ -27,13 +27,13 @@ export class EntriesComponent {
   /** カテゴリ */
   public category?: Category;
   /** クエリパラメータのキー名 */
-  private queryParamKey = 'category_id';
+  private readonly queryParamKey = 'category_id';
   
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private apiService: ApiService,
-    private pageTitleService: PageTitleService
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly router: Router,
+    private readonly apiService: ApiService,
+    private readonly pageTitleService: PageTitleService
   ) { }
   
   public async ngOnInit(): Promise<void> {

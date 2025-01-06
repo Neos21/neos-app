@@ -5,7 +5,7 @@ import { firstValueFrom } from 'rxjs';
 @Injectable()
 export class SolilogService {
   constructor(
-    private httpClient: HttpClient
+    private readonly httpClient: HttpClient
   ) { }
   
   public async getList(): Promise<Array<{ year: string; months: Array<string>; }>> {

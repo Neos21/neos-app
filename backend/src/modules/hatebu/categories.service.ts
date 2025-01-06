@@ -10,13 +10,13 @@ import { Entry } from '../../entities/hatebu/entry';
 
 @Injectable()
 export class CategoriesService implements OnModuleInit {
-  private logger: Logger = new Logger(CategoriesService.name);
+  private readonly logger: Logger = new Logger(CategoriesService.name);
   
   constructor(
-    private dataSource: DataSource,
-    private httpService: HttpService,
-    @InjectRepository(Category) private categoriesRepository: Repository<Category>,
-    @InjectRepository(Entry) private entriesRepository: Repository<Entry>,
+    private readonly dataSource: DataSource,
+    private readonly httpService: HttpService,
+    @InjectRepository(Category) private readonly categoriesRepository: Repository<Category>,
+    @InjectRepository(Entry) private readonly entriesRepository: Repository<Entry>,
   ) { }
   
   /** 本モジュール起動時にデータが存在しなければカテゴリマスタを投入する */

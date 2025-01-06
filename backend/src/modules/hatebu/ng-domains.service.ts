@@ -7,7 +7,7 @@ import { NgDomain } from '../../entities/hatebu/ng-domain';
 @Injectable()
 export class NgDomainsService {
   constructor(
-    @InjectRepository(NgDomain) private ngDomainsRepository: Repository<NgDomain>
+    @InjectRepository(NgDomain) private readonly ngDomainsRepository: Repository<NgDomain>
   ) { }
   
   public async findAll(): Promise<Array<NgDomain> | null> {
@@ -18,7 +18,7 @@ export class NgDomainsService {
     const insertResult = await this.ngDomainsRepository.insert(ngDomain);
     const id = insertResult.identifiers?.[0]?.id;
     if(id == null) return null;  // Failed To Insert NgDomain
-    return await this.ngDomainsRepository.findOne({ where: { id } }).catch(_error => null);
+    return await this.ngDomainsRepository.findOneBy({ id }).catch(_error => null);
   }
   
   public async remove(id: number): Promise<DeleteResult | null> {

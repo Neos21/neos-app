@@ -9,10 +9,10 @@ const execAsync = promisify(exec);
 
 @Injectable()
 export class MediaExplorerService {
-  private mediaDirectoryPath: string;
+  private readonly mediaDirectoryPath: string;
   
   constructor(
-    private configService: ConfigService
+    private readonly configService: ConfigService
   ) {
     this.mediaDirectoryPath = this.configService.get('mediaDirectoryPath');
   }

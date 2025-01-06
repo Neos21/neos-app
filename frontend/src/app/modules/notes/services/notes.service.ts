@@ -7,7 +7,7 @@ import { Note } from '../classes/note';
 @Injectable()
 export class NotesService {
   constructor(
-    private httpClient: HttpClient
+    private readonly httpClient: HttpClient
   ) { }
   
   public async findOne(): Promise<Note> {

@@ -18,8 +18,8 @@ export class NotesComponent {
   public error?: Error | string;
   
   constructor(
-    private formBuilder: FormBuilder,
-    private notesService: NotesService
+    private readonly formBuilder: FormBuilder,
+    private readonly notesService: NotesService
   ) { }
   
   public async ngOnInit(): Promise<void> {

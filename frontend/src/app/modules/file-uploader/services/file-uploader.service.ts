@@ -5,7 +5,7 @@ import { firstValueFrom } from 'rxjs';
 @Injectable()
 export class FileUploaderService {
   constructor(
-    private httpClient: HttpClient
+    private readonly httpClient: HttpClient
   ) { }
   
   public async findAll(): Promise<Array<string>> {
@@ -15,7 +15,7 @@ export class FileUploaderService {
   public async uploadFile(file: File): Promise<void> {
     const formData = new FormData();
     formData.append('file', file, file.name);
-    formData.append('fileName', file.name);
+    formData.append('file_name', file.name);
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', '*/*');
@@ -27,6 +27,6 @@ export class FileUploaderService {
   }
   
   public async remove(fileName: string): Promise<boolean> {
-    return await firstValueFrom(this.httpClient.delete('/api/file-uploader/files', { body: { fileName } })).then(_result => true).catch(_error => false);
+    return await firstValueFrom(this.httpClient.delete('/api/file-uploader/files', { body: { file_name: fileName } })).then(_result => true).catch(_error => false);
   }
 }

@@ -3,25 +3,26 @@ import { Response } from 'express';
 
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
 import { NotesService } from './notes.service';
+import { Note } from '../../entities/notes/note';
 
 @Controller('notes')
 export class NotesController {
   constructor(
-    private notesService: NotesService
+    private readonly notesService: NotesService
   ) { }
   
   @UseGuards(JwtAuthGuard)
   @Get('')
-  public async findOne(@Res() res: Response): Promise<Response> {
+  public async findOne(@Res() response: Response): Promise<Response<Note>> {
     const note = await this.notesService.findOne();
-    return res.status(HttpStatus.OK).json(note);
+    return response.status(HttpStatus.OK).json(note);
   }
   
   @UseGuards(JwtAuthGuard)
   @Post('')
-  public async save(@Body('text') text: string, @Res() res: Response): Promise<Response> {
+  public async save(@Body('text') text: string, @Res() response: Response): Promise<Response<void>> {
     const insertResult = await this.notesService.save(text);
-    if(insertResult == null) return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Update Note' });
-    return res.status(HttpStatus.OK).end();
+    if(insertResult == null) return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Update Note' });
+    return response.status(HttpStatus.OK).end();
   }
 }

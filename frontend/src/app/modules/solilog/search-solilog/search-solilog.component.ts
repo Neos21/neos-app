@@ -20,8 +20,8 @@ export class SearchSolilogComponent {
   public posts?: Array<{ time: string; text: string; }>;
   
   constructor(
-    private formBuilder: FormBuilder,
-    private solilogService: SolilogService
+    private readonly formBuilder: FormBuilder,
+    private readonly solilogService: SolilogService
   ) { }
   
   public ngOnInit(): void {

@@ -23,7 +23,7 @@ export class FileUploaderComponent implements OnInit {
   private file: File | null = null;
   
   constructor(
-    private fileUploaderService: FileUploaderService
+    private readonly fileUploaderService: FileUploaderService
   ) { }
   
   public async ngOnInit(): Promise<void> {

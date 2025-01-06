@@ -6,8 +6,8 @@ import { Response } from 'express';
 @Controller('auth')
 export class AuthController {
   constructor(
-    private configService: ConfigService,
-    private jwtService: JwtService
+    private readonly configService: ConfigService,
+    private readonly jwtService: JwtService
   ) { }
   
   /**

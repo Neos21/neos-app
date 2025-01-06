@@ -21,8 +21,8 @@ export class BookmarksComponent {
   public bookmarks?: Array<Bookmark>;
   
   constructor(
-    private formBuilder: FormBuilder,
-    private bookmarksService: BookmarksService
+    private readonly formBuilder: FormBuilder,
+    private readonly bookmarksService: BookmarksService
   ) { }
   
   public async ngOnInit(): Promise<void> {

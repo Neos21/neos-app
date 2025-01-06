@@ -21,7 +21,7 @@ export class MediaExplorerComponent {
   public thumbnailUrl?: string;
   
   constructor(
-    private mediaExplorerService: MediaExplorerService
+    private readonly mediaExplorerService: MediaExplorerService
   ) { }
   
   public async ngOnInit(): Promise<void> {

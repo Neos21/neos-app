@@ -8,7 +8,7 @@ import { AmazonItem } from '../classes/amazon-item';
 @Injectable()
 export class AdGeneratorService {
   constructor(
-    private httpClient: HttpClient
+    private readonly httpClient: HttpClient
   ) { }
   
   public async searchAmazon(keyword: string): Promise<Array<AmazonItem>> {

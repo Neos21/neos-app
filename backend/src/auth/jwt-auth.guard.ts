@@ -6,8 +6,8 @@ import { Request } from 'express';
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
   constructor(
-    private configService: ConfigService,
-    private jwtService: JwtService
+    private readonly configService: ConfigService,
+    private readonly jwtService: JwtService
   ) { }
   
   /**

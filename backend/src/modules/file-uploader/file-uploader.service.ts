@@ -5,9 +5,10 @@ import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class FileUploaderService {
-  private fileDirectoryPath: string;
+  private readonly fileDirectoryPath: string;
+  
   constructor(
-    private configService: ConfigService
+    private readonly configService: ConfigService
   ) {
     this.fileDirectoryPath = this.configService.get('fileDirectoryPath');
   }

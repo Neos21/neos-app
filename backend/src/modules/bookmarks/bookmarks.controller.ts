@@ -4,43 +4,44 @@ import { Response } from 'express';
 
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
 import { BookmarksService } from './bookmarks.service';
+import { Bookmark } from '../../entities/bookmarks/bookmark';
 
 @Controller('bookmarks')
 export class BookmarksController {
   constructor(
-    private configService: ConfigService,
-    private bookmarksService: BookmarksService
+    private readonly configService: ConfigService,
+    private readonly bookmarksService: BookmarksService
   ) { }
   
   @UseGuards(JwtAuthGuard)
   @Get('')
-  public async findAll(@Res() res: Response): Promise<Response> {
+  public async findAll(@Res() response: Response): Promise<Response<Array<Bookmark>>> {
     const bookmarks = await this.bookmarksService.findAll();
-    return res.status(HttpStatus.OK).json(bookmarks);
+    return response.status(HttpStatus.OK).json(bookmarks);
   }
   
   @UseGuards(JwtAuthGuard)
   @Post('')
-  public async create(@Body('url') url: string, @Res() res: Response): Promise<Response> {
+  public async create(@Body('url') url: string, @Res() response: Response): Promise<Response<void>> {
     const insertResult = await this.bookmarksService.create(url);
-    if(insertResult == null) return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Create Bookmark' });
-    return res.status(HttpStatus.CREATED).end();
+    if(insertResult == null) return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Create Bookmark' });
+    return response.status(HttpStatus.CREATED).end();
   }
   
   /** ブックマークレットからの呼び出し用 */
   @Get('add')
-  public async addFromBookmarklet(@Query('credential') credential: string, @Query('url') url: string, @Res() res: Response): Promise<void | Response> {
-    if(credential !== this.configService.get('password')) return res.status(HttpStatus.UNAUTHORIZED).json({ error: 'Invalid Credential' });
+  public async addFromBookmarklet(@Query('credential') credential: string, @Query('url') url: string, @Res() response: Response): Promise<void | Response> {
+    if(credential !== this.configService.get('password')) return response.status(HttpStatus.UNAUTHORIZED).json({ error: 'Invalid Credential' });
     const insertResult = await this.bookmarksService.create(url);
-    if(insertResult == null) return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Create Bookmark' });
-    return res.redirect('/bookmarks');
+    if(insertResult == null) return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Create Bookmark' });
+    return response.redirect('/bookmarks');
   }
   
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
-  public async remove(@Param('id') id: number, @Res() res: Response): Promise<Response> {
+  public async remove(@Param('id') id: number, @Res() response: Response): Promise<Response<void>> {
     const deleteResult = await this.bookmarksService.remove(id);
-    if(deleteResult == null) return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Remove Bookmark' });
-    return res.status(HttpStatus.OK).end();
+    if(deleteResult == null) return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Remove Bookmark' });
+    return response.status(HttpStatus.OK).end();
   }
 }

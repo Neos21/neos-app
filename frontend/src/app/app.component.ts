@@ -10,7 +10,7 @@ import { AuthService } from './shared/services/auth.service';
 })
 export class AppComponent {
   constructor(
-    private authService: AuthService
+    private readonly authService: AuthService
   ) { }
   
   /** アプリ初期表示時 */

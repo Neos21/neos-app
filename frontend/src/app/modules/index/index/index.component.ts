@@ -14,8 +14,8 @@ export class IndexComponent {
   public isLoaded: boolean = false;
   
   constructor(
-    private router: Router,
-    private authService: AuthService
+    private readonly router: Router,
+    private readonly authService: AuthService
   ) { }
   
   public ngOnInit(): void {

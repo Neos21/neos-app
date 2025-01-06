@@ -10,7 +10,7 @@ export class NgUrlsService {
   public ngUrls$ = new BehaviorSubject<Array<NgUrl> | null>(null);
   
   constructor(
-    private httpClient: HttpClient
+    private readonly httpClient: HttpClient
   ) { }
   
   /**

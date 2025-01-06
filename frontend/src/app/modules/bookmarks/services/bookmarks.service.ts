@@ -7,7 +7,7 @@ import { Bookmark } from '../classes/bookmark';
 @Injectable()
 export class BookmarksService {
   constructor(
-    private httpClient: HttpClient
+    private readonly httpClient: HttpClient
   ) { }
   
   public async findAll(): Promise<Array<Bookmark>> {

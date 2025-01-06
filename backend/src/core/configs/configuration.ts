@@ -1,3 +1,5 @@
+import * as path from 'node:path';
+
 /**
  * 環境変数より文字列値を取得する・環境変数が存在しなければデフォルト値を使用する
  * 
@@ -51,20 +53,21 @@ const getBooleanValue = (envName: string): boolean => {
 
 /** 環境変数のオブジェクトを返す : この関数内にオブジェクトを定義しないと環境変数が読み込まれない */
 export const configuration = (): { [key: string]: string | number | boolean } => ({
-  port                : getNumberValue ('PORT'                  , 2121                             ),  // ポート番号
-  userName            : getStringValue ('USERNAME'              , 'CHANGE-THIS'                    ),  // ユーザ名
-  password            : getStringValue ('PASSWORD'              , 'CHANGE-THIS'                    ),  // パスワード
-  jwtSecretKey        : getStringValue ('JWT_SECRET_KEY'        , 'JWT-SECRET-KEY'                 ),  // JWT 秘密鍵
-  jwtExpiresIn        : getStringValue ('JWT_EXPIRES_IN'        , '1y'                             ),  // JWT 有効期限
-  dbFilePath          : getStringValue ('DB_FILE_PATH'          , ''                               ),  // DB ファイルパス : 未指定の場合は `app.module.ts` 内で初期値を設定する
-  staticDirectoryPath : getStringValue ('STATIC_DIRECTORY_PATH' , ''                               ),  // 静的ファイルのディレクトリ : 未指定の場合は `app.module.ts` 内で初期値を設定する
-  amazonAccessKey     : getStringValue ('AMAZON_ACCESS_KEY'     , ''                               ),  // Amazon PA API アクセスキー
-  amazonSecretKey     : getStringValue ('AMAZON_SECRET_KEY'     , ''                               ),  // Amazon PA API シークレットキー
-  amazonPartnerTag    : getStringValue ('AMAZON_PARTNER_TAG'    , 'neos21-22'                      ),  // Amazon PA API パートナータグ
-  rakutenApplicationId: getStringValue ('RAKUTEN_APPLICATION_ID', ''                               ),  // Rakuten Application ID
-  rakutenAffiliateId  : getStringValue ('RAKUTEN_AFFILIATE_ID'  , ''                               ),  // Rakuten Affiliate ID
-  solilogDirectoryPath: getStringValue ('SOLILOG_DIRECTORY_PATH', '/var/www/private/solilog'       ),  // Solilog JSON ファイルのディレクトリ
-  fileDirectoryPath   : getStringValue ('FILE_DIRECTORY_PATH'   , '/var/www/private/file-uploader' ),  // ファイルアップローダのディレクトリ
-  mediaDirectoryPath  : getStringValue ('MEDIA_DIRECTORY_PATH'  , '/var/www/private/media-explorer'),  // Media Explorer のディレクトリ (配下の `public/` を参照する)
-  noColour            : getBooleanValue('NO_COLOR'                                                 ),  // ロガーの色付けをしない : NestJS のロガー `cli-colors.util.js` と同じ環境変数名・確認のため宣言
+  port                : getNumberValue ('NEOS_APP_PORT'                  , 2121                             ),  // ポート番号
+  userName            : getStringValue ('NEOS_APP_USERNAME'              , 'CHANGE-THIS'                    ),  // ユーザ名
+  password            : getStringValue ('NEOS_APP_PASSWORD'              , 'CHANGE-THIS'                    ),  // パスワード
+  jwtSecretKey        : getStringValue ('NEOS_APP_JWT_SECRET_KEY'        , 'JWT-SECRET-KEY'                 ),  // JWT 秘密鍵
+  jwtExpiresIn        : getStringValue ('NEOS_APP_JWT_EXPIRES_IN'        , '1y'                             ),  // JWT 有効期限
+  dbFilePath          : getStringValue ('NEOS_APP_DB_FILE_PATH'          , path.resolve(__dirname, '../../../../db/neos-app.sqlite3.db')),  // DB ファイルパス
+  dbDirectoryPath     : getStringValue ('NEOS_APP_DB_FILE_PATH'          , path.resolve(__dirname, '../../../../db'                    )),  // DB ディレクトリパス
+  staticDirectoryPath : getStringValue ('NEOS_APP_STATIC_DIRECTORY_PATH' , path.resolve(__dirname, '../../../../frontend/dist'         )),  // 静的ファイルのディレクトリ
+  amazonAccessKey     : getStringValue ('NEOS_APP_AMAZON_ACCESS_KEY'     , ''                               ),  // Amazon PA API アクセスキー
+  amazonSecretKey     : getStringValue ('NEOS_APP_AMAZON_SECRET_KEY'     , ''                               ),  // Amazon PA API シークレットキー
+  amazonPartnerTag    : getStringValue ('NEOS_APP_AMAZON_PARTNER_TAG'    , 'neos21-22'                      ),  // Amazon PA API パートナータグ
+  rakutenApplicationId: getStringValue ('NEOS_APP_RAKUTEN_APPLICATION_ID', ''                               ),  // Rakuten Application ID
+  rakutenAffiliateId  : getStringValue ('NEOS_APP_RAKUTEN_AFFILIATE_ID'  , ''                               ),  // Rakuten Affiliate ID
+  solilogDirectoryPath: getStringValue ('NEOS_APP_SOLILOG_DIRECTORY_PATH', '/var/www/private/solilog'       ),  // Solilog JSON ファイルのディレクトリ
+  fileDirectoryPath   : getStringValue ('NEOS_APP_FILE_DIRECTORY_PATH'   , '/var/www/private/file-uploader' ),  // ファイルアップローダのディレクトリ
+  mediaDirectoryPath  : getStringValue ('NEOS_APP_MEDIA_DIRECTORY_PATH'  , '/var/www/private/media-explorer'),  // Media Explorer のディレクトリ (配下の `public/` を参照する)
+  noColour            : getBooleanValue('NO_COLOR'                                                          )   // ロガーの色付けをしない : NestJS のロガー `cli-colors.util.js` と同じ環境変数名・確認のため宣言
 });

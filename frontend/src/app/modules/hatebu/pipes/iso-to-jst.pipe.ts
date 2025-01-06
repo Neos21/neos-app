@@ -7,13 +7,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class IsoToJstPipe implements PipeTransform {
   /** タイムゾーンのオフセット値 (分単位) */
-  private timeoneOffset = new Date().getTimezoneOffset();
+  private readonly timeoneOffset = new Date().getTimezoneOffset();
   /** JST は UTC の9時間後 (`60 * 9`)・それを分単位で表現したモノ */
-  private jstOffsetMinutes = 540;
+  private readonly jstOffsetMinutes = 540;
   /** 分単位からミリ秒単位に変換する */
-  private minutesToMilliSeconds = 60000;
+  private readonly minutesToMilliSeconds = 60000;
   /** 実行環境に左右されず JST を得るためのオフセット値 */
-  private offset = (this.timeoneOffset + this.jstOffsetMinutes) * this.minutesToMilliSeconds;
+  private readonly offset = (this.timeoneOffset + this.jstOffsetMinutes) * this.minutesToMilliSeconds;
   
   /**
    * ISO 8601 形式の日時文字列 (`YYYY-MM-DDTHH:mm:SS.sssZ`) を JST (`YYYY-MM-DD HH:mm:SS`) に変換する

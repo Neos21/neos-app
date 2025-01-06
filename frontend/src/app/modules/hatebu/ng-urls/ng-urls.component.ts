@@ -24,8 +24,8 @@ export class NgUrlsComponent implements OnInit, OnDestroy {
   public isShownAll = false;
   
   constructor(
-    private ngUrlsService: NgUrlsService,
-    private pageTitleService: PageTitleService
+    private readonly ngUrlsService: NgUrlsService,
+    private readonly pageTitleService: PageTitleService
   ) { }
   
   public async ngOnInit(): Promise<void> {

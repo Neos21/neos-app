@@ -10,8 +10,8 @@ import { RakutenItem } from './classes/rakuten-item';
 @Injectable()
 export class AdGeneratorService {
   constructor(
-    private configService: ConfigService,
-    private httpService: HttpService
+    private readonly configService: ConfigService,
+    private readonly httpService: HttpService
   ) { }
   
   public async searchAmazon(keyword: string): Promise<Array<AmazonItem> | null> {

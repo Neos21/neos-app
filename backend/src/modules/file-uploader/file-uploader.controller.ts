@@ -8,37 +8,37 @@ import { FileUploaderService } from './file-uploader.service';
 @Controller('file-uploader')
 export class FileUploaderController {
   constructor(
-    private fileUploaderService: FileUploaderService
+    private readonly fileUploaderService: FileUploaderService
   ) { }
   
   @UseGuards(JwtAuthGuard)
   @Get('files')
-  public async findAll(@Res() res: Response): Promise<Response> {
+  public async findAll(@Res() response: Response): Promise<Response<Array<string>>> {
     const files = await this.fileUploaderService.findAll();
-    return res.status(HttpStatus.OK).json(files);
+    return response.status(HttpStatus.OK).json(files);
   }
   
   @UseGuards(JwtAuthGuard)
   @Get('files/:fileName')
-  public async downloadFile(@Param('fileName') fileName: string, @Res() res: Response): Promise<Response> {
+  public async downloadFile(@Param('fileName') fileName: string, @Res() response: Response): Promise<Response<Buffer>> {
     const file = await this.fileUploaderService.findOne(fileName);
-    return res.status(HttpStatus.OK).send(file);
+    return response.status(HttpStatus.OK).send(file);
   }
   
   @UseGuards(JwtAuthGuard)
   @Post('files')
   @UseInterceptors(FileInterceptor('file'))
-  public async uploadFile(@UploadedFile() file: Express.Multer.File, @Body('fileName') fileName: string, @Res() res: Response): Promise<Response> {
+  public async uploadFile(@UploadedFile() file: Express.Multer.File, @Body('file_name') fileName: string, @Res() response: Response): Promise<Response<void>> {
     const isSucceeded = await this.fileUploaderService.uploadFile(file, fileName);
-    if(!isSucceeded) return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Upload File' });
-    return res.status(HttpStatus.CREATED).end();
+    if(!isSucceeded) return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Upload File' });
+    return response.status(HttpStatus.CREATED).end();
   }
   
   @UseGuards(JwtAuthGuard)
   @Delete('files')
-  public async remove(@Body('fileName') fileName: string, @Res() res: Response): Promise<Response> {
+  public async remove(@Body('file_name') fileName: string, @Res() response: Response): Promise<Response<void>> {
     const isSucceeded = await this.fileUploaderService.remove(fileName);
-    if(!isSucceeded) return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Remove File' });
-    return res.status(HttpStatus.OK).end();
+    if(!isSucceeded) return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Remove File' });
+    return response.status(HttpStatus.OK).end();
   }
 }

@@ -6,11 +6,11 @@ import { NgUrlsService } from './modules/hatebu/ng-urls.service';
 
 @Injectable()
 export class AppService {
-  private logger: Logger = new Logger(AppService.name);
+  private readonly logger: Logger = new Logger(AppService.name);
   
   constructor(
-    private categoriesService: CategoriesService,
-    private ngUrlsService: NgUrlsService
+    private readonly categoriesService: CategoriesService,
+    private readonly ngUrlsService: NgUrlsService
   ) { }
   
   /**

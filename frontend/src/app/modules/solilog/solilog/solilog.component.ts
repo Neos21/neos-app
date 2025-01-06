@@ -44,11 +44,11 @@ export class SolilogComponent implements OnInit, AfterViewInit {
   private fragment?: string;
   
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private authService: AuthService,
-    private solilogService: SolilogService
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly formBuilder: FormBuilder,
+    private readonly router: Router,
+    private readonly authService: AuthService,
+    private readonly solilogService: SolilogService
   ) { }
   
   public async ngOnInit(): Promise<void> {

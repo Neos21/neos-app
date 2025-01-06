@@ -1,4 +1,4 @@
-import * as path from 'node:path';
+
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { RouterModule } from '@nestjs/core';
@@ -52,7 +52,7 @@ import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
     ServeStaticModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => [{
-        rootPath: configService.get<string>('staticDirectoryPath') || path.resolve(__dirname, '../../frontend/dist')
+        rootPath: configService.get<string>('staticDirectoryPath')
       }]
     }),
     // TypeORM
@@ -60,7 +60,7 @@ import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: 'sqlite',
-        database: configService.get<string>('dbFilePath') || path.resolve(__dirname, '../db/neos-app.sqlite3.db'),
+        database: configService.get<string>('dbFilePath'),
         entities: [
           Bookmark,
           Note,

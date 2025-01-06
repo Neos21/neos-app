@@ -10,7 +10,7 @@ export class NgWordsService {
   public ngWords$ = new BehaviorSubject<Array<NgWord> | null>(null);
   
   constructor(
-    private httpClient: HttpClient
+    private readonly httpClient: HttpClient
   ) { }
   
   /**

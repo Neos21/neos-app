@@ -26,9 +26,9 @@ export class NgWordsComponent implements OnInit, OnDestroy {
   public ngWords$    = this.ngWordsService.ngWords$;
   
   constructor(
-    private formBuilder: FormBuilder,
-    private ngWordsService: NgWordsService,
-    private pageTitleService: PageTitleService,
+    private readonly formBuilder: FormBuilder,
+    private readonly ngWordsService: NgWordsService,
+    private readonly pageTitleService: PageTitleService,
   ) { }
   
   public async ngOnInit(): Promise<void> {

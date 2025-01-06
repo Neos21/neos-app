@@ -6,11 +6,11 @@ import { cyan, yellow } from '../utils/colour-logger';
 /** アクセスログを出力するミドルウェア */
 @Injectable()
 export class AccessLogMiddleware implements NestMiddleware {
-  private logger: Logger = new Logger(AccessLogMiddleware.name);
+  private readonly logger: Logger = new Logger(AccessLogMiddleware.name);
   
   /** ミドルウェアの処理 : アクセスログを出力する */
-  public use(req: Request, _res: Response, next: NextFunction): void {
-    this.logger.log(yellow(`[${req.method}]`) + ' ' + cyan(`[${req.baseUrl}]`) + this.stringifyParam('Query', req.query) + this.stringifyParam('Body', req.body));
+  public use(request: Request, _response: Response, next: NextFunction): void {
+    this.logger.log(yellow(`[${request.method}]`) + ' ' + cyan(`[${request.baseUrl}]`) + this.stringifyParam('Query', request.query) + this.stringifyParam('Body', request.body));
     next();
   }
   
