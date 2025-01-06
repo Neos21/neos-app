@@ -1,4 +1,4 @@
-# NestJS Backend Server
+# NestJS Backend
 
 ```bash
 # Installation
