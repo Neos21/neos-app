@@ -2,9 +2,9 @@
   "name": "neos-app-frontend",
   "private": true,
   "scripts": {
-    "ng": "ng",
+    "ng"   : "ng",
     "start": "ng serve --host=0.0.0.0 --disable-host-check --proxy-config=./proxy.conf.json",
-    "dev": "npm start",
+    "dev"  : "npm start",
     "build": "ng build"
   },
   "dependencies": {
@@ -17,7 +17,7 @@
     "@angular/platform-browser-dynamic": "19.0.5",
     "@angular/router": "19.0.5",
     "rxjs": "7.8.1",
-    "tslib": "2.6.0",
+    "tslib": "2.8.1",
     "zone.js": "0.15.0"
   },
   "devDependencies": {
