@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ErrorComponent } from './components/error/error.component';
@@ -11,7 +11,6 @@ import { WarningComponent } from './components/warning/warning.component';
   imports: [
     CommonModule,
     FormsModule,
-    HttpClientModule,
     ReactiveFormsModule
   ],
   declarations: [
@@ -29,6 +28,9 @@ import { WarningComponent } from './components/warning/warning.component';
     ErrorComponent,
     LoadingComponent,
     WarningComponent
+  ],
+  providers: [
+    provideHttpClient(withInterceptorsFromDi())
   ]
 })
 export class SharedModule { }
