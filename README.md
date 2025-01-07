@@ -34,13 +34,13 @@ $ npm run build
 ## Access Counter
 
 ```javascript
-fetch('https://EXAMPLE.COM/api/access-counter/pv?id=1').catch(error => console.error(error));
+fetch('https://EXAMPLE.COM/api/access-counter/pv?id=【ID】&referrer=' + encodeURIComponent(document.referrer ?? '') + '&landing=' + encodeURIComponent(location.href) + '&title=' + encodeURIComponent(document.title ?? '')).catch(error => console.error(error));
 ```
 
 ```html
-<img src="https://EXAMPLE.COM/api/access-counter/total?id=1&amp;digit=8"     width="138" height="32" alt="Total Counter"     title="Total Counter"    >
-<img src="https://EXAMPLE.COM/api/access-counter/today?id=1&amp;digit=4"     width="72"  height="32" alt="Today Counter"     title="Today Counter"    >
-<img src="https://EXAMPLE.COM/api/access-counter/yesterday?id=1&amp;digit=4" width="72"  height="32" alt="Yesterday Counter" title="Yesterday Counter">
+<img src="https://EXAMPLE.COM/api/access-counter/total?id=【ID】&amp;digit=8"     width="138" height="32" alt="Total Counter"     title="Total Counter"    >
+<img src="https://EXAMPLE.COM/api/access-counter/today?id=【ID】&amp;digit=4"     width="72"  height="32" alt="Today Counter"     title="Today Counter"    >
+<img src="https://EXAMPLE.COM/api/access-counter/yesterday?id=【ID】&amp;digit=4" width="72"  height="32" alt="Yesterday Counter" title="Yesterday Counter">
 ```
 
 
