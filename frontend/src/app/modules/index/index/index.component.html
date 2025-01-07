@@ -1,0 +1,15 @@
+<div *ngIf="isLoaded" class="black-theme-wrapper">
+  <h1 class="text-center">App</h1>
+  
+  <div class="menu">
+    <a [routerLink]="['/bookmarks']">Bookmarks</a>
+    <a [routerLink]="['/notes']">Notes</a>
+    <a [routerLink]="['/hatebu']">Hatebu</a>
+    <a [routerLink]="['/ad-generator']">Ad Generator</a>
+    <a [routerLink]="['/solilog']">Solilog</a>
+    <a [routerLink]="['/file-uploader']">File Uploader</a>
+    <a [routerLink]="['/media-explorer']">Media Explorer</a>
+  </div>
+  
+  <p class="text-right"><a (click)="logout()">Logout</a></p>
+</div>

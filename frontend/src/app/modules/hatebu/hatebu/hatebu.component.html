@@ -1,0 +1,52 @@
+<div class="wrapper">
+  <header>
+    <button type="button" class="hamburger-icon" (click)="toggleMenu()">
+      <span class="hamburger-icon-bar"></span>
+      <span class="hamburger-icon-bar"></span>
+      <span class="hamburger-icon-bar"></span>
+    </button>
+    
+    <h1 class="page-title">
+      <span (click)="toggleHand()">{{ (pageTitleService.pageTitle$ | async) || 'Neo\'s Hatebu' }}</span>
+    </h1>
+    
+    <button type="button" class="site-title" (click)="moveToTop()">Hatebu</button>
+  </header>
+  
+  <aside>
+    <div class="menu-container">
+      <!-- カテゴリ一覧の読込中・エラー時にログアウトできるようにログインページへのリンクにしておく -->
+      <p *ngIf="(categoriesService.categories$ | async) == null">
+        <button type="button" [routerLink]="['/index']" [routerLinkActive]="'active'">(読込中…)</button>
+      </p>
+      
+      <!-- カテゴリ一覧の読込完了・全てのメニューを表示する -->
+      <ng-container *ngIf="categoriesService.categories$ | async as categories">
+        <p>
+          <ng-container *ngFor="let category of categories">
+            <button type="button" [routerLink]="['/hatebu/index']" [queryParams]="{ category_id: category.id }" [routerLinkActive]="'active'">{{ category.name }}</button>
+          </ng-container>
+        </p>
+        <p>
+          <button type="button" [routerLink]="['/hatebu/ng-urls']"    [routerLinkActive]="'active'">NG URL 確認</button>
+          <button type="button" [routerLink]="['/hatebu/ng-words']"   [routerLinkActive]="'active'">NG ワード管理</button>
+          <button type="button" [routerLink]="['/hatebu/ng-domains']" [routerLinkActive]="'active'">NG ドメイン管理</button>
+        </p>
+      </ng-container>
+      
+      <p>
+        <button type="button" onclick="window.open('https://b.hatena.ne.jp/', '_blank', 'noreferrer=yes')">はてなブックマーク</button>  <!-- `noreferrer` を付ければ `noopener` も付く -->
+      </p>
+      <p>
+        <button type="button" [routerLink]="['/index']">Index</button>
+      </p>
+    </div>
+  </aside>
+  
+  <!-- メニューを閉じるための背景 -->
+  <button type="button" class="menu-background" (click)="toggleMenu(false)"><span>メニューを閉じる</span></button>
+  
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>
