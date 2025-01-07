@@ -4,7 +4,7 @@ import { Response } from 'express';
 import { ValidatorService } from './validator.service';
 import { SqliteService } from './sqlite.service';
 
-@Controller('sqlite')
+@Controller('db-api/sqlite')
 export class SqliteController {
   constructor(
     private readonly validatorService: ValidatorService,

@@ -1,4 +1,4 @@
-import { Controller, Get, HttpStatus, Param, ParseBoolPipe, ParseIntPipe, Post, Query, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Param, ParseIntPipe, Post, Query, Res, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
 
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
@@ -18,7 +18,8 @@ export class CategoriesController {
    */
   @UseGuards(JwtAuthGuard)
   @Get('')
-  public async findAll(@Query('is_exclude_entries', ParseBoolPipe) isExcludeEntries: boolean, @Res() response: Response): Promise<Response<Array<Category>>> {
+  public async findAll(@Query('is_exclude_entries') queryIsExcludeEntries: string | boolean, @Res() response: Response): Promise<Response<Array<Category>>> {
+    const isExcludeEntries = this.isTruthy(queryIsExcludeEntries);
     const categories = await this.categoriesService.findAll(isExcludeEntries);
     return response.status(HttpStatus.OK).json(categories);
   }
@@ -30,7 +31,8 @@ export class CategoriesController {
    */
   @UseGuards(JwtAuthGuard)
   @Get(':id')
-  public async findById(@Param('id', ParseIntPipe) id: number, @Query('is_exclude_entries', ParseBoolPipe) isExcludeEntries: boolean, @Res() response: Response): Promise<Response<Category>> {
+  public async findById(@Param('id', ParseIntPipe) id: number, @Query('is_exclude_entries') queryIsExcludeEntries: string | boolean, @Res() response: Response): Promise<Response<Category>> {
+    const isExcludeEntries = this.isTruthy(queryIsExcludeEntries);
     const category = await this.categoriesService.findById(id, isExcludeEntries);
     if(category == null) return response.status(HttpStatus.NOT_FOUND).json({ error: 'Category Not Found' });
     return response.status(HttpStatus.OK).json(category);
@@ -53,5 +55,19 @@ export class CategoriesController {
     const category = await this.categoriesService.findById(id);
     if(category == null) return response.status(HttpStatus.NOT_FOUND).json({ error: 'Category Not Found' });
     return response.status(HttpStatus.OK).json(category);
+  }
+  
+  /**
+   * `@Query()` はどうしても文字列型になってしまい、ParseBoolPipe も効かなかったので文字列であっても Boolean を判定できるようにする
+   * 
+   * @param value 値
+   * @return 値が Truthy か否か
+   */
+  private isTruthy(value?: string | boolean): boolean {
+    if(value == null) return false;
+    if(typeof value === 'boolean') return value;
+    if((/^(true|yes|1)$/iu).test(value)) return true;
+    if((/^(false|no|0)$/iu).test(value)) return false;
+    return Boolean(value);  // その他の文字列や型の場合 (空文字は `false`)
   }
 }

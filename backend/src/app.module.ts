@@ -33,6 +33,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 // Configure
 import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
+import { AccessCounterModule } from './modules/access-counter/access-counter.module';
 
 @Module({
   imports: [
@@ -85,6 +86,7 @@ import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
     SolilogModule,
     FileUploaderModule,
     MediaExplorerModule,
+    AccessCounterModule,
     DbApiModule,
     // `/api` の Prefix を付ける
     RouterModule.register([{
@@ -98,6 +100,7 @@ import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
         SolilogModule,
         FileUploaderModule,
         MediaExplorerModule,
+        AccessCounterModule,
         DbApiModule
       ]
     }])
