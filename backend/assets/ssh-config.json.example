@@ -1,0 +1,9 @@
+[
+  {
+    "name": "name",
+    "host": "1.2.3.4",
+    "port": 22,
+    "user": "user",
+    "key" : "-----BEGIN OPENSSH PRIVATE KEY-----\n【SSH Private Key】\n-----END OPENSSH PRIVATE KEY-----"
+  }
+]

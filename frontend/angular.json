@@ -38,7 +38,13 @@
               "extractLicenses": false,
               "namedChunks"    : true,
               "optimization"   : false,
-              "sourceMap"      : false
+              "sourceMap"      : false,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with"   : "src/environments/environment.development.ts"
+                }
+              ]
             },
             "production": {
               "extractLicenses": false,

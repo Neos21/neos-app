@@ -1,0 +1,12 @@
+<div class="black-theme-wrapper">
+  <form [formGroup]="form" (ngSubmit)="startSsh()">
+    <header>
+      <h1>SSH Window</h1>
+      <div class="text-center"><a [routerLink]="['/index']">Index</a></div>
+      <input type="text" formControlName="name" placeholder="Name">
+      <button type="submit" [disabled]="isConnecting">Connect</button>
+    </header>
+  </form>
+  
+  <div id="ssh-window"></div>
+</div>

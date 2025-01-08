@@ -17,7 +17,9 @@ import { AdGeneratorModule } from './modules/ad-generator/ad-generator.module';
 import { SolilogModule } from './modules/solilog/solilog.module';
 import { FileUploaderModule } from './modules/file-uploader/file-uploader.module';
 import { MediaExplorerModule } from './modules/media-explorer/media-explorer.module';
+import { AccessCounterModule } from './modules/access-counter/access-counter.module';
 import { DbApiModule } from './modules/db-api/db-api.module';
+import { SshWindowModule } from './modules/ssh-window/ssh-window.module';
 // TypeORM
 import { Bookmark } from './entities/bookmarks/bookmark';
 import { Note } from './entities/notes/note';
@@ -33,7 +35,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 // Configure
 import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
-import { AccessCounterModule } from './modules/access-counter/access-counter.module';
 
 @Module({
   imports: [
@@ -88,6 +89,7 @@ import { AccessCounterModule } from './modules/access-counter/access-counter.mod
     MediaExplorerModule,
     AccessCounterModule,
     DbApiModule,
+    SshWindowModule,
     // `/api` の Prefix を付ける
     RouterModule.register([{
       path: 'api',

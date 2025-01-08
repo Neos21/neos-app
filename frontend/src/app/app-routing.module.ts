@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'solilog'       , loadChildren: () => import('./modules/solilog/solilog.module'              ).then(module => module.SolilogModule      ) },
   { path: 'file-uploader' , loadChildren: () => import('./modules/file-uploader/file-uploader.module'  ).then(module => module.FileUploaderModule ) },
   { path: 'media-explorer', loadChildren: () => import('./modules/media-explorer/media-explorer.module').then(module => module.MediaExplorerModule) },
+  { path: 'ssh-window'    , loadChildren: () => import('./modules/ssh-window/ssh-window.module'        ).then(module => module.SshWindowModule    ) },
   
   { path: ''  , redirectTo: '/index', pathMatch: 'full' },  // 未指定時
   { path: '**', redirectTo: '/index'                    }   // 404
