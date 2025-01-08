@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, HttpAdapterHost } from '@nestjs/core';
 import { IoAdapter } from '@nestjs/platform-socket.io';
 import * as express from 'express';
 
@@ -19,16 +19,23 @@ async function bootstrap() {
     allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Headers, Access-Control-Allow-Credentials',
     credentials: true  // `Access-Control-Allow-Credentials` を許可する
   });
+  
+  // HTTP サーバからルート情報を取得しておく
+  const httpAdapterHost = app.get(HttpAdapterHost);
+  const httpServer = httpAdapterHost.httpAdapter.getHttpServer();
+  const router = httpServer?._events?.request?._router;
+  
   // WebSocket アダプタを適用する
   app.useWebSocketAdapter(new IoAdapter(app));
-
+  
   // サーバを起動する
   const port = app.get<ConfigService>(ConfigService).get<number>('port')!;
   await app.listen(port);
   
   const logger = new Logger(bootstrap.name);
   logger.log(cyan(`Server started at port [`) + yellow(`${port}`) + cyan(']'));
+  
   // ルーティング一覧を出力する
-  logger.log(listRoutes(app.getHttpServer()._events.request._router));
+  logger.log(listRoutes(router));
 }
 void bootstrap();
