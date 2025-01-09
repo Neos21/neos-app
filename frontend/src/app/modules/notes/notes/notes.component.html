@@ -5,8 +5,17 @@
       <div class="text-center"><a [routerLink]="['/index']">Index</a></div>
       <button type="submit" [disabled]="isProcessing">Save</button>
     </header>
+    <header>
+      <button type="button" (click)="create()">Create</button>
+      <div class="text-center">{{ form.value.id }}</div>
+      <button type="button" (click)="remove(form.value.id)" [disabled]="notes.length <= 1">Remove</button>
+    </header>
     <textarea placeholder="Text" formControlName="text" [disabled]="isProcessing"></textarea>
   </form>
+  
+  <div class="tab">
+    <button type="button" *ngFor="let note of notes" (click)="onOpen(note.id)" [ngClass]="form.value.id === note.id ? 'active-note' : ''">{{ note.id }}</button>
+  </div>
   
   <app-error [error]="error"></app-error>
 </div>

@@ -13,3 +13,7 @@ h1 {
 textarea {
   min-height: 300px;
 }
+
+.active-note {
+  border-color: #f00;  /* TODO */
+}

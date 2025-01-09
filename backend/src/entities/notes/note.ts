@@ -1,10 +1,10 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 /** ノート */
 @Entity('notes')
 export class Note {
   /** ID */
-  @PrimaryColumn({ type: 'integer', name: 'id' })
+  @PrimaryGeneratedColumn({ name: 'id' })
   public id: number;
   /** テキスト */
   @Column({ type: 'text', name: 'text' })
