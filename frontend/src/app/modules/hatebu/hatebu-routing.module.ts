@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { authGuard } from '../../shared/guards/auth.guard';
-import { HatebuComponent } from './hatebu/hatebu.component';
 import { EntriesComponent } from './entries/entries.component';
+import { HatebuComponent } from './hatebu/hatebu.component';
+import { NgDomainsComponent } from './ng-domains/ng-domains.component';
 import { NgUrlsComponent } from './ng-urls/ng-urls.component';
 import { NgWordsComponent } from './ng-words/ng-words.component';
-import { NgDomainsComponent } from './ng-domains/ng-domains.component';
 
 const routes: Routes = [
   { path: '', component: HatebuComponent, canActivate: [authGuard], children: [

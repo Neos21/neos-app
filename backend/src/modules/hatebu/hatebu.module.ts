@@ -3,22 +3,19 @@ import { Module } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-// Imports
 import { Category } from '../../entities/hatebu/category';
 import { Entry } from '../../entities/hatebu/entry';
-import { NgWord } from '../../entities/hatebu/ng-word';
-import { NgUrl } from '../../entities/hatebu/ng-url';
 import { NgDomain } from '../../entities/hatebu/ng-domain';
-// Controllers
+import { NgUrl } from '../../entities/hatebu/ng-url';
+import { NgWord } from '../../entities/hatebu/ng-word';
 import { CategoriesController } from './categories.controller';
-import { NgUrlsController } from './ng-urls.controller';
-import { NgWordsController } from './ng-words.controller';
-import { NgDomainsController } from './ng-domains.controller';
-// Providers
 import { CategoriesService } from './categories.service';
-import { NgUrlsService } from './ng-urls.service';
-import { NgWordsService } from './ng-words.service';
+import { NgDomainsController } from './ng-domains.controller';
 import { NgDomainsService } from './ng-domains.service';
+import { NgUrlsController } from './ng-urls.controller';
+import { NgUrlsService } from './ng-urls.service';
+import { NgWordsController } from './ng-words.controller';
+import { NgWordsService } from './ng-words.service';
 
 @Module({
   imports: [

@@ -1,8 +1,9 @@
+import amazonPaapi from 'amazon-paapi';
+import { firstValueFrom } from 'rxjs';
+
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { firstValueFrom } from 'rxjs';
-import amazonPaapi from 'amazon-paapi';
 
 import { AmazonItem } from './classes/amazon-item';
 import { RakutenItem } from './classes/rakuten-item';

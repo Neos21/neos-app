@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { AdGeneratorService } from '../services/ad-generator.service';
 import { AmazonItem } from '../classes/amazon-item';
 import { RakutenItem } from '../classes/rakuten-item';
+import { AdGeneratorService } from '../services/ad-generator.service';
 
 @Component({
   selector: 'app-ad-generator',

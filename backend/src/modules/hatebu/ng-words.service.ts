@@ -1,6 +1,7 @@
+import { DeleteResult, Repository } from 'typeorm';
+
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeleteResult, Repository } from 'typeorm';
 
 import { NgWord } from '../../entities/hatebu/ng-word';
 

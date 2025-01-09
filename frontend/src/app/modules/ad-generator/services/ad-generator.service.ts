@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
-import { RakutenItem } from '../classes/rakuten-item';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
 import { AmazonItem } from '../classes/amazon-item';
+import { RakutenItem } from '../classes/rakuten-item';
 
 @Injectable()
 export class AdGeneratorService {

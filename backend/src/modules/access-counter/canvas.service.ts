@@ -1,8 +1,8 @@
+import { createCanvas, registerFont } from 'canvas';
 import * as path from 'node:path';
 import * as stream from 'node:stream';
 
 import { Injectable } from '@nestjs/common';
-import { createCanvas, registerFont } from 'canvas';
 
 @Injectable()
 export class CanvasService {

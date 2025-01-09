@@ -3,9 +3,8 @@ import { PathLike, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
-import { Writer } from './steno';
-
 import { Adapter, SyncAdapter } from './core-low';
+import { Writer } from './steno';
 
 export class TextFile implements Adapter<string> {
   #filename: PathLike;

@@ -1,9 +1,10 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, Post, Res, UseGuards } from '@nestjs/common';
-import { Response } from 'express';
 
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
 import { NgWord } from '../../entities/hatebu/ng-word';
 import { NgWordsService } from './ng-words.service';
+
+import type { Response } from 'express';
 
 @Controller('hatebu/ng-words')
 export class NgWordsController {

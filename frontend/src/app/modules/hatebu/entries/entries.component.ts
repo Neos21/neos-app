@@ -1,12 +1,13 @@
+import { BehaviorSubject, map, Subscription } from 'rxjs';
+
 import { Component } from '@angular/core';
-import { BehaviorSubject, Subscription, map } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Category } from '../classes/category';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Entry } from '../classes/entry';
+import { NgUrl } from '../classes/ng-url';
 import { ApiService } from '../services/api.service';
 import { PageTitleService } from '../services/page-title.service';
-import { NgUrl } from '../classes/ng-url';
-import { Entry } from '../classes/entry';
 
 @Component({
   selector: 'app-entries',

@@ -1,6 +1,7 @@
+import { BehaviorSubject, map } from 'rxjs';
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, map } from 'rxjs';
 
 import { NgWord } from '../classes/ng-word';
 import { NgWordsService } from '../services/ng-words.service';

@@ -1,9 +1,11 @@
-import { HttpService } from '@nestjs/axios';
-import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { CheerioAPI, load } from 'cheerio';
 import { firstValueFrom } from 'rxjs';
 import { DataSource, Repository } from 'typeorm';
+
+import { HttpService } from '@nestjs/axios';
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { Cron } from '@nestjs/schedule';
+import { InjectRepository } from '@nestjs/typeorm';
 
 import { Category } from '../../entities/hatebu/category';
 import { Entry } from '../../entities/hatebu/entry';
@@ -145,5 +147,24 @@ export class CategoriesService implements OnModuleInit {
       entries.push(new Entry({ categoryId, title, url, description, count, date, faviconUrl, thumbnailUrl }));
     });
     return entries;
+  }
+  
+  /**
+   * Cron Job スケジュールを定義する
+   * 
+   * - 参考 : https://docs.nestjs.com/techniques/task-scheduling
+   * - Seconds Minutes Hours Dates Months Days(0:Sunday - 6:Saturday) の順
+   * - JST で指定している
+   *   - 06:00 (UTC 21:00)
+   *   - 11:00 (UTC 02:00)
+   *   - 15:00 (UTC 05:00)
+   *   - 17:00 (UTC 08:00)
+   * - 関数内でエラーが発生しても異常終了にはならない
+   */
+  @Cron('0 0 6,11,15,17 * * *', { timeZone: 'Asia/Tokyo' })
+  private async handleCron(): Promise<void> {
+    this.logger.log('#handleCron() : Start');
+    await this.scrapeAllEntries().catch(error => this.logger.warn('#handleCron() : Failed at #scrapeAllEntries()', error));
+    this.logger.log('#handleCron() : Finished');
   }
 }

@@ -1,8 +1,8 @@
 // https://github.com/typicode/lowdb/blob/1b004c8228029161a15b557ba0bb638eaad3fd4b/src/adapters/node/DataFile.ts
 import { PathLike } from 'node:fs';
 
-import { Adapter, SyncAdapter } from './core-low';
 import { TextFile, TextFileSync } from './adapters-text-file';
+import { Adapter, SyncAdapter } from './core-low';
 
 export class DataFile<T> implements Adapter<T> {
   #adapter: TextFile;

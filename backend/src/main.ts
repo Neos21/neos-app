@@ -1,12 +1,13 @@
-import { Logger } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { NestFactory, HttpAdapterHost } from '@nestjs/core';
-import { IoAdapter } from '@nestjs/platform-socket.io';
 import * as express from 'express';
 
+import { Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { HttpAdapterHost, NestFactory } from '@nestjs/core';
+import { IoAdapter } from '@nestjs/platform-socket.io';
+
+import { AppModule } from './app.module';
 import { cyan, yellow } from './core/utils/colour-logger';
 import { listRoutes } from './core/utils/list-routes';
-import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
