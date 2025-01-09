@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
+
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { NgUrl } from '../classes/ng-url';
 import { NgUrlsService } from '../services/ng-urls.service';

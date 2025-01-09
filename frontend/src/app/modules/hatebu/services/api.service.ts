@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 
-import { NgUrl } from '../classes/ng-url';
 import { Category } from '../classes/category';
-import { NgWord } from '../classes/ng-word';
 import { NgDomain } from '../classes/ng-domain';
+import { NgUrl } from '../classes/ng-url';
+import { NgWord } from '../classes/ng-word';
 import { CategoriesService } from './categories.service';
+import { NgDomainsService } from './ng-domains.service';
 import { NgUrlsService } from './ng-urls.service';
 import { NgWordsService } from './ng-words.service';
-import { NgDomainsService } from './ng-domains.service';
 
 @Injectable()
 export class ApiService {

@@ -1,6 +1,7 @@
+import { firstValueFrom } from 'rxjs';
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class SolilogService {

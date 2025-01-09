@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { BookmarksService } from '../services/bookmarks.service';
 import { Bookmark } from '../classes/bookmark';
+import { BookmarksService } from '../services/bookmarks.service';
 
 @Component({
   selector: 'app-bookmarks',

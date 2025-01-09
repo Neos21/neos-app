@@ -1,9 +1,10 @@
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import * as util from 'node:util';
+import { Database } from 'sqlite3';
+
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Database } from 'sqlite3';
 
 @Injectable()
 export class SqliteService {

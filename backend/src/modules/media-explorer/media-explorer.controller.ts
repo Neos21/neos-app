@@ -1,5 +1,6 @@
-import { Controller, Get, HttpStatus, Param, Post, Res, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
+
+import { Controller, Get, HttpStatus, Param, Post, Res, UseGuards } from '@nestjs/common';
 
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
 import { MediaExplorerService } from './media-explorer.service';

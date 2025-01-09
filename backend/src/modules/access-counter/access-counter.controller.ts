@@ -1,8 +1,9 @@
 import { Controller, Get, HttpStatus, Logger, Query, Res } from '@nestjs/common';
-import type { Response } from 'express';
 
 import { CanvasService } from './canvas.service';
 import { DbService } from './db.service';
+
+import type { Response } from 'express';
 
 @Controller('access-counter')
 export class AccessCounterController {

@@ -1,10 +1,11 @@
-import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Query, Res, UseGuards } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { Response } from 'express';
 
+import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Query, Res, UseGuards } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
-import { BookmarksService } from './bookmarks.service';
 import { Bookmark } from '../../entities/bookmarks/bookmark';
+import { BookmarksService } from './bookmarks.service';
 
 @Controller('bookmarks')
 export class BookmarksController {

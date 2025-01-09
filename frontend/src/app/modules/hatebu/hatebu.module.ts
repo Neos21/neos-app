@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
 
-// Imports
 import { SharedModule } from '../../shared/shared.module';
-import { HatebuRoutingModule } from './hatebu-routing.module';
-// Declarations
-import { HatebuComponent } from './hatebu/hatebu.component';
 import { EntriesComponent } from './entries/entries.component';
+import { HatebuRoutingModule } from './hatebu-routing.module';
+import { HatebuComponent } from './hatebu/hatebu.component';
+import { NgDomainsComponent } from './ng-domains/ng-domains.component';
 import { NgUrlsComponent } from './ng-urls/ng-urls.component';
 import { NgWordsComponent } from './ng-words/ng-words.component';
-import { NgDomainsComponent } from './ng-domains/ng-domains.component';
 import { HatebuUrlPipe } from './pipes/hatebu-url.pipe';
 import { IsoToJstPipe } from './pipes/iso-to-jst.pipe';
 import { SlashToHyphenPipe } from './pipes/slash-to-hyphen.pipe';
-// Providers
 import { ApiService } from './services/api.service';
 import { CategoriesService } from './services/categories.service';
 import { NgDomainsService } from './services/ng-domains.service';

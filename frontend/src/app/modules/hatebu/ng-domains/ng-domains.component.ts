@@ -1,6 +1,7 @@
+import { BehaviorSubject, map } from 'rxjs';
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, map } from 'rxjs';
 
 import { NgDomain } from '../classes/ng-domain';
 import { NgDomainsService } from '../services/ng-domains.service';

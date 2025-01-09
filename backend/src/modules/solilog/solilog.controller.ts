@@ -1,6 +1,7 @@
+import { Response } from 'express';
+
 import { Body, Controller, Delete, Get, HttpStatus, ParseIntPipe, Post, Query, Res, UseGuards } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Response } from 'express';
 
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
 import { SolilogService } from './solilog.service';

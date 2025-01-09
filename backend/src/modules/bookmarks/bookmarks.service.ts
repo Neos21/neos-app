@@ -1,6 +1,7 @@
+import { DeleteResult, InsertResult, Repository } from 'typeorm';
+
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeleteResult, InsertResult, Repository } from 'typeorm';
 
 import { Bookmark } from '../../entities/bookmarks/bookmark';
 

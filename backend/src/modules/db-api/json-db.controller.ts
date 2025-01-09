@@ -1,8 +1,9 @@
-import { Body, Controller, HttpStatus, ParseIntPipe, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 
-import { ValidatorService } from './validator.service';
+import { Body, Controller, HttpStatus, ParseIntPipe, Post, Res } from '@nestjs/common';
+
 import { JsonDbService } from './json-db.service';
+import { ValidatorService } from './validator.service';
 
 @Controller('db-api/json-db')
 export class JsonDbController {

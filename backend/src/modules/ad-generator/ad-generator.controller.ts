@@ -1,8 +1,9 @@
-import { Controller, Get, HttpStatus, Query, Res, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
 
-import { AdGeneratorService } from './ad-generator.service';
+import { Controller, Get, HttpStatus, Query, Res, UseGuards } from '@nestjs/common';
+
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
+import { AdGeneratorService } from './ad-generator.service';
 import { AmazonItem } from './classes/amazon-item';
 import { RakutenItem } from './classes/rakuten-item';
 

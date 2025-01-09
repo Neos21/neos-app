@@ -6,34 +6,29 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-// Imports
-import { configuration } from './core/configs/configuration';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { BookmarksModule } from './modules/bookmarks/bookmarks.module';
-import { NotesModule } from './modules/notes/notes.module';
-import { HatebuModule } from './modules/hatebu/hatebu.module';
-import { AdGeneratorModule } from './modules/ad-generator/ad-generator.module';
-import { SolilogModule } from './modules/solilog/solilog.module';
-import { FileUploaderModule } from './modules/file-uploader/file-uploader.module';
-import { MediaExplorerModule } from './modules/media-explorer/media-explorer.module';
-import { AccessCounterModule } from './modules/access-counter/access-counter.module';
-import { DbApiModule } from './modules/db-api/db-api.module';
-import { SshWindowModule } from './modules/ssh-window/ssh-window.module';
-// TypeORM
+import { configuration } from './core/configs/configuration';
+import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
+import { Site } from './entities/access-counter/site';
 import { Bookmark } from './entities/bookmarks/bookmark';
-import { Note } from './entities/notes/note';
 import { Category } from './entities/hatebu/category';
 import { Entry } from './entities/hatebu/entry';
+import { NgDomain } from './entities/hatebu/ng-domain';
 import { NgUrl } from './entities/hatebu/ng-url';
 import { NgWord } from './entities/hatebu/ng-word';
-import { NgDomain } from './entities/hatebu/ng-domain';
-import { Site } from './entities/access-counter/site';
-// Controllers
-import { AppController } from './app.controller';
-// Providers
-import { AppService } from './app.service';
-// Configure
-import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
+import { Note } from './entities/notes/note';
+import { AccessCounterModule } from './modules/access-counter/access-counter.module';
+import { AdGeneratorModule } from './modules/ad-generator/ad-generator.module';
+import { BookmarksModule } from './modules/bookmarks/bookmarks.module';
+import { DbApiModule } from './modules/db-api/db-api.module';
+import { FileUploaderModule } from './modules/file-uploader/file-uploader.module';
+import { HatebuModule } from './modules/hatebu/hatebu.module';
+import { MediaExplorerModule } from './modules/media-explorer/media-explorer.module';
+import { NotesModule } from './modules/notes/notes.module';
+import { SolilogModule } from './modules/solilog/solilog.module';
+import { SshWindowModule } from './modules/ssh-window/ssh-window.module';
 
 @Module({
   imports: [

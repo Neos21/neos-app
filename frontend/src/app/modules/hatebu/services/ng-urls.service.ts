@@ -1,6 +1,7 @@
+import { BehaviorSubject, firstValueFrom } from 'rxjs';
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, firstValueFrom } from 'rxjs';
 
 import { NgUrl } from '../classes/ng-url';
 
