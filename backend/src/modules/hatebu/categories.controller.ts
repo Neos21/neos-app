@@ -1,10 +1,10 @@
-import { Response } from 'express';
-
 import { Controller, Get, HttpStatus, Param, ParseIntPipe, Post, Query, Res, UseGuards } from '@nestjs/common';
 
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
 import { Category } from '../../entities/hatebu/category';
 import { CategoriesService } from './categories.service';
+
+import type { Response } from 'express';
 
 @Controller('hatebu/categories')
 export class CategoriesController {

@@ -1,10 +1,10 @@
-import { Response } from 'express';
-
 import { Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, Post, Put, Res, UseGuards } from '@nestjs/common';
 
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
 import { Note } from '../../entities/notes/note';
 import { NotesService } from './notes.service';
+
+import type { Response } from 'express';
 
 @Controller('notes')
 export class NotesController {

@@ -1,9 +1,9 @@
-import { Response } from 'express';
-
 import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
 
 import { SqliteService } from './sqlite.service';
 import { ValidatorService } from './validator.service';
+
+import type { Response } from 'express';
 
 @Controller('db-api/sqlite')
 export class SqliteController {
