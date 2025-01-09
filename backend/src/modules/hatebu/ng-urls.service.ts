@@ -51,7 +51,7 @@ export class NgUrlsService {
   @Cron('0 0 0 * * *', { timeZone: 'Asia/Tokyo' })
   private async handleCron(): Promise<void> {
     this.logger.log('#handleCron() : Start');
-    await this.removeByCreatedAt().catch(error => this.logger.warn('#handleCron() : Failed at NgUrlsService#removeByCreatedAt()', error));
+    await this.removeByCreatedAt().catch(error => this.logger.warn('#handleCron() : Failed at #removeByCreatedAt()', error));
     this.logger.log('#handleCron() : Finished');
   }
 }

@@ -1,15 +1,25 @@
 import { DeleteResult, InsertResult, Repository } from 'typeorm';
 
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Note } from '../../entities/notes/note';
 
 @Injectable()
 export class NotesService {
+  private readonly logger: Logger = new Logger(NotesService.name);
+  
   constructor(
     @InjectRepository(Note) private readonly notesRepository: Repository<Note>
   ) { }
+  
+  public async onModuleInit(): Promise<void> {
+    const countAll = await this.notesRepository.count();
+    if(countAll === 0) {
+      this.logger.warn('#onModuleInit() : Create note for first time');
+      await this.notesRepository.insert({ text: '' });
+    }
+  }
   
   public async findAll(): Promise<Array<Note> | null> {
     return await this.notesRepository.find({ select: { id: true },  order: { id: 'ASC' } }).catch(_error => null);

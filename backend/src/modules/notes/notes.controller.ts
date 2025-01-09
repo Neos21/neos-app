@@ -37,7 +37,7 @@ export class NotesController {
   }
   
   @UseGuards(JwtAuthGuard)
-  @Put('id')
+  @Put(':id')
   public async save(@Param('id', ParseIntPipe) id: number, @Body('text') text: string, @Res() response: Response): Promise<Response<void>> {
     const updatedNote = await this.notesService.save(id, text);
     if(updatedNote == null) return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Update Note' });
@@ -45,7 +45,7 @@ export class NotesController {
   }
   
   @UseGuards(JwtAuthGuard)
-  @Delete('id')
+  @Delete(':id')
   public async remove(@Param('id', ParseIntPipe) id: number, @Res() response: Response): Promise<Response<void>> {
     const deleteResult = await this.notesService.remove(id);
     if(deleteResult == null) return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Remove Note' });

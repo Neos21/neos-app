@@ -14,6 +14,11 @@ textarea {
   min-height: 300px;
 }
 
+.tab button:not(:last-child) {
+  margin-right: .5rem;
+}
+
 .active-note {
-  border-color: #f00;  /* TODO */
+  border-color: #0f0;
+  color: #0f0;
 }

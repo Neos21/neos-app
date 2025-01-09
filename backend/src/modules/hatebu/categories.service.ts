@@ -163,8 +163,8 @@ export class CategoriesService implements OnModuleInit {
    */
   @Cron('0 0 6,11,15,17 * * *', { timeZone: 'Asia/Tokyo' })
   private async handleCron(): Promise<void> {
-    this.logger.log('CategoriesService#handleCron() : Start');
-    await this.scrapeAllEntries().catch(error => this.logger.warn('CategoriesService#handleCron() : Failed at CategoriesService#scrapeAllEntries()', error));
-    this.logger.log('CategoriesService#handleCron() : Finished');
+    this.logger.log('#handleCron() : Start');
+    await this.scrapeAllEntries().catch(error => this.logger.warn('#handleCron() : Failed at #scrapeAllEntries()', error));
+    this.logger.log('#handleCron() : Finished');
   }
 }
