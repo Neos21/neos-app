@@ -52,19 +52,22 @@ main,
 h1 {
   margin: 3rem 0;
 }
-dt {
-  margin-top: 1.5rem;
-  font-size: .85rem;
+dl {
   font-family: var(--font-family-monospace);
 }
-  dt button {
-    margin-right: .5rem;
-    padding: .1rem .5rem;
-    font-size: inherit;
+  dt {
+    margin-top: 1.5rem;
+    font-size: .85rem;
   }
-dd {
-  margin-left: 0;
-}
+    dt button {
+      margin-right: .5rem;
+      padding: .1rem .5rem;
+      font-size: inherit;
+    }
+  dd {
+    margin-left: 0;
+    white-space: pre-wrap;
+  }
 
 aside {
   font-size: .86rem;

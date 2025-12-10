@@ -13,3 +13,8 @@ ssh-config.json
 db/**
 !db/**/
 !db/**/.gitkeep
+
+# PV : .gitkeep Only
+pv/**
+!pv/**/
+!pv/**/.gitkeep

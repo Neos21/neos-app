@@ -41,11 +41,14 @@ main,
 h1 {
   margin: 3rem 0;
 }
-dt {
-  margin-top: 1.5rem;
-  font-size: .85rem;
+dl {
   font-family: var(--font-family-monospace);
 }
-dd {
-  margin-left: 0;
-}
+  dt {
+    margin-top: 1.5rem;
+    font-size: .85rem;
+  }
+  dd {
+    margin-left: 0;
+    white-space: pre-wrap;
+  }

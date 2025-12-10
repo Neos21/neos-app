@@ -1,31 +1,41 @@
-import { Controller, Get, HttpStatus, Logger, Query, Res } from '@nestjs/common';
+import { Body, Controller, Get, Headers, HttpStatus, Ip, ParseIntPipe, Post, Query, Res } from '@nestjs/common';
 
 import { CanvasService } from './canvas.service';
 import { DbService } from './db.service';
+import { PvService } from './pv.service';
+import { Pv } from './classes/pv';
 
 import type { Response } from 'express';
 
 @Controller('access-counter')
 export class AccessCounterController {
-  private readonly logger: Logger = new Logger(AccessCounterController.name);
-  
   constructor(
+    private readonly pvService: PvService,
     private readonly canvasService: CanvasService,
     private readonly dbService: DbService
   ) { }
   
-  @Get('pv')
-  public async updatePv(@Query('id') id: string, @Query('referrer') referrer: string, @Query('landing') landing: string, @Query('title') title: string, @Res() response: Response): Promise<Response> {
-    const [idError, numberId] = this.validateNumber(id, 'ID');
-    if(idError != null) return response.status(HttpStatus.BAD_REQUEST).json({ error: idError });
-    const site = await this.dbService.findOne(numberId);
+  @Post('pv')
+  public async updatePv(
+    @Ip() ip: string,  // `req.ip` と同じ
+    @Headers() headers: Headers,
+    @Body() pv: Pv,
+    @Body('id', ParseIntPipe) id: number,  // 数値型にできなかった場合は自動的に 400 が返る
+    @Res() response: Response
+  ): Promise<Response> {
+    // 指定 ID のサイト定義が存在すること
+    const site = await this.dbService.findOne(id);
     if(site == null) return response.status(HttpStatus.BAD_REQUEST).json({ error: 'The Site Of The ID Does Not Exist' });
     
-    if(!this.isEmpty(referrer)) this.logger.log(`ID [${site.id}] [${site.siteName}] : Referrer [${referrer}] Landing [${landing ?? ''}] Title [${title ?? ''}]`);
-    
-    const updatedSite = await this.dbService.updatePv(numberId);
+    // まずはとにかくカウンタを更新する
+    const updatedSite = await this.dbService.updatePv(id);
     if(updatedSite == null) return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Update PV' });
-    return response.status(HttpStatus.OK).json(updatedSite);
+    
+    // ログに追記する : 非同期で行わせるためわざと `await` しない
+    this.pvService.savePv(pv, headers, ip);
+    
+    // 使うか分からないけど更新したカウンタ情報を返しておく
+    return response.status(HttpStatus.OK).end();
   }
   
   @Get('total')
@@ -67,14 +77,10 @@ export class AccessCounterController {
     fileStream.pipe(response.status(HttpStatus.OK));
   }
   
-  private isEmpty(value: any): boolean {
-    return value == null || String(value).trim() === '';
-  }
-  
   private validateNumber(value: any, name: string): [string | null, number?] {
-    if(this.isEmpty(value)) return [`The Query ${name} Is Emtpy`];
+    if(value == null) return [`The Query ${name} Is Emtpy`];  // `null` だけ0に変換されるので事前に防いでおく
     const number = Number(value);
-    if(Number.isNaN(number)) return [`The Query ${name} Is NaN`];
+    if(!Number.isInteger(number)) return [`The Query ${name} Is Not Integer`];
     return [null, number];
   }
 }

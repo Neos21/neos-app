@@ -64,6 +64,7 @@ export const configuration = (): { [key: string]: string | number | boolean } =>
   dbDirectoryPath     : getStringValue ('NEOS_APP_DB_DIRECTORY_PATH'     , path.resolve(__dirname, '../../../../db'        )),  // DB ディレクトリパス
   jsonDbDirectoryPath : getStringValue ('NEOS_APP_JSON_DB_DIRECTORY_PATH', path.resolve(__dirname, '../../../../db/json-db')),  // JSON DB 用のディレクトリ
   sqliteDirectoryPath : getStringValue ('NEOS_APP_SQLITE_DIRECTORY_PATH' , path.resolve(__dirname, '../../../../db/sqlite' )),  // SQLite 用のディレクトリ
+  pvDirectoryPath     : getStringValue ('NEOS_APP_PV_DIRECTORY_PATH'     , path.resolve(__dirname, '../../../../pv'        )),  // PV カウンタによるアクセスログ保存用のディレクトリ
   
   amazonAccessKey     : getStringValue ('NEOS_APP_AMAZON_ACCESS_KEY'     , ''                               ),  // Amazon PA API アクセスキー
   amazonSecretKey     : getStringValue ('NEOS_APP_AMAZON_SECRET_KEY'     , ''                               ),  // Amazon PA API シークレットキー

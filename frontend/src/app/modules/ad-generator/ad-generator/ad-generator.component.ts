@@ -51,7 +51,7 @@ export class AdGeneratorComponent {
     try {
       this.amazonResults = await this.adGeneratorService.searchAmazon(this.form.value.keyword);
     }
-    catch {
+    catch(_error) {
       this.amazonError = 'Amazon Results Not Found';
       this.amazonResults = [];
     }
@@ -63,7 +63,7 @@ export class AdGeneratorComponent {
     try {
       this.rakutenResults = await this.adGeneratorService.searchRakuten(this.form.value.keyword);
     }
-    catch {
+    catch(_error) {
       this.rakutenError = 'Rakuten Results Not Found';
       this.rakutenResults = [];
     }
