@@ -14,6 +14,11 @@ $ npm run dev
 # Production Mode
 $ npm run build
 $ npm start
+
+# No Hang Up
+$ nohup node ./dist/main.js &
+$ ps aux | grep node
+$ kill 【PID】
 ```
 
 
@@ -47,6 +52,7 @@ const body = {
 };
 if(navigator.userAgentData) body.ua_model = await navigator.userAgentData.getHighEntropyValues(['model']).then(values => values.model || '-').catch(_ => '- (ERROR)');
 await fetch('https://EXAMPLE.COM/api/access-counter/pv', {
+  mode: 'cors',
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify(body),
