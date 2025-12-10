@@ -46,7 +46,7 @@ summary {
   top: 2.25rem;
   right: 0;
   margin-left: 2rem;
-  z-index: 99999;  /* .thumbnail-background より上 */
+  z-index: 99999;  /* `.thumbnail-background` より上 */
 }
   .thumbnail-wrapper img {
     border: 1px solid #000;

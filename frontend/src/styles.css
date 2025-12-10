@@ -20,8 +20,8 @@
 *, ::before, ::after { box-sizing: border-box; }
 
 :root {
-  --font-family-sans-serif: "Noto Sans CJK JP"     ,                              YuGothic  , "Yu Gothic", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-monospace : "Noto Sans Mono CJK JP", "Noto Sans Mono CJK JP Web", Osaka-mono, "MS Gothic", Menlo, Consolas, Courier, "Courier New"             , monospace , "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-sans-serif: "Noto Sans CJK JP"     ,                              YuGothic  , "Yu Gothic", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif, "Apple Color Emoji", "Noto Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family-monospace : "Noto Sans Mono CJK JP", "Noto Sans Mono CJK JP Web", Osaka-mono, "MS Gothic", Menlo, Consolas, Courier, "Courier New"             , monospace , "Apple Color Emoji", "Noto Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 html {
@@ -221,7 +221,7 @@ button.button-danger {
   background: #fff;
 }
 
-/* 記事タイトル・ファビコン・本文 */
+/* 記事タイトル・Favicon・本文 */
 .entry-info {  /* a */
   grid-area: entry-info;
   
@@ -251,7 +251,7 @@ button.button-danger {
       }
     }
     
-    /* ファビコン */
+    /* Favicon */
     .entry-info-title-favicon {
       display: inline-block;
       width: 16px;

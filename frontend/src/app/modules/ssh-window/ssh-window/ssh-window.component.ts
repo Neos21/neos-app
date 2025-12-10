@@ -13,7 +13,7 @@ import { SshWindowService } from '../services/ssh-window.service';
 export class SshWindowComponent implements OnInit {
   /** フォーム */
   public form!: FormGroup;
-  /** 接続中かどうか */
+  /** 接続中か否か */
   public isConnecting: boolean = false;
   /** ターミナル */
   private terminal!: Terminal;

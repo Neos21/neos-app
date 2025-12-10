@@ -9,13 +9,13 @@ import { FileUploaderService } from '../services/file-uploader.service';
   standalone: false
 })
 export class FileUploaderComponent implements OnInit {
-  /** 読込中かどうか */
+  /** 読込中か否か */
   public isLoading: boolean = true;
-  /** 処理中かどうか */
+  /** 処理中か否か */
   public isProcessing: boolean = false;
   /** エラー */
-  public error?: Error | string;
-  /** フォームをリセット中かどうか */
+  public error?: Error;
+  /** フォームをリセット中か否か */
   public isResetting: boolean = false;
   /** アップロード済ファイル一覧 */
   public fileNames?: Array<string>;
@@ -45,7 +45,7 @@ export class FileUploaderComponent implements OnInit {
   }
   
   public handleFileInput(event: Event): void | null {
-    const files = (event?.target as any)?.files;
+    const files = (event.target as HTMLInputElement).files;
     this.file = (files == null || files.length === 0) ? null : files.item(0);
   }
   

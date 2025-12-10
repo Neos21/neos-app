@@ -5,7 +5,7 @@ import { Client } from 'ssh2';
 
 import { OnGatewayConnection, OnGatewayDisconnect, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
 
-@WebSocketGateway({  // 第1引数でポート番号を指定しないと NestJS のポート番号と統合される・コレにより express-list-endpoints がうまく開けなくなるが仕方ない
+@WebSocketGateway({  // 第1引数でポート番号を指定しないと NestJS のポート番号と統合される・コレにより `express-list-endpoints` がうまく開けなくなるが仕方ない
   cors: {
     origin: ['http://localhost:4200', 'https://app.neos21.net'], // 許可するオリジン
     methods: ['GET', 'POST'],

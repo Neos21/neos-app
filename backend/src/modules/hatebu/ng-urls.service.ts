@@ -21,7 +21,7 @@ export class NgUrlsService {
   public async create(ngUrl: NgUrl): Promise<NgUrl | null> {
     const insertResult = await this.ngUrlsRepository.insert(ngUrl);
     const id = insertResult.identifiers?.[0]?.id;
-    if(id == null) return null;  // Failed to insert NgUrl
+    if(id == null) return null;  // Failed To Insert NgUrl
     return await this.ngUrlsRepository.findOneBy({ id }).catch(_error => null);
   }
   
@@ -35,9 +35,9 @@ export class NgUrlsService {
     const now = new Date();
     const minusDates = 7;  // 現在日から何日前以前のデータを削除するか
     const targetDate = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - minusDates, 0, 0, 0, 0));  // マイナス値等は適切に処理してくれる
-    this.logger.log(`#removeByCreatedAt() : Target date [${targetDate.toISOString()}]`);
+    this.logger.log(`#removeByCreatedAt() : Target Date [${targetDate.toISOString()}]`);
     const deleteResult = await this.ngUrlsRepository.delete({ createdAt: LessThanOrEqual(targetDate) });
-    this.logger.log(`#removeByCreatedAt() : Removed rows [${deleteResult.affected}]`);
+    this.logger.log(`#removeByCreatedAt() : Removed Rows [${deleteResult.affected}]`);
   }
   
   /**
@@ -51,7 +51,7 @@ export class NgUrlsService {
   @Cron('0 0 0 * * *', { timeZone: 'Asia/Tokyo' })
   private async handleCron(): Promise<void> {
     this.logger.log('#handleCron() : Start');
-    await this.removeByCreatedAt().catch(error => this.logger.warn('#handleCron() : Failed at #removeByCreatedAt()', error));
+    await this.removeByCreatedAt().catch(error => this.logger.warn('#handleCron() : Failed At #removeByCreatedAt()', error));
     this.logger.log('#handleCron() : Finished');
   }
 }

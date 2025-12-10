@@ -16,7 +16,7 @@ export class NotesService {
   public async onModuleInit(): Promise<void> {
     const countAll = await this.notesRepository.count();
     if(countAll === 0) {
-      this.logger.warn('#onModuleInit() : Create note for first time');
+      this.logger.warn('#onModuleInit() : Create Note For First Time');
       await this.notesRepository.insert({ text: '' });
     }
   }

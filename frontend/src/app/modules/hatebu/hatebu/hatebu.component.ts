@@ -13,7 +13,7 @@ import { PageTitleService } from '../services/page-title.service';
   standalone: false
 })
 export class HatebuComponent {
-  /** 画面幅が狭い時にサイドメニュー `aside` を開いているかどうか */
+  /** 画面幅が狭い時にサイドメニュー `aside` を開いているか否か */
   private isShownMenu = false;
   /** 左利きモードか否か (`true` がデフォルト左利きモード・`false` で右利きモード) */
   private isLeftHandMode = true;

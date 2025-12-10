@@ -13,12 +13,12 @@ import { NotesService } from '../services/notes.service';
 export class NotesComponent {
   /** フォーム */
   public form!: FormGroup;
-  /** 処理中かどうか */
+  /** 処理中か否か */
   public isProcessing: boolean = true;
   /** ノートの ID の配列 */
   public notes: Array<Note> = [];
   /** エラー */
-  public error?: Error | string;
+  public error?: Error;
   
   constructor(
     private readonly formBuilder: FormBuilder,

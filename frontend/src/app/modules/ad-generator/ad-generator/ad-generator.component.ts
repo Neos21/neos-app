@@ -14,16 +14,16 @@ import { AdGeneratorService } from '../services/ad-generator.service';
 export class AdGeneratorComponent {
   /** フォーム */
   public form!: FormGroup;
-  /** 処理中かどうか */
+  /** 処理中か否か */
   public isProcessing: boolean = false;
   /** Amazon コード */
   public amazonCode: string = '';
   /** Rakuten コード */
   public rakutenCode: string = '';
   /** Amazon エラー */
-  public amazonError?: Error | string;
+  public amazonError?: string;
   /** Rakuten エラー */
-  public rakutenError?: Error | string;
+  public rakutenError?: string;
   /** Amazon 検索結果 */
   public amazonResults: Array<AmazonItem> = [];
   /** 楽天検索結果 */
@@ -51,7 +51,7 @@ export class AdGeneratorComponent {
     try {
       this.amazonResults = await this.adGeneratorService.searchAmazon(this.form.value.keyword);
     }
-    catch(_error: any) {
+    catch {
       this.amazonError = 'Amazon Results Not Found';
       this.amazonResults = [];
     }
@@ -63,40 +63,32 @@ export class AdGeneratorComponent {
     try {
       this.rakutenResults = await this.adGeneratorService.searchRakuten(this.form.value.keyword);
     }
-    catch(_error: any) {
+    catch {
       this.rakutenError = 'Rakuten Results Not Found';
       this.rakutenResults = [];
     }
   }
   
   /** テキストエリアからコードをコピーする */
-  public copy(event: Event): void {
-    (event as any).target.select();
+  public copy(event: MouseEvent): void {
+    (event.target as HTMLTextAreaElement).select();
     document.execCommand('copy');
   }
   
-  /**
-   * Amazon コードを挿入しクリップボードにコピーする
-   * 
-   * @param item 商品1件
-   */
+  /** Amazon コードを挿入しクリップボードにコピーする */
   public insertAmazon(item: AmazonItem): void {
     this.amazonCode = this.adGeneratorService.generateAmazonCode(item);
-    setTimeout(() => {
-      (document.getElementById('amazon-code') as any).select();
+    window.setTimeout(() => {
+      (document.getElementById('amazon-code') as HTMLTextAreaElement).select();
       document.execCommand('copy');
     }, 1);
   }
   
-  /**
-   * 楽天コードを挿入しクリップボードにコピーする
-   * 
-   * @param item 商品1件
-   */
+  /** 楽天コードを挿入しクリップボードにコピーする */
   public insertRakuten(item: RakutenItem): void {
     this.rakutenCode = this.adGeneratorService.generateRakutenCode(item);
-    setTimeout(() => {
-      (document.getElementById('rakuten-code') as any).select();
+    window.setTimeout(() => {
+      (document.getElementById('rakuten-code') as HTMLTextAreaElement).select();
       document.execCommand('copy');
     }, 1);
   }

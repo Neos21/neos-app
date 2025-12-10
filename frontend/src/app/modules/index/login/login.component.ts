@@ -11,11 +11,11 @@ import { AuthService } from '../../../shared/services/auth.service';
   standalone: false
 })
 export class LoginComponent {
-  /** 初期表示が完了したかどうか */
+  /** 初期表示が完了したか否か */
   public isLoaded: boolean = false;
   /** フォーム */
   public form!: FormGroup;
-  /** 処理中かどうか */
+  /** 処理中か否か */
   public isProcessing: boolean = false;
   /** エラーメッセージ */
   public error?: string;

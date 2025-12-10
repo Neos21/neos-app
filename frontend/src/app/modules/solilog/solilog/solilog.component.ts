@@ -4,7 +4,6 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { AuthService } from '../../../shared/services/auth.service';
 import { SolilogService } from '../services/solilog.service';
 
 @Component({
@@ -16,24 +15,24 @@ import { SolilogService } from '../services/solilog.service';
 export class SolilogComponent implements OnInit, AfterViewInit {
   /** フォーム */
   public form!: FormGroup;
-  /** 処理中かどうか */
+  /** 処理中か否か */
   public isProcessing: boolean = false;
   /** 投稿時エラー */
-  public error?: Error | string;
+  public error?: Error;
   
-  /** Posts の内容を読込中かどうか */
+  /** Posts の内容を読込中か否か */
   public isLoadingPosts: boolean = true;
   /** Posts 取得時エラー時 */
-  public postsError?: Error | string;
+  public postsError?: Error;
   /** 年月 */
   public yearMonth: string = '';
   /** Posts */
   public posts?: Array<{ id: number; time: string; text: string; }>;
   
-  /** Archives の内容を読込中かどうか */
+  /** Archives の内容を読込中か否か */
   public isLoadingList: boolean = true;
   /** Archives リストエラー時 */
-  public listError?: Error | string;
+  public listError?: Error;
   /** Archives リスト */
   public list?: Array<{ year: string; months: Array<string>; }>;
   
@@ -48,7 +47,6 @@ export class SolilogComponent implements OnInit, AfterViewInit {
     private readonly activatedRoute: ActivatedRoute,
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
-    private readonly authService: AuthService,
     private readonly solilogService: SolilogService
   ) { }
   
@@ -69,7 +67,7 @@ export class SolilogComponent implements OnInit, AfterViewInit {
   public ngAfterViewInit(): void {
     window.setTimeout(() => {
       try {
-        (document.getElementById(this.fragment!) as any).scrollIntoView();
+        (document.getElementById(this.fragment!) as HTMLElement).scrollIntoView();
       }
       catch(_error) { /* Do Nothing */ }
     }, 1);
@@ -115,10 +113,6 @@ export class SolilogComponent implements OnInit, AfterViewInit {
     finally {
       this.isLoadingList = false;
     }
-  }
-  
-  public isLoggedIn(): boolean {
-    return this.authService.accessToken != null;
   }
   
   public async post(): Promise<void> {

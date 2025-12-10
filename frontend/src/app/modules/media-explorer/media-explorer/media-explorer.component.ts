@@ -17,7 +17,7 @@ export class MediaExplorerComponent {
   public past?: Array<{ year: string; names: Array<string>; }>;
   /** Family のデータ */
   public family?: { title: string; names: Array<string>; };
-  /** サムネイル画像の URL (img 要素の src 属性値に追加する */
+  /** サムネイル画像の URL (`img` 要素の `src` 属性値に追加する */
   public thumbnailUrl?: string;
   
   constructor(

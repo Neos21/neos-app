@@ -29,8 +29,8 @@ export class CanvasService {
   }
   
   private createCounterImage(count: number, digit: number, rgb: string): stream.Readable {
-    if(count <  0) count = 0;  // 負数は 0 扱いにする
-    if(digit <= 0) digit = 1;  // 0・負数は 1 扱いにする
+    if(count <  0) count = 0;  // 負数は0扱いにする
+    if(digit <= 0) digit = 1;  // 0・負数は1扱いにする
     
     const width  = this.paddingHorizontal + (this.characterWidthPx * digit) + this.paddingHorizontal;  // 幅 (px)
     

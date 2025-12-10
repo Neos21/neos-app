@@ -25,7 +25,7 @@ export class CategoriesService implements OnModuleInit {
   public async onModuleInit(): Promise<void> {
     const countAll = await this.categoriesRepository.count();
     if(countAll === 0) {
-      this.logger.warn('#onModuleInit() : Create categories for first time');
+      this.logger.warn('#onModuleInit() : Create Categories For First Time');
       await this.createCategories();
       await this.scrapeAllEntries();
     }
@@ -55,7 +55,7 @@ export class CategoriesService implements OnModuleInit {
   public async scrapeAllEntries(): Promise<void> {
     this.logger.log('#scrapeAllEntries() : Start');
     const categories = await this.findAll(true);  // カテゴリ情報のみ取得する
-    for(const [index, category] of Object.entries(categories)) {
+    for(const [index, category] of Object.entries(categories!)) {
       this.logger.log(`#scrapeAllEntries() :   [${index}] ${category.name} : Start`);
       await this.scrapeEntries(category.id, category.pageUrl);
       this.logger.log(`#scrapeAllEntries() :   [${index}] ${category.name} : Succeeded`);
@@ -73,7 +73,7 @@ export class CategoriesService implements OnModuleInit {
       this.logger.log(`#scrapeEntries() : Transaction Start : [${categoryId}] ${pageUrl ?? 'Unknown'}`);
       if(pageUrl == null) {
         const category = await this.findById(categoryId, true);  // カテゴリ情報のみ取得する
-        pageUrl = category.pageUrl;
+        pageUrl = category!.pageUrl;
         this.logger.log(`#scrapeEntries() :   Get Page URL : [${categoryId}] ${pageUrl}`);
       }
       const html          = await this.crawlPage(pageUrl);           // クロールする
@@ -164,7 +164,7 @@ export class CategoriesService implements OnModuleInit {
   @Cron('0 0 6,11,15,17 * * *', { timeZone: 'Asia/Tokyo' })
   private async handleCron(): Promise<void> {
     this.logger.log('#handleCron() : Start');
-    await this.scrapeAllEntries().catch(error => this.logger.warn('#handleCron() : Failed at #scrapeAllEntries()', error));
+    await this.scrapeAllEntries().catch(error => this.logger.warn('#handleCron() : Failed At #scrapeAllEntries()', error));
     this.logger.log('#handleCron() : Finished');
   }
 }

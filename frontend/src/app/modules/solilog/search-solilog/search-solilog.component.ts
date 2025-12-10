@@ -12,10 +12,10 @@ import { SolilogService } from '../services/solilog.service';
 export class SearchSolilogComponent {
   /** フォーム */
   public form!: FormGroup;
-  /** 処理中かどうか */
+  /** 処理中か否か */
   public isProcessing: boolean = false;
   /** エラー */
-  public error?: Error | string;
+  public error?: Error;
   /** Posts */
   public posts?: Array<{ time: string; text: string; }>;
   

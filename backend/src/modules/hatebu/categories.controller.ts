@@ -59,7 +59,7 @@ export class CategoriesController {
   }
   
   /**
-   * `@Query()` はどうしても文字列型になってしまい、ParseBoolPipe も効かなかったので文字列であっても Boolean を判定できるようにする
+   * `@Query()` はどうしても文字列型になってしまい ParseBoolPipe も効かなかったので文字列であっても Boolean を判定できるようにする
    * 
    * @param value 値
    * @return 値が Truthy か否か

@@ -21,7 +21,7 @@ export class SolilogService {
   
   public async getList(): Promise<Array<string>> {
     const fileNames = await fs.readdir(this.solilogDirectoryPath);
-    const yearMonths = fileNames.map(fileName => fileName.match((/(\d{4}-\d{2})/u))?.[1]).sort().reverse();  // `YYYY-MM` のみにし新しい年月から並べる
+    const yearMonths = fileNames.map(fileName => fileName.match((/(\d{4}-\d{2})/u))[1]).sort().reverse();  // `YYYY-MM` のみにし新しい年月から並べる
     return yearMonths;
   }
   
@@ -35,7 +35,7 @@ export class SolilogService {
     text = text.trim();
     const currentYearMonth = this.getCurrentYearMonth();
     const posts = await this.loadPostFile(currentYearMonth).catch(_error => []);  // ファイルがない場合は空配列を用意する
-    const currentId = posts[0]?.id ?? -1;  // `0` から始める
+    const currentId = posts[0]?.id ?? -1;  // 0から始める
     const id = currentId + 1;
     const time = this.getCurrentTime();
     posts.unshift({ id, time, text });  // 先頭に付与する
@@ -52,7 +52,7 @@ export class SolilogService {
   
   public async search(keyword: string): Promise<Array<{ time: string; text: string; }>> {
     try {
-      keyword = keyword.trim().replace((/'/gu), `'\\''`);  // かなり無理やり grep してる
+      keyword = keyword.trim().replace((/'/gu), `'\\''`);  // かなり無理やり `grep` してる
       const rawResult = await execAsync(`grep -i -B1 '    "text":.*${keyword}' ${this.solilogDirectoryPath}${path.sep}solilog-*`);
       const stringResults = '[{' + rawResult.stdout
         .replace(new RegExp(`${this.solilogDirectoryPath}.*    "time"`, 'gu'), '  "time"')
@@ -62,7 +62,7 @@ export class SolilogService {
       return results;
     }
     catch(error) {
-      if(error?.stdout === '' || error?.stderr === '') return [];
+      if(error.stdout === '' || error.stderr === '') return [];
       return null;
     }
   }

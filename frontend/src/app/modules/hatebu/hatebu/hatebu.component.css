@@ -126,7 +126,7 @@ header {
 aside {
   position: fixed;
   top: 0;
-  left: calc(var(--menu-width) * -1 - 10px);  /* メニューの幅の分だけネガティブ指定して画面外に出しておく・-10px は box-shadow 分 */
+  left: calc(var(--menu-width) * -1 - 10px);  /* メニューの幅の分だけネガティブ指定して画面外に出しておく・`-10px` は `box-shadow` 分 */
   width: var(--menu-width);
   height: 100%;
   background: var(--colour-background);

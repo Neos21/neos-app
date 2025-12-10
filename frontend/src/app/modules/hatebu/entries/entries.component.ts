@@ -17,7 +17,7 @@ import { PageTitleService } from '../services/page-title.service';
 })
 export class EntriesComponent {
   /** ページデータの状態管理オブジェクト */
-  private dataState$ = new BehaviorSubject<{ isLoading?: boolean; error?: Error | string }>({ isLoading: true });
+  private dataState$ = new BehaviorSubject<{ isLoading?: boolean; error?: Error }>({ isLoading: true });
   /** ローディング中か否か */
   public isLoading$  = this.dataState$.pipe(map(dataState => dataState.isLoading));
   /** エラー */
@@ -105,7 +105,7 @@ export class EntriesComponent {
       });
       await this.apiService.ngUrls.create(ngUrl);
       try {
-        (window.document.activeElement as any).blur();
+        (document.activeElement as HTMLElement).blur();
       }
       catch(_blurError) { /* Do Nothing */ }
     }

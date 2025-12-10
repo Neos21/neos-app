@@ -20,11 +20,7 @@ export class AdGeneratorService {
     return await firstValueFrom(this.httpClient.get<Array<RakutenItem>>(`/api/ad-generator/search-rakuten?keyword=${keyword}`));
   }
   
-  /**
-   * Amazon コードを生成する
-   * 
-   * @param item 商品1件
-   */
+  /** Amazon コードを生成する */
   public generateAmazonCode(item: AmazonItem): string {
     const url   = this.sanitizeHtml(item.detailPageUrl);
     const title = this.sanitizeHtml(item.title);
@@ -43,11 +39,7 @@ export class AdGeneratorService {
     return amazonCode;
   }
   
-  /**
-   * 楽天コードを生成する
-   * 
-   * @param item 商品1件
-   */
+  /** 楽天コードを生成する */
   public generateRakutenCode(item: RakutenItem): string {
     const itemUrl  = this.sanitizeHtml(item.itemUrl);
     const shopUrl  = this.sanitizeHtml(item.shopUrl);

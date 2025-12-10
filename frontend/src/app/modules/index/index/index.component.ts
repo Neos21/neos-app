@@ -10,7 +10,7 @@ import { AuthService } from '../../../shared/services/auth.service';
   standalone: false
 })
 export class IndexComponent {
-  /** 初期表示が完了したかどうか */
+  /** 初期表示が完了したか否か */
   public isLoaded: boolean = false;
   
   constructor(

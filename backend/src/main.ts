@@ -24,7 +24,7 @@ async function bootstrap() {
   // HTTP サーバからルート情報を取得しておく
   const httpAdapterHost = app.get(HttpAdapterHost);
   const httpServer = httpAdapterHost.httpAdapter.getHttpServer();
-  const router = httpServer?._events?.request?._router;
+  const router = httpServer._events.request._router;
   
   // WebSocket アダプタを適用する
   app.useWebSocketAdapter(new IoAdapter(app));
@@ -34,7 +34,7 @@ async function bootstrap() {
   await app.listen(port);
   
   const logger = new Logger(bootstrap.name);
-  logger.log(cyan(`Server started at port [`) + yellow(`${port}`) + cyan(']'));
+  logger.log(cyan(`Server Started At Port [`) + yellow(`${port}`) + cyan(']'));
   
   // ルーティング一覧を出力する
   logger.log(listRoutes(router));

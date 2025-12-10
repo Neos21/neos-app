@@ -36,7 +36,7 @@ export class AdGeneratorService {
       ]
     };
     const data = await amazonPaapi.SearchItems(commonParameters, requestParameters).catch(_error => null);
-    if(data?.SearchResult?.Items == null || data?.SearchResult?.Items?.length === 0) return null;
+    if(data?.SearchResult?.Items == null || data.SearchResult.Items.length === 0) return null;
     const results = data.SearchResult.Items.map((item, index) => new AmazonItem({
       id           : index,
       asin         : item?.ASIN                                 || '',
@@ -57,7 +57,7 @@ export class AdGeneratorService {
     const url = `https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?format=json&keyword=${encodedKeyword}&applicationId=${rakutenApplicationId}&affiliateId=${rakutenAffiliateId}`;
     const response = await firstValueFrom(this.httpService.get(url)).catch(_error => null);
     const data = response?.data;
-    if(data?.Items == null || data?.Items?.length === 0 || data?.error != null) return null;
+    if(data?.Items == null || data.Items.length === 0 || data?.error != null) return null;
     const results = data.Items.map((item, index) => new RakutenItem({
       id       : index,
       itemName : item?.Item?.itemName                       || '',

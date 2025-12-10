@@ -32,6 +32,6 @@ export class ValidatorService {
   
   /** 引数が連想配列か否か・Array や Function も除く */
   public isObject(item: any): boolean {
-    return item != null && item?.constructor?.name === 'Object';
+    return item != null && item.constructor.name === 'Object';
   }
 }

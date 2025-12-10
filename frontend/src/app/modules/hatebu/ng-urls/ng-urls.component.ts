@@ -14,7 +14,7 @@ import { PageTitleService } from '../services/page-title.service';
 })
 export class NgUrlsComponent implements OnInit, OnDestroy {
   /** ページデータの状態管理オブジェクト */
-  private dataState$ = new BehaviorSubject<{ isLoading?: boolean; error?: Error | string }>({ isLoading: true });
+  private dataState$ = new BehaviorSubject<{ isLoading?: boolean; error?: Error }>({ isLoading: true });
   /** ローディング中か否か */
   public isLoading$  = this.dataState$.pipe(map(dataState => dataState.isLoading));
   /** エラー */

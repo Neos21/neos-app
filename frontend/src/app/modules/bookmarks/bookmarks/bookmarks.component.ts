@@ -13,10 +13,10 @@ import { BookmarksService } from '../services/bookmarks.service';
 export class BookmarksComponent {
   /** フォーム */
   public form!: FormGroup;
-  /** 処理中かどうか */
+  /** 処理中か否か */
   public isProcessing: boolean = false;
   /** エラー */
-  public error?: Error | string;
+  public error?: Error;
   /** ブックマーク一覧 */
   public bookmarks?: Array<Bookmark>;
   
