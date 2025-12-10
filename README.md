@@ -34,7 +34,24 @@ $ npm run build
 ## Access Counter
 
 ```javascript
-fetch('https://EXAMPLE.COM/api/access-counter/pv?id=【ID】&referrer=' + encodeURIComponent(document.referrer ?? '') + '&landing=' + encodeURIComponent(location.href) + '&title=' + encodeURIComponent(document.title ?? '')).catch(error => console.error(error));
+const body = {
+  id      : '【ID】',
+  ref     : document.referrer ?? '-',
+  url     : location.href ?? '-',
+  title   : document.title ?? '-',
+  langs   : navigator.languages ?? [navigator.language ?? '-'],
+  lang    : navigator.languages?.[0] ?? navigator.language ?? '-',
+  ua      : navigator.userAgent ?? '-',
+  ua_data : navigator.userAgentData ?? '-',
+  ua_model: '- (UNDEF)'
+};
+if(navigator.userAgentData) body.ua_model = await navigator.userAgentData.getHighEntropyValues(['model']).then(values => values.model || '-').catch(_ => '- (ERROR)');
+await fetch('https://EXAMPLE.COM/api/access-counter/pv', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(body),
+  keepalive: true
+});
 ```
 
 ```html
