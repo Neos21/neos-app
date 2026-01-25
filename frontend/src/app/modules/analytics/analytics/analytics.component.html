@@ -1,0 +1,58 @@
+<div class="black-theme-wrapper">
+  <header>
+    <h1>Analytics</h1>
+    <div class="text-right"><a [routerLink]="['/index']">Index</a></div>
+  </header>
+  
+  <form [formGroup]="form" (ngSubmit)="onFind()">
+    <input type="text" placeholder="ID" formControlName="id" class="text-right">
+    <input type="date" placeholder="YYYY-MM-DD" formControlName="ymd" class="text-center" pattern="\d{4}-\d{2}-\d{2}">
+    <button type="submit" [disabled]="form.invalid || isProcessing">Get</button>
+  </form>
+  
+  <app-error [error]="error"></app-error>
+  
+  <p *ngIf="logs != null && logs.length === 0">No Logs</p>
+  <div *ngIf="logs != null && logs.length >= 1" class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>日時</th>
+          <th style="min-width: 8rem;">流入元</th>
+          <th style="min-width: 10rem;">アクセス先</th>  <!-- `title` を表示・`url` にリンク -->
+          <th style="min-width: 10rem;">IP</th>
+          <th style="min-width: 3.5rem;">言語</th>
+          <th style="min-width: 5.5rem;">端末</th>  <!-- `header_ch_ua_mobile`・`header_ch_ua_platform`・`ua_model` -->
+          <th class="ua">User Agent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let log of logs">
+          <td class="nowrap">{{ log.jst }}</td>
+          <td>
+            <ng-container *ngIf="log.ref === '-' || log.ref === '_' ; else elseRefLink">{{ log.ref }}</ng-container>
+            <ng-template #elseRefLink><a [href]="log.ref" target="_blank" rel="noreferrer noopener">{{ replaceRefUrl(log.ref) }}</a></ng-template>
+          </td>
+          <td [title]="log.title">
+            <a [href]="log.url" target="_blank" rel="noreferrer noopener" class="clamp">{{ replaceTitle(log.title) }}</a>
+            <div *ngIf="log.url.includes('?') || log.url.includes('#')">{{ replaceUrlShowParams(log.url) }}</div>
+          </td>
+          <!--
+            指定の IP アドレスの詳細が確認できるサイトは以下あたりがあった・使えなくなったら取り替えていくか
+            - https://whatismyipaddress.com/ip/【IP】
+            - https://iplocation.io/ip/【IP】
+            - https://www.criminalip.io/ja/asset/report/【IP】
+            - https://www.whatismyip.com/ip/【IP】
+          -->
+          <td><a [href]="'https://whatismyipaddress.com/ip/' + log.ip" target="_blank" rel="noreferrer noopener">{{ log.ip }}</a></td>
+          <td>{{ log.lang }}</td>
+          <td>
+            {{ log.header_ch_ua_mobile ? 'Mobile' : 'PC' }}
+            <div *ngIf="log.header_ch_ua_platform !== '_'">{{ replaceQuotes(log.header_ch_ua_platform) }}</div>
+            <div *ngIf="!['- (UNDEF)', '-', '- (ERROR)', '_'].includes(log.ua_model)">{{ log.ua_model }}</div>
+          </td>
+          <td class="ua" [title]="log.ua"><div [ngClass]="{ 'clamp': log.isOpenedUa }" (click)="log.isOpenedUa = !log.isOpenedUa;">{{ log.ua }}</div></td>
+        </tr>
+    </table>
+  </div>
+</div>

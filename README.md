@@ -40,13 +40,13 @@ $ npm run build
 
 ```javascript
 const body = {
-  id      : '【ID】',
-  ref     : document.referrer ?? '-',
-  url     : location.href ?? '-',
-  title   : document.title ?? '-',
-  langs   : navigator.languages ?? [navigator.language ?? '-'],
-  lang    : navigator.languages?.[0] ?? navigator.language ?? '-',
-  ua      : navigator.userAgent ?? '-',
+  id      : 【ID】,
+  ref     : document.referrer || '-',
+  url     : location.href || '-',
+  title   : document.title || '-',
+  langs   : navigator.languages ?? [navigator.language || '-'],
+  lang    : navigator.languages?.[0] ?? (navigator.language || '-'),
+  ua      : navigator.userAgent || '-',
   ua_data : navigator.userAgentData ?? '-',
   ua_model: '- (UNDEF)'
 };

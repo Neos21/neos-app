@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'file-uploader' , loadChildren: () => import('./modules/file-uploader/file-uploader.module'  ).then(module => module.FileUploaderModule ) },
   { path: 'media-explorer', loadChildren: () => import('./modules/media-explorer/media-explorer.module').then(module => module.MediaExplorerModule) },
   { path: 'ssh-window'    , loadChildren: () => import('./modules/ssh-window/ssh-window.module'        ).then(module => module.SshWindowModule    ) },
+  { path: 'analytics'     , loadChildren: () => import('./modules/analytics/analytics.module'          ).then(module => module.AnalyticsModule    ) },
   
   { path: ''  , redirectTo: '/index', pathMatch: 'full' },  // 未指定時
   { path: '**', redirectTo: '/index'                    }   // 404

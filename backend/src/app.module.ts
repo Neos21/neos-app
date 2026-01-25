@@ -111,6 +111,6 @@ import { SshWindowModule } from './modules/ssh-window/ssh-window.module';
 export class AppModule {
   /** 独自のアクセスログ出力ミドルウェアを適用する */
   public configure(middlewareConsumer: MiddlewareConsumer): void {
-    middlewareConsumer.apply(AccessLogMiddleware).forRoutes('*');
+    //middlewareConsumer.apply(AccessLogMiddleware).forRoutes('*');  // NOTE : アクセスログを出力する場合はアンコメントする
   }
 }

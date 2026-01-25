@@ -75,7 +75,7 @@ input[type="button"], input[type="submit"], button {
   cursor: pointer;
 }
 
-input[type="text"], input[type="password"], textarea {
+input[type="text"], input[type="password"], input[type="date"], textarea {
   min-width: 5rem;
   border: 1.2px solid #aaa;
   border-radius: 4px;

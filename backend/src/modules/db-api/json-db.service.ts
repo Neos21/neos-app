@@ -8,12 +8,12 @@ import { Low } from './low-db/core-low';
 import { JSONFilePreset } from './low-db/presets';
 
 type Database = {
-  dbName: string,
-  dbCredential: string
+  dbName: string;
+  dbCredential: string;
 };
 
 type MasterDbData = {
-  databases: Array<Database>
+  databases: Array<Database>;
 };
 
 @Injectable()

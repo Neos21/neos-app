@@ -1,0 +1,71 @@
+.black-theme-wrapper {
+  padding-bottom: 0;
+}
+
+header {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: .5rem;
+}
+
+h1 {
+  font-size: 1rem;
+}
+
+form {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  column-gap: .5rem;
+}
+
+form > input[type="text"]:first-child {
+  width: 2.5rem;
+}
+
+.table-wrapper {
+  position: relative;
+  overflow: auto;
+  max-height: calc(100svh - 8rem);
+  border: .5px #090 solid;
+  overscroll-behavior: none;  /* iOS でスクロールがバウンドしないようにする */
+}
+
+table {
+  min-width: 100%;
+  margin-bottom: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+thead {
+  position: sticky;
+  top: -.5px;
+}
+
+th, td {
+  border: .5px #090 solid;
+  padding: .2rem .25rem;
+  font-size: .86rem;
+  background: #000;
+  vertical-align: top;
+}
+
+thead th {
+  border-top-width: 1px;
+}
+
+th, .nowrap {
+  white-space: nowrap;
+}
+
+.ua {
+  min-width: 10rem;
+  max-width: 30rem;
+}
+
+.clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;  /* 3行 */
+  overflow: hidden;
+}

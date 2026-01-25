@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Headers, HttpStatus, Ip, ParseIntPipe, Post, Query, Res } from '@nestjs/common';
 
 import { CanvasService } from './canvas.service';
+import { Pv } from './classes/pv';
 import { DbService } from './db.service';
 import { PvService } from './pv.service';
-import { Pv } from './classes/pv';
 
 import type { Response } from 'express';
 
@@ -31,10 +31,9 @@ export class AccessCounterController {
     const updatedSite = await this.dbService.updatePv(id);
     if(updatedSite == null) return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Update PV' });
     
-    // ログに追記する : 非同期で行わせるためわざと `await` しない
+    // ログファイルに追記する : 非同期で行わせるためわざと `await` しない
     this.pvService.savePv(pv, headers, ip);
     
-    // 使うか分からないけど更新したカウンタ情報を返しておく
     return response.status(HttpStatus.OK).end();
   }
   
