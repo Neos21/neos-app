@@ -34,7 +34,7 @@
             <ng-template #elseRefLink><a [href]="log.ref" target="_blank" rel="noreferrer noopener">{{ replaceRefUrl(log.ref) }}</a></ng-template>
           </td>
           <td [title]="log.title">
-            <a [href]="log.url" target="_blank" rel="noreferrer noopener" class="clamp">{{ replaceTitle(log.title) }}</a>
+            <div class="clamp"><a [href]="log.url" target="_blank" rel="noreferrer noopener">{{ replaceTitle(log.title) }}</a></div>
             <div *ngIf="log.url.includes('?') || log.url.includes('#')">{{ replaceUrlShowParams(log.url) }}</div>
           </td>
           <!--
