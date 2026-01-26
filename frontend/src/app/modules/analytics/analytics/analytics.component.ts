@@ -61,7 +61,7 @@ export class AnalyticsComponent {
   }
   
   public replaceRefUrl(ref: string): string {
-    return ref.replace('https://', '').replace((/^www\./), '').replace((/\/+$/), '');
+    return decodeURIComponent(ref.replace('https://', '').replace((/^www\./), '').replace((/\/+$/), ''));
   }
   
   public replaceTitle(title: string): string {

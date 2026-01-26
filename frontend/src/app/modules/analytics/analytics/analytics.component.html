@@ -31,7 +31,7 @@
           <td class="nowrap">{{ log.jst }}</td>
           <td>
             <ng-container *ngIf="log.ref === '-' || log.ref === '_' ; else elseRefLink">{{ log.ref }}</ng-container>
-            <ng-template #elseRefLink><a [href]="log.ref" target="_blank" rel="noreferrer noopener">{{ replaceRefUrl(log.ref) }}</a></ng-template>
+            <ng-template #elseRefLink><div class="clamp"><a [href]="log.ref" target="_blank" rel="noreferrer noopener">{{ replaceRefUrl(log.ref) }}</a></div></ng-template>
           </td>
           <td [title]="log.title">
             <div class="clamp"><a [href]="log.url" target="_blank" rel="noreferrer noopener">{{ replaceTitle(log.title) }}</a></div>
