@@ -35,6 +35,8 @@ export class AnalyticsComponent {
       id : [1],
       ymd: [nowYmd]
     });
+    
+    await this.onFind();  // 今日日付でとりあえずリクエストする
   }
   
   public async onFind(): Promise<void> {
@@ -43,7 +45,7 @@ export class AnalyticsComponent {
     this.error = undefined;
     try {
       const logsResult = await this.analyticsService.find(Number(this.form.value.id), this.form.value.ymd);
-      this.logs = (logsResult.result as Array<Log & { isOpenedUa: boolean; }>).map(log => {
+      this.logs = (logsResult.result as Array<Log & { isOpenedUa: boolean; }>).reverse().map(log => {  // 新しい日時が上に来るように `reverse()` する
         log.isOpenedUa = true;  // デフォルトは最大3行に閉じておきクリックで開閉できるフラグを付けておく
         return log;
       });
