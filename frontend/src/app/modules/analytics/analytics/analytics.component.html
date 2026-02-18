@@ -17,7 +17,7 @@
     <table>
       <thead>
         <tr>
-          <th>日時</th>
+          <th>全 {{ logs.length }} 件</th>
           <th style="min-width: 8rem;">流入元</th>
           <th style="min-width: 10rem;">アクセス先</th>  <!-- `title` を表示・`url` にリンク -->
           <th style="min-width: 10rem;">IP</th>
@@ -28,7 +28,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let log of logs">
-          <td class="nowrap">{{ log.jst }}</td>
+          <td class="pre">{{ replaceJst(log.jst) }}</td>
           <td>
             <ng-container *ngIf="log.ref === '-' || log.ref === '_' ; else elseRefLink">{{ log.ref }}</ng-container>
             <ng-template #elseRefLink><div class="clamp"><a [href]="log.ref" target="_blank" rel="noreferrer noopener">{{ replaceRefUrl(log.ref) }}</a></div></ng-template>

@@ -58,6 +58,11 @@ th, .nowrap {
   white-space: nowrap;
 }
 
+/* 改行コードでの改行はさせるが自動折り返しは発生させない */
+.pre {
+  white-space: pre;
+}
+
 .ua {
   min-width: 10rem;
   max-width: 30rem;

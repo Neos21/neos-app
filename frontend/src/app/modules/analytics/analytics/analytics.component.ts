@@ -60,6 +60,10 @@ export class AnalyticsComponent {
     }
   }
   
+  public replaceJst(jst: string): string {
+    return jst.replace(' ', '\n');
+  }
+  
   public replaceRefUrl(ref: string): string {
     return decodeURIComponent(ref.replace('https://', '').replace((/^www\./), '').replace((/\/+$/), ''));
   }
