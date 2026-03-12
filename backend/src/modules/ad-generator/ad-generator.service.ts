@@ -56,9 +56,22 @@ export class AdGeneratorService {
     const rakutenAffiliateId   = this.configService.get('rakutenAffiliateId');
     const encodedKeyword = encodeURIComponent(keyword);
     const url = `https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20220601?format=json&keyword=${encodedKeyword}&applicationId=${rakutenApplicationId}&accessKey=${rakutenAccessKey}&affiliateId=${rakutenAffiliateId}`;
-    const response = await firstValueFrom(this.httpService.get(url)).catch(_error => null);
+    const response = await firstValueFrom(this.httpService.get(url, {
+      headers: {
+        Authorization: `Bearer ${rakutenAccessKey}`,
+        Origin: 'https://app.neos21.net',
+        'User-Agent': 'Neo'
+      }
+    })).catch(error => {
+      console.error('楽天 API エラー', error);
+      return null;
+    });
     const data = response?.data;
-    if(data?.Items == null || data.Items.length === 0 || data?.error != null) return null;
+    if(data?.Items == null || data.Items.length === 0) return null;
+    if(data?.error != null) {
+      console.error('楽天 API エラーレスポンス', data.error);
+      return null;
+    }
     const results = data.Items.map((item, index) => new RakutenItem({
       id       : index,
       itemName : item?.Item?.itemName                       || '',
