@@ -70,6 +70,7 @@ export const configuration = (): { [key: string]: string | number | boolean } =>
   amazonSecretKey     : getStringValue ('NEOS_APP_AMAZON_SECRET_KEY'     , ''                               ),  // Amazon PA API シークレットキー
   amazonPartnerTag    : getStringValue ('NEOS_APP_AMAZON_PARTNER_TAG'    , 'neos21-22'                      ),  // Amazon PA API パートナータグ
   rakutenApplicationId: getStringValue ('NEOS_APP_RAKUTEN_APPLICATION_ID', ''                               ),  // Rakuten Application ID
+  rakutenAccessKey    : getStringValue ('NEOS_APP_RAKUTEN_ACCESS_KEY'    , ''                               ),  // Rakuten Access Key
   rakutenAffiliateId  : getStringValue ('NEOS_APP_RAKUTEN_AFFILIATE_ID'  , ''                               ),  // Rakuten Affiliate ID
   
   solilogDirectoryPath: getStringValue ('NEOS_APP_SOLILOG_DIRECTORY_PATH', '/var/www/private/solilog'       ),  // Solilog JSON ファイルのディレクトリ

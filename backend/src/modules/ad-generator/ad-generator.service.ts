@@ -52,9 +52,10 @@ export class AdGeneratorService {
   
   public async searchRakuten(keyword: string): Promise<Array<RakutenItem> | null> {
     const rakutenApplicationId = this.configService.get('rakutenApplicationId');
+    const rakutenAccessKey     = this.configService.get('rakutenAccessKey');
     const rakutenAffiliateId   = this.configService.get('rakutenAffiliateId');
     const encodedKeyword = encodeURIComponent(keyword);
-    const url = `https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?format=json&keyword=${encodedKeyword}&applicationId=${rakutenApplicationId}&affiliateId=${rakutenAffiliateId}`;
+    const url = `https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20220601?format=json&keyword=${encodedKeyword}&applicationId=${rakutenApplicationId}&accessKey=${rakutenAccessKey}&affiliateId=${rakutenAffiliateId}`;
     const response = await firstValueFrom(this.httpService.get(url)).catch(_error => null);
     const data = response?.data;
     if(data?.Items == null || data.Items.length === 0 || data?.error != null) return null;
