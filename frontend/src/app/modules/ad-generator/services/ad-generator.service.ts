@@ -24,12 +24,20 @@ export class AdGeneratorService {
   public generateAmazonCode(item: AmazonItem): string {
     const url   = this.sanitizeHtml(item.detailPageUrl);
     const title = this.sanitizeHtml(item.title);
+    // NOTE : 画像が取れないので以下は凍結
+    //const amazonCode = `\n\n<div class="ad-amazon">
+    //  <div class="ad-amazon-image">
+    //    <a href="${url}">
+    //      <img src="${item.imageUrl}" width="${item.imageWidth}" height="${item.imageHeight}">
+    //    </a>
+    //  </div>
+    //  <div class="ad-amazon-info">
+    //    <div class="ad-amazon-title">
+    //      <a href="${url}">${title}</a>
+    //    </div>
+    //  </div>
+    //</div>`;
     const amazonCode = `\n\n<div class="ad-amazon">
-  <div class="ad-amazon-image">
-    <a href="${url}">
-      <img src="${item.imageUrl}" width="${item.imageWidth}" height="${item.imageHeight}">
-    </a>
-  </div>
   <div class="ad-amazon-info">
     <div class="ad-amazon-title">
       <a href="${url}">${title}</a>

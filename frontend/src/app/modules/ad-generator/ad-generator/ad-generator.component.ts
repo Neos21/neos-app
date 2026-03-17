@@ -38,6 +38,9 @@ export class AdGeneratorComponent {
     this.form = this.formBuilder.group({
       keyword: ['', [Validators.required]]
     });
+    // プレースホルダを出力しておく
+    this.amazonCode  = this.adGeneratorService.generateAmazonCode(new AmazonItem({ detailPageUrl: '★', title: '★' }));
+    this.rakutenCode = this.adGeneratorService.generateRakutenCode(new RakutenItem({ itemUrl: '★', shopUrl: '★', itemName: '★', shopName: '★', itemPrice: '★' }));
   }
   
   public searchBoth() {
@@ -48,13 +51,17 @@ export class AdGeneratorComponent {
   public async searchAmazon(): Promise<void | string> {
     this.amazonError = undefined;
     if(this.form.value.keyword === '') return this.amazonError = 'Please Input Keyword';
-    try {
-      this.amazonResults = await this.adGeneratorService.searchAmazon(this.form.value.keyword);
-    }
-    catch(_error) {
-      this.amazonError = 'Amazon Results Not Found';
-      this.amazonResults = [];
-    }
+    
+    // NOTE : Amazon Creators API での検索が困難なため、検索結果に飛べるようにしておく
+    const dummyAmazonItem = new AmazonItem({ detailPageUrl: `https://www.amazon.co.jp/s?k=${this.form.value.keyword}`, title: this.form.value.keyword });
+    this.amazonResults = [dummyAmazonItem];
+    //try {
+    //  this.amazonResults = await this.adGeneratorService.searchAmazon(this.form.value.keyword);
+    //}
+    //catch(_error) {
+    //  this.amazonError = 'Amazon Results Not Found';
+    //  this.amazonResults = [];
+    //}
   }
   
   public async searchRakuten(): Promise<void | string> {

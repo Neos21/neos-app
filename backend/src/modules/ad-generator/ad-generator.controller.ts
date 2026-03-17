@@ -13,6 +13,7 @@ export class AdGeneratorController {
     private readonly adGeneratorService: AdGeneratorService
   ) { }
   
+  // NOTE : Amazon Creators API への移行が困難で放置してある・フロントエンドからは呼び出していない
   @UseGuards(JwtAuthGuard)
   @Get('search-amazon')
   public async searchAmazon(@Query('keyword') keyword: string, @Res() response: Response): Promise<Response<Array<AmazonItem>>> {
