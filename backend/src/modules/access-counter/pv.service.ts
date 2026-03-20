@@ -20,6 +20,10 @@ export class PvService {
       delete pv.id;
       const jstNow = this.getJstNow();
       const pvToSave = this.extractValues(pv, headers, ip, jstNow.dateTime);
+      
+      // 保存しなくて良いモノを除外する
+      if(pvToSave.ip.includes('localhost')) return true;
+      
       const jsonLine = this.createJsonLine(pvToSave);
       
       // `fs.appendFile()` はファイルがなければ新規作成して追記モードで書き込む
@@ -56,6 +60,8 @@ export class PvService {
     if(this.isEmpty(pv.ua  )) pv.ua   = '_';
     if(!this.isObject(pv.ua_data) && pv.ua_data !== '-') pv.ua_data = '_';
     if(this.isEmpty(pv.ua_model)) pv.ua_model = '_';
+    
+    pv.title = pv.title.replace(' - Neo\'s World', '');
     
     // `get()` がなく全て小文字のオブジェクトになっている模様
     pv.header_lang  = headers['accept-language'] ?? '_';
