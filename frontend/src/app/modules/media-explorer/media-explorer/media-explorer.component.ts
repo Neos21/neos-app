@@ -112,17 +112,23 @@ export class MediaExplorerComponent {
     const keywords = new Set<string>();
     
     const collect = (dictionary: ParsedDictionary) => {
+      let isMatched = false;
+      // このノードの `names` 配列内に一つでもマッチするものがあるかチェックする
       for(const name of dictionary.names) {
         if(name.toLowerCase().includes(searchLowerCase)) {
-          // マッチしたのでこのノードと配下すべてを追加する
-          keywords.add(name);
-          this.collectAllChildKeywords(dictionary, keywords);
-          return;  // この親の検索は終了
+          isMatched = true;
+          break;
         }
       }
-      // マッチしなかったので子ノードを探索する
-      if(dictionary.children != null) {
-        for(const child of dictionary.children) collect(child);
+      
+      if(isMatched) {
+        // マッチしたので同階層のすべてのキーワードと配下すべてを追加する
+        for(const name of dictionary.names) keywords.add(name.toLowerCase());
+        this.collectAllChildKeywords(dictionary, keywords);
+      }
+      else {
+        // マッチしなかったので子ノードを探索する
+        if(dictionary.children != null) for(const child of dictionary.children) collect(child);
       }
     };
     
@@ -134,7 +140,7 @@ export class MediaExplorerComponent {
   private collectAllChildKeywords(dictionary: ParsedDictionary, keywords: Set<string>): void {
     if(dictionary.children == null) return;
     for(const child of dictionary.children) {
-      for(const name of child.names) keywords.add(name);
+      for(const name of child.names) keywords.add(name.toLowerCase());
       this.collectAllChildKeywords(child, keywords);
     }
   }
@@ -142,7 +148,12 @@ export class MediaExplorerComponent {
   /** 名前がマッチしたキーワードセットまたは検索キーワードで該当するかチェックする */
   private isNameMatched(name: string, matchedKeywords: Set<string>, searchLowerCase: string): boolean {
     const nameLowerCase = name.toLowerCase();
-    return matchedKeywords.has(nameLowerCase) || nameLowerCase.includes(searchLowerCase);
+    
+    // `matchedKeywords` に含まれるいずれかのキーワードが name に含まれているかチェックする
+    for(const keyword of matchedKeywords) if(nameLowerCase.includes(keyword)) return true;
+    
+    // `matchedKeywords` にマッチしなかった場合、直接検索キーワードで検索する
+    return nameLowerCase.includes(searchLowerCase);
   }
   
   public async onSaveDictionary(): Promise<void> {
