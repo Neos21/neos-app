@@ -13,6 +13,16 @@ export class MediaExplorerService {
     return await firstValueFrom(this.httpClient.post<{ result: string; }>('/api/media-explorer/git-pull', {}));
   }
   
+  public async fetchDictionary(): Promise<string> {
+    const dictionary = await firstValueFrom(this.httpClient.get<{ id: number; text: string; }>('/api/media-explorer/dictionary'));
+    return dictionary.text ?? '';
+  }
+  
+  public async saveDictionary(text: string): Promise<string> {
+    const updatedDictionary = await firstValueFrom(this.httpClient.post<{ id: number; text: string; }>('/api/media-explorer/dictionary', { text }));
+    return updatedDictionary.text ?? '';
+  }
+  
   public async fetchCurrentJson(): Promise<{ year: string; names: Array<string>; }> {
     const current = await firstValueFrom(this.httpClient.get<{ year: string; names: Array<string>; }>('/api/media-explorer/names/current.json'));
     current.names = current.names.reverse();

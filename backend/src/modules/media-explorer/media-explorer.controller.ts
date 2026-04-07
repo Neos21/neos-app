@@ -1,4 +1,4 @@
-import { Controller, Get, HttpStatus, Param, Post, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Param, Post, Res, UseGuards } from '@nestjs/common';
 
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
 import { MediaExplorerService } from './media-explorer.service';
@@ -17,6 +17,22 @@ export class MediaExplorerController {
     const isSucceeded = await this.mediaExplorerService.gitPull();
     if(!isSucceeded) return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Git Pull' });
     return response.status(HttpStatus.OK).json({ result: 'OK' });
+  }
+  
+  @UseGuards(JwtAuthGuard)
+  @Get('dictionary')
+  public async getDictionary(@Res() response: Response): Promise<Response> {
+    const dictionary = await this.mediaExplorerService.getDictionary();
+    if(dictionary == null) return response.status(HttpStatus.NOT_FOUND).json({ error: 'Dictionary Not Found' });
+    return response.status(HttpStatus.OK).json(dictionary);
+  }
+  
+  @UseGuards(JwtAuthGuard)
+  @Post('dictionary')
+  public async saveDictionary(@Body('text') text: string, @Res() response: Response): Promise<Response> {
+    const updatedDictionary = await this.mediaExplorerService.saveDictionary(text);
+    if(updatedDictionary == null) return response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed To Update Dictionary' });
+    return response.status(HttpStatus.OK).json(updatedDictionary);
   }
   
   @UseGuards(JwtAuthGuard)

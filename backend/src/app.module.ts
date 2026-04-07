@@ -13,6 +13,7 @@ import { configuration } from './core/configs/configuration';
 import { AccessLogMiddleware } from './core/middlewares/access-log.middleware';
 import { Site } from './entities/access-counter/site';
 import { Bookmark } from './entities/bookmarks/bookmark';
+import { Dictionary } from './entities/dictionaries/dictionary';
 import { Category } from './entities/hatebu/category';
 import { Entry } from './entities/hatebu/entry';
 import { NgDomain } from './entities/hatebu/ng-domain';
@@ -67,7 +68,8 @@ import { SshWindowModule } from './modules/ssh-window/ssh-window.module';
           NgUrl,
           NgWord,
           NgDomain,
-          Site
+          Site,
+          Dictionary
         ],
         synchronize: true
       })

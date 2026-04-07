@@ -10,7 +10,7 @@
   <app-error [error]="error"></app-error>
   
   <!-- 現在年 -->
-  <details class="year-wrapper" *ngIf="current != null">
+  <details class="year-wrapper" *ngIf="current != null" [open]="isSearching">
     <summary>{{ current.year }}</summary>
     <ul *ngIf="current.names.length">
       <li *ngFor="let name of current.names"><a (click)="onClickName(current.year, name)">{{ name }}</a></li>
@@ -18,7 +18,7 @@
   </details>
   
   <!-- 過去年 -->
-  <details class="year-wrapper" *ngFor="let item of past">
+  <details class="year-wrapper" *ngFor="let item of past" [open]="isSearching">
     <summary>{{ item.year }}</summary>
     <ul *ngIf="item.names.length">
       <li *ngFor="let name of item.names"><a (click)="onClickName(item.year, name)">{{ name }}</a></li>
@@ -26,12 +26,20 @@
   </details>
   
   <!-- Family : サムネイルはナシ -->
-  <details class="year-wrapper" *ngIf="family != null">
+  <details class="year-wrapper" *ngIf="family != null" [open]="isSearching">
     <summary>{{ family.title }}</summary>
     <ul *ngIf="family.names.length">
       <li *ngFor="let name of family.names">{{ name }}</li>
     </ul>
   </details>
+  
+  <form class="form" [formGroup]="form" (ngSubmit)="onSaveDictionary()">
+    <div>
+      <input type="text" placeholder="Search" formControlName="search" (input)="onSearch()" [disabled]="isProcessing">
+      <button type="submit" [disabled]="isProcessing">Save</button>
+    </div>
+    <textarea placeholder="Dictionary" formControlName="dictionary" [disabled]="isProcessing"></textarea>
+  </form>
   
   <!-- サムネイル -->
   <div class="thumbnail-wrapper" *ngIf="thumbnailUrl != null">

@@ -41,6 +41,19 @@ summary {
     background: #f0ffff;
   }
 
+.form {
+  margin: 1rem 0;
+}
+  .form div {
+    margin-bottom: .5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: .5rem;
+  }
+  .form textarea {
+    min-height: 10rem;
+  }
+
 .thumbnail-wrapper {
   position: fixed;
   top: 2.25rem;
