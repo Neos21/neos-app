@@ -24,6 +24,11 @@
     "skipLibCheck": true,
     "incremental": true
   },
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".angular"
+  ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
