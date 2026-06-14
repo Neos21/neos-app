@@ -1,4 +1,4 @@
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -24,7 +24,7 @@ export class NgWordsComponent implements OnInit, OnDestroy {
   /** エラー */
   public error$      = this.dataState$.pipe(map(dataState => dataState.error));
   /** NG ワード一覧 */
-  public ngWords$    = this.ngWordsService.ngWords$;
+  public ngWords$!: BehaviorSubject<Array<NgWord> | null>;
   
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -37,6 +37,7 @@ export class NgWordsComponent implements OnInit, OnDestroy {
       word: ['', [Validators.required]]
     });
     this.pageTitleService.setPageTitle('NG ワード管理');
+    this.ngWords$ = this.ngWordsService.ngWords$;
     
     try {
       await this.ngWordsService.findAll();

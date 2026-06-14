@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, Renderer2 } from '@angular/core';
+import { Component, inject, Inject, Renderer2 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 import { ApiService } from '../services/api.service';
@@ -18,10 +18,11 @@ export class HatebuComponent {
   /** 左利きモードか否か (`true` がデフォルト左利きモード・`false` で右利きモード) */
   private isLeftHandMode = true;
   
+  private readonly document = inject(DOCUMENT);
+  
   constructor(
     private readonly renderer2: Renderer2,
     private readonly router: Router,
-    @Inject(DOCUMENT) private readonly document: Document,
     private readonly apiService: ApiService,
     public readonly categoriesService: CategoriesService,
     public readonly pageTitleService: PageTitleService

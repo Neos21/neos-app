@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Terminal } from '@xterm/xterm';
 
 import { SshWindowService } from '../services/ssh-window.service';
+
+import type { Terminal } from '@xterm/xterm';
 
 @Component({
   selector: 'app-ssh-window',
@@ -23,9 +24,10 @@ export class SshWindowComponent implements OnInit {
     private readonly sshWindowService: SshWindowService
   ) { }
   
-  public ngOnInit() {
+  public async ngOnInit() {
     this.form = this.formBuilder.group({ name: ['', [Validators.required]] });
     
+    const { Terminal } = await import('@xterm/xterm');  // 遅延ロードする (ビルド資材も分割される)
     this.terminal = new Terminal();
     this.terminal.open(document.getElementById('ssh-window')!);
     

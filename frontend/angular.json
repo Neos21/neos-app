@@ -47,6 +47,8 @@
               ]
             },
             "production": {
+              "ssr"            : false,
+              "prerender"      : false,
               "extractLicenses": false,
               "outputHashing"  : "all"
             }
@@ -68,6 +70,9 @@
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "cache": {
+      "enabled": true
+    }
   }
 }

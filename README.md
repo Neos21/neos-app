@@ -31,6 +31,9 @@ $ npm install
 # Development
 $ npm start  # $ npm run dev
 
+# Enable Cache
+$ npm run ng config cli.cache.enabled true
+
 # Production Build
 $ npm run build
 ```

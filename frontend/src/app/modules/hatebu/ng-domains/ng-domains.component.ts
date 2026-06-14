@@ -1,4 +1,4 @@
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -23,7 +23,7 @@ export class NgDomainsComponent implements OnInit, OnDestroy {
   /** エラー */
   public error$      = this.dataState$.pipe(map(dataState => dataState.error));
   /** NG ドメイン一覧 */
-  public ngDomains$  = this.ngDomainsService.ngDomains$;
+  public ngDomains$!: BehaviorSubject<Array<NgDomain> | null>;
   
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -36,6 +36,7 @@ export class NgDomainsComponent implements OnInit, OnDestroy {
       domain: ['', [Validators.required]]
     });
     this.pageTitleService.setPageTitle('NG ドメイン管理');
+    this.ngDomains$ = this.ngDomainsService.ngDomains$;
     
     try {
       await this.ngDomainsService.findAll();
