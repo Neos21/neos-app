@@ -37,7 +37,7 @@
             "development": {
               "extractLicenses": false,
               "namedChunks"    : false,
-              "optimization"   : true,
+              "optimization"   : false,
               "sourceMap"      : false,
               "fileReplacements": [
                 {
@@ -47,12 +47,12 @@
               ]
             },
             "production": {
-              "optimization"   : true,
+              "extractLicenses": false,
               "namedChunks"    : false,
+              "optimization"   : true,
+              "prerender"      : false,
               "sourceMap"      : false,
               "ssr"            : false,
-              "prerender"      : false,
-              "extractLicenses": false,
               "outputHashing"  : "all"
             }
           }
