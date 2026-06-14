@@ -14,29 +14,47 @@ form {
   column-gap: .5rem;
 }
 
-dl {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: .5rem;
+table {
+  border-collapse: collapse;
 }
 
-dt {
-  min-width: 6rem;
-  align-self: center;
+table td {
+  padding: 0;
+  vertical-align: top;
 }
 
-dt button {
-  margin-right: .25rem;
-  padding-top   : 0;
-  padding-bottom: 0;
-  vertical-align: baseline;
+table tr td:nth-child(1) {
+  padding-bottom: .5rem;
+  white-space: nowrap;
 }
 
-dd {
-  align-self: center;
-  margin-left: 0;
+table tr td:nth-child(2) {
+  padding-left : .5rem;
+  font-weight: bold;
+  white-space: nowrap;
 }
 
-dd a {
+table tr td:nth-child(3) {
+  padding-left : .5rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;  /* 2行 */
+  overflow: hidden;
+}
+table tr td:nth-child(3) a {
   display: block;
+}
+
+table tr td:nth-child(4) {
+  padding-left : .5rem;
+  white-space: nowrap;
+}
+
+#copy-text {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }

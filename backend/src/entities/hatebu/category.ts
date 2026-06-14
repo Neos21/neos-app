@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
-import { Entry } from './entry';
+import type { Entry } from './entry';
 
 /**
  * カテゴリ
@@ -28,7 +28,7 @@ export class Category {
   public updatedAt: Date;
   
   /** 記事情報 (子) との親子関係を示す (カラムは作られない) : `entry.categoryId` ではなく `@ManyToOne` で指定した `entry.category` と相互紐付けする */
-  @OneToMany(() => Entry, entry => entry.category, { createForeignKeyConstraints: false })
+  @OneToMany(() => require('./entry').Entry, (entry: Entry) => entry.category, { createForeignKeyConstraints: false })
   public entries: Array<Entry>;
   
   constructor(partial: Partial<Category>) { Object.assign(this, partial); }

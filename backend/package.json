@@ -4,7 +4,7 @@
   "scripts": {
     "nest" : "nest",
     "start": "node ./dist/main.js",
-    "dev"  : "nest start --debug --watch",
+    "dev"  : "nest start --builder swc --debug --watch",
     "build": "nest build"
   },
   "dependencies": {
@@ -36,6 +36,8 @@
   "devDependencies": {
     "@nestjs/cli": "10.4.9",
     "@nestjs/schematics": "10.2.3",
+    "@swc/cli": "0.5.2",
+    "@swc/core": "1.15.41",
     "@types/cron": "2.4.3",
     "@types/express": "5.0.0",
     "@types/express-list-endpoints": "6.0.3",

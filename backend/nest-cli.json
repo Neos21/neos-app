@@ -6,6 +6,7 @@
     "spec": false
   },
   "compilerOptions": {
+    "builder": "swc",
     "deleteOutDir": true
   }
 }

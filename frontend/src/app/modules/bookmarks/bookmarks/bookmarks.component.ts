@@ -65,4 +65,12 @@ export class BookmarksComponent {
     }
     this.isProcessing = false;
   }
+  
+  public copy(url: string): void {
+    (document.getElementById('copy-text') as HTMLTextAreaElement).textContent = url;
+    window.setTimeout(() => {
+      (document.getElementById('copy-text') as HTMLTextAreaElement).select();
+      document.execCommand('copy');
+    }, 1);
+  }
 }

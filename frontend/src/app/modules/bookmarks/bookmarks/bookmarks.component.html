@@ -10,11 +10,17 @@
   </form>
   <app-error [error]="error"></app-error>
   
-  <p  *ngIf="bookmarks == null || bookmarks.length === 0">No Bookmarks</p>
-  <dl *ngIf="bookmarks != null && bookmarks.length >=  1">
-    <ng-container *ngFor="let bookmark of bookmarks">
-      <dt><button type="button" (click)="remove(bookmark.id!)" [disabled]="isProcessing">×</button> {{ bookmark.id }}</dt>
-      <dd><a [href]="bookmark.url" target="_blank" rel="noreferrer noopener">{{ bookmark.url }}</a></dd>
-    </ng-container>
-  </dl>
+  <p     *ngIf="bookmarks == null || bookmarks.length === 0">No Bookmarks</p>
+  <table *ngIf="bookmarks != null && bookmarks.length >=  1">
+    <tbody>
+      <tr *ngFor="let bookmark of bookmarks">
+        <td><button type="button" (click)="remove(bookmark.id!)" [disabled]="isProcessing">×</button></td>
+        <td class="text-right">{{ bookmark.id }}</td>
+        <td><a [href]="bookmark.url" target="_blank" rel="noreferrer noopener">{{ bookmark.url }}</a></td>
+        <td><button type="button" (click)="copy(bookmark.url)">&#x23CE;</button></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <textarea id="copy-text" readonly></textarea>
 </div>
