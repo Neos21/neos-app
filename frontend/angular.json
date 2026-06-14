@@ -36,8 +36,8 @@
           "configurations": {
             "development": {
               "extractLicenses": false,
-              "namedChunks"    : true,
-              "optimization"   : false,
+              "namedChunks"    : false,
+              "optimization"   : true,
               "sourceMap"      : false,
               "fileReplacements": [
                 {
@@ -47,6 +47,9 @@
               ]
             },
             "production": {
+              "optimization"   : true,
+              "namedChunks"    : false,
+              "sourceMap"      : false,
               "ssr"            : false,
               "prerender"      : false,
               "extractLicenses": false,
