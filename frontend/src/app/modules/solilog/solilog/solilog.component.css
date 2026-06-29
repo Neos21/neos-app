@@ -41,11 +41,14 @@ footer {
 form {
   display: grid;
   grid-template-columns: 1fr auto;
-  grid-template-rows: 4.5rem;
   column-gap: .5rem;
 }
-  textarea {
-    resize: none;
+  form textarea {
+    min-height: 4.5rem;
+    resize: vertical;
+  }
+  form button {
+    height: 4.5rem;
   }
 
 main,
