@@ -56,7 +56,7 @@ export class NgDomainsComponent implements OnInit, OnDestroy {
     this.dataState$.next({});  // Clear Error
     try {
       // NOTE : 登録データは小文字に統一する・プロトコル部分があれば除去しておく
-      const domain = `${this.form.value.domain}`.trim().toLowerCase().replace(/^https?:\/\//, '');
+      const domain = `${this.form.value.domain}`.trim().toLowerCase().replace((/^https?:\/\//), '');
       
       if(this.ngDomains$.getValue()!.some(ngDomain => ngDomain.domain === domain)) {
         this.dataState$.next({ error: `${domain} は登録済です。` });

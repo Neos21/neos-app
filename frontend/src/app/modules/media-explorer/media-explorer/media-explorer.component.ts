@@ -203,7 +203,7 @@ export class MediaExplorerComponent {
     for (const line of lines) {
       if(line.trim() === '') continue;  // 空行はスキップする
       
-      const indentMatch = line.match(/^　*/);  // 行頭の全角文字の数をインデント数とする
+      const indentMatch = line.match((/^　*/));  // 行頭の全角文字の数をインデント数とする
       const indent = indentMatch ? indentMatch[0].length : 0;
       const names = line.trim().split('|').map((name: string) => name.trim()).filter((name: string) => name !== '');
       

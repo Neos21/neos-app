@@ -1,9 +1,12 @@
 import { Observable, timeout } from 'rxjs';
 
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpContextToken, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { AuthService } from '../../shared/services/auth.service';
+
+/** 長時間実行するリクエストでは明示的にタイムアウトを無効にする */
+export const skipRequestTimeout = new HttpContextToken<boolean>(() => false);
 
 @Injectable({ providedIn: 'root' })
 export class CustomInterceptor implements HttpInterceptor {
@@ -18,7 +21,8 @@ export class CustomInterceptor implements HttpInterceptor {
     // JWT アクセストークンが取得できればリクエストヘッダに設定する
     const accessToken = this.authService.accessToken;
     if(accessToken) request = request.clone({ headers: request.headers.set('Authorization', `Bearer ${accessToken}`) });
-    // リクエストタイムアウトを設定する : 60秒
-    return next.handle(request).pipe(timeout(60 * 1000));
+    // 通常は60秒でタイムアウトする・スクレイピング処理はリトライ等で長時間かかりうるため指定時は回避できるようにしておく
+    const response = next.handle(request);
+    return request.context.get(skipRequestTimeout) ? response : response.pipe(timeout(60 * 1000));
   }
 }

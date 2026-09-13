@@ -1,7 +1,9 @@
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpContext } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+import { skipRequestTimeout } from '../../../core/interceptors/custom.interceptor';
 
 import { Category } from '../classes/category';
 
@@ -51,7 +53,9 @@ export class CategoriesService {
   /** 全カテゴリの記事一覧を再スクレイピングしてカテゴリ一覧を再取得する */
   public async scrapeAll(): Promise<Array<Category>> {
     // 取得してキャッシュする
-    const categories = await firstValueFrom(this.httpClient.post<Array<Category>>('/api/hatebu/categories', {}));
+    const categories = await firstValueFrom(this.httpClient.post<Array<Category>>('/api/hatebu/categories', {}, {
+      context: new HttpContext().set(skipRequestTimeout, true)
+    }));
     this.categories$.next(categories);
     return categories;
   }
@@ -62,7 +66,9 @@ export class CategoriesService {
     const targetIndex = categories.findIndex(category => category.id === id);
     if(targetIndex < 0) throw new Error('The Category Does Not Exist');
     // 取得してキャッシュする
-    const category = await firstValueFrom(this.httpClient.post<Category>(`/api/hatebu/categories/${id}`, {}));
+    const category = await firstValueFrom(this.httpClient.post<Category>(`/api/hatebu/categories/${id}`, {}, {
+      context: new HttpContext().set(skipRequestTimeout, true)
+    }));
     categories[targetIndex] = category;
     this.categories$.next(categories);
     return category;

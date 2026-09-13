@@ -39,17 +39,17 @@
       </div>
     </div>
   </ng-container>
-  
-  <div class="control-buttons">
-    <div class="control-buttons-left">
-      <button type="button" accesskey="f" (click)="moveNext(category.id)">次へ</button>
-      <button type="button" (click)="reloadById(category.id)">再読込</button>
-      <button type="button" (click)="reloadAll(category.id)">全カテゴリ再読込</button>
-    </div>
-    <div class="control-buttons-right">
-      <button type="button" accesskey="s" (click)="movePrev(category.id)">前へ</button>
-      <button type="button" (click)="scrapeById(category.id)">更新</button>
-      <button type="button" (click)="scrapeAll(category.id)">全カテゴリ更新</button>
-    </div>
-  </div>
 </ng-container>
+
+<div class="control-buttons" *ngIf="(isLoading$ | async) !== true && currentCategoryId > 0">
+  <div class="control-buttons-left">
+    <button type="button" accesskey="f" (click)="moveNext(currentCategoryId)">次へ</button>
+    <button type="button" (click)="reloadById(currentCategoryId)">再読込</button>
+    <button type="button" (click)="reloadAll(currentCategoryId)">全カテゴリ再読込</button>
+  </div>
+  <div class="control-buttons-right">
+    <button type="button" accesskey="s" (click)="movePrev(currentCategoryId)">前へ</button>
+    <button type="button" (click)="scrapeById(currentCategoryId)">更新</button>
+    <button type="button" (click)="scrapeAll(currentCategoryId)">全カテゴリ更新</button>
+  </div>
+</div>

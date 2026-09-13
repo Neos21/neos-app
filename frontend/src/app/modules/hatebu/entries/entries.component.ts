@@ -51,6 +51,11 @@ export class EntriesComponent {
     this.queryParamMap$.unsubscribe();
   }
   
+  /** 記事の取得に失敗しても操作ボタンで使える、URL のカテゴリ ID */
+  public get currentCategoryId(): number {
+    return Number(this.activatedRoute.snapshot.queryParamMap.get(this.queryParamKey));
+  }
+  
   /** 指定のカテゴリ情報を取得し表示する */
   public async show(categoryId: number): Promise<void> {
     this.dataState$.next({ isLoading: true });
