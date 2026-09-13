@@ -16,7 +16,7 @@ export class SqliteService {
     this.dbDirectoryPath     = this.configService.get('dbDirectoryPath');
     this.sqliteDirectoryPath = this.configService.get('sqliteDirectoryPath');
     (async () => {
-      this.masterDb = new Database(path.resolve(this.dbDirectoryPath, 'master-db.sqlite3'));
+      this.masterDb = new Database(path.resolve(this.dbDirectoryPath, 'master-db.sqlite3.db'));
       await util.promisify(this.masterDb.run).call(this.masterDb, `
         CREATE TABLE IF NOT EXISTS databases (
           db_name        TEXT  NOT NULL  PRIMARY KEY,
@@ -42,7 +42,7 @@ export class SqliteService {
   /** DB ファイルを削除する */
   public async deleteDb(dbName: string, dbCredential: string): Promise<void> {
     await util.promisify(this.masterDb.run).call(this.masterDb, `DELETE FROM databases WHERE db_name = ? AND db_credential = ?`, [dbName, dbCredential]);
-    await fs.unlink(path.resolve(this.sqliteDirectoryPath, `${dbName}.sqlite3`));  // ファイルが存在しない場合はエラーになる
+    await fs.unlink(path.resolve(this.sqliteDirectoryPath, `${dbName}.sqlite3.db`));  // ファイルが存在しない場合はエラーになる
   }
   
   /** SQL を実行する・INSERT・UPDATE・DELETE 時の結果を返す */
@@ -88,6 +88,6 @@ export class SqliteService {
   
   /** DB を読み込む・存在しない場合は作成する */
   private createOrOpenDb(dbName: string): Database {
-    return new Database(path.resolve(this.sqliteDirectoryPath, `${dbName}.sqlite3`));
+    return new Database(path.resolve(this.sqliteDirectoryPath, `${dbName}.sqlite3.db`));
   }
 }
