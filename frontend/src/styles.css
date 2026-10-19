@@ -390,7 +390,7 @@ button.button-danger {
 }
 
 .xterm .composition-view {
-  /* TODO: Composition position got messed up somewhere */
+  /* Composition position got messed up somewhere */
   background: #000;
   color: #FFF;
   display: none;

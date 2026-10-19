@@ -1,11 +1,10 @@
-import { Body, Controller, Get, Headers, HttpStatus, Ip, ParseIntPipe, Post, Query, Res } from '@nestjs/common';
+import { text, type Request, type Response } from 'express';
+import { Body, Controller, Get, Headers, HttpStatus, Ip, ParseIntPipe, Post, Query, Req, Res } from '@nestjs/common';
 
 import { CanvasService } from './canvas.service';
 import { Pv } from './classes/pv';
 import { DbService } from './db.service';
 import { PvService } from './pv.service';
-
-import type { Response } from 'express';
 
 @Controller('access-counter')
 export class AccessCounterController {
@@ -20,9 +19,30 @@ export class AccessCounterController {
     @Ip() ip: string,  // `req.ip` と同じ
     @Headers() headers: Headers,
     @Body() pv: Pv,
-    @Body('id', ParseIntPipe) id: number,  // 数値型にできなかった場合は自動的に 400 が返る
+    @Req() request: Request,
     @Res() response: Response
   ): Promise<Response> {
+    // `navigator.sendBeacon()` で送信した場合は `text/plain` で届くので、生のリクエストデータを取得して JSON に変換する
+    if(request.is('text/plain')) {
+      try {
+        await new Promise<void>((resolve, reject) => { text({ type: 'text/plain' })(request, response, error => error ? reject(error) : resolve()); });
+      }
+      catch(error) {
+        const status = (error as { status?: number }).status === HttpStatus.PAYLOAD_TOO_LARGE ? HttpStatus.PAYLOAD_TOO_LARGE : HttpStatus.BAD_REQUEST;
+        return response.status(status).json({ error: 'Failed To Read PV Body (Text Plain)' });
+      }
+      // 引数 `pv` は空オブジェクトの状態なのでココでパースして代入する
+      try {
+        pv = JSON.parse(request.body);
+      }
+      catch {
+        return response.status(HttpStatus.BAD_REQUEST).json({ error: 'Invalid JSON Body' });
+      }
+    }
+    
+    // 本文を読み取った後に ID を検証する・数値型にできなかった場合は 400 が返る
+    const id = await new ParseIntPipe().transform(String(pv?.id), { type: 'body', data: 'id' });
+    
     // 指定 ID のサイト定義が存在すること
     const site = await this.dbService.findOne(id);
     if(site == null) return response.status(HttpStatus.BAD_REQUEST).json({ error: 'The Site Of The ID Does Not Exist' });
